@@ -652,21 +652,6 @@
    "pinnedAt": 1794251302830
   },
   {
-   "id": "2adcb073-79ab-4a21-8161-7fb6940df452",
-   "channelId": "5141ce85-4e89-441d-b95a-c842a25a36da",
-   "dmId": null,
-   "userId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
-   "text": "**Жирный** и ||спойлер|| и `код`",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794250644236,
-   "editedAt": null,
-   "reactions": {},
-   "pinned": true,
-   "pinnedBy": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
-   "pinnedAt": 1794250644967
-  },
-  {
    "id": "4b6fc55a-6e4b-4d87-b372-c24df33299a6",
    "channelId": null,
    "dmId": "1e953279-8e5b-4945-b921-6638e676fbb3",
@@ -1008,7 +993,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794254250520,
+ "updatedAt": 1794254286823,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600
  },
