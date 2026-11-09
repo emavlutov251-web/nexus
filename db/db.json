@@ -84,7 +84,7 @@
    "id": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "username": "smoke_f1",
    "displayName": "Смок",
-   "bio": "",
+   "bio": "обновлено",
    "color": "#f47fff",
    "salt": "bce0fe389f92f1bd32a8c48d00e9cce3",
    "passwordHash": "9986a0bab037dc4b58f8596d481d62f19971f47a516da7c51588b04a86203a09",
@@ -136,6 +136,11 @@
    "token": "f3791d51ade168b358ff0eb480ba95c352be8e63d87c9bb5120d54584deca188",
    "userId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "createdAt": 1794251343862
+  },
+  {
+   "token": "a152d4972fd78da263f16044ed8ede75a33fc7e4277414e3b82ba570fa8191ee",
+   "userId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
+   "createdAt": 1794252932770
   }
  ],
  "servers": [
@@ -158,7 +163,8 @@
    "name": "Смок Сервер",
    "color": "#2aabee",
    "ownerId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
-   "createdAt": 1794250643834
+   "createdAt": 1794250643834,
+   "topic": "тест описания"
   },
   {
    "id": "8f1ee368-8270-47d6-becc-c4eaa0c18b1c",
@@ -940,6 +946,23 @@
      "772cd9c1-6146-42d4-9791-5345806d7bff"
     ]
    }
+  },
+  {
+   "id": "c40d778f-f5b6-4340-a3f4-292bea293f5c",
+   "channelId": "f107a547-2b4f-41d0-960b-035fe605b594",
+   "dmId": null,
+   "userId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
+   "text": "🎂",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794252933765,
+   "editedAt": null,
+   "reactions": {
+    "🎂": [
+     "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52"
+    ]
+   }
   }
  ],
  "reads": {
@@ -952,7 +975,7 @@
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794250644788,
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:51d20f69-8dc1-4300-8e92-04656b0e8664": 1794251518025,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:a662b3cd-4820-44fc-be93-949ac53614a4": 1794251073428,
-  "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:f107a547-2b4f-41d0-960b-035fe605b594": 1794251344565
+  "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:f107a547-2b4f-41d0-960b-035fe605b594": 1794252933765
  },
  "stories": [
   {
@@ -970,7 +993,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794252787459,
+ "updatedAt": 1794252934396,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600
  },
