@@ -59,6 +59,16 @@
    "salt": "2a0c8a2356e618e39fcacf8aa2d9eb57",
    "passwordHash": "7a8014ec1d4ddb2131d3a59b3e905e90459c315ba070d0b3359dd4f780136467",
    "createdAt": 1794247784187
+  },
+  {
+   "id": "376106a2-95de-4fd0-865a-1fecddc8e468",
+   "username": "exam2026",
+   "displayName": "Экзамен 2026",
+   "bio": "",
+   "color": "#e74c3c",
+   "salt": "a8b7b1126aaa11be17c3f6810aec0049",
+   "passwordHash": "64dc41193018d14ec1a2e1fb2a47389c8a924d1090f046ae886577ad074b0548",
+   "createdAt": 1794248874699
   }
  ],
  "sessions": [
@@ -66,6 +76,11 @@
    "token": "4492086a4fec89027091ee28f2fdcd3b50e6b963f251ada8b6c5da8e65f98383",
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "createdAt": 1794247784187
+  },
+  {
+   "token": "beb55514509cc2a3f2fdcdf78e101034f36e8cfcf9e3a29fde66e65efc101514",
+   "userId": "376106a2-95de-4fd0-865a-1fecddc8e468",
+   "createdAt": 1794248874699
   }
  ],
  "servers": [
@@ -424,5 +439,5 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794248738587
+ "updatedAt": 1794248874730
 }
