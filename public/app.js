@@ -32,7 +32,10 @@ function initials(name) {
 }
 function avatarHTML(user, size = 40, extra = '') {
   const c = user?.color || '#3390ec';
-  return `<div class="avatar ${extra}" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.4)}px;background:linear-gradient(155deg,${c},${shade(c, -45)})">${esc(initials(user?.displayName))}<span class="presence-dot" data-presence="${esc(user?.id || '')}"></span></div>`;
+  const inner = user?.avatar
+    ? `<img src="${esc(user.avatar)}" alt="" style="width:100%;height:100%;object-fit:cover;border-radius:50%">`
+    : esc(initials(user?.displayName));
+  return `<div class="avatar ${extra}" style="width:${size}px;height:${size}px;font-size:${Math.round(size * 0.4)}px;background:linear-gradient(155deg,${c},${shade(c, -45)})">${inner}<span class="presence-dot" data-presence="${esc(user?.id || '')}"></span></div>`;
 }
 
 /* ══════════ State ══════════ */
@@ -41,6 +44,8 @@ const state = {
   me: null,
   servers: [], dms: [], users: [],
   online: new Set(),
+  lastSeen: {},
+  readAt: {},
   mode: { type: 'dm' },
   view: null,
   messages: [],
@@ -96,9 +101,11 @@ $('#auth-form').addEventListener('submit', async (e) => {
     if (authTab === 'login') {
       const { token, me } = await api('/api/login', { method: 'POST', body: { login, password: pw } });
       state.token = token; localStorage.setItem('nexus_token', token); state.me = me;
+      try { window.NexusAndroid?.saveSession?.(token); } catch (_) {}
     } else {
       const { token, me } = await api('/api/register', { method: 'POST', body: { username: login, displayName: $('#auth-displayname').value.trim(), password: pw } });
       state.token = token; localStorage.setItem('nexus_token', token); state.me = me;
+      try { window.NexusAndroid?.saveSession?.(token); } catch (_) {}
     }
     await enterApp();
   } catch (ex) { err.textContent = ex.message; }
@@ -109,6 +116,7 @@ async function enterApp() {
   $('#app').classList.remove('hidden');
   await refreshBootstrap();
   connectWS();
+  loadStories();
   if (state.dms.length) openDm(state.dms[0].id);
   else if (state.servers.length && state.servers[0].channels.length) openChannel(state.servers[0].channels[0].id, state.servers[0].id);
   else { state.mode = { type: 'dm' }; state.view = null; renderAll(); renderEmptyChat(); }
@@ -118,6 +126,7 @@ async function enterApp() {
 $('#drawer-logout').addEventListener('click', async () => {
   try { await api('/api/logout', { method: 'POST' }); } catch (_) {}
   localStorage.removeItem('nexus_token');
+  try { window.NexusAndroid?.clearSession?.(); } catch (_) {}
   if (ws) { try { ws.close(); } catch (_) {} ws = null; }
   Call.end('local');
   state.me = null; state.servers = []; state.dms = []; state.view = null;
@@ -133,6 +142,7 @@ async function refreshBootstrap() {
   state.dms = data.dms;
   state.users = data.users;
   state.online = new Set(data.online || []);
+  state.lastSeen = data.lastSeen || {};
   renderAll();
 }
 function totalDMUnread() { return state.dms.reduce((a, d) => a + (d.unread || 0), 0); }
@@ -260,7 +270,13 @@ $('#btn-menu').addEventListener('click', openDrawer);
 $('#drawer-overlay').addEventListener('click', closeDrawer);
 $('#drawer-new-chat').addEventListener('click', () => { closeDrawer(); openModal('#modal-dm'); renderDmUserList(''); });
 $('#drawer-new-server').addEventListener('click', () => { closeDrawer(); openModal('#modal-server'); });
-$('#drawer-settings').addEventListener('click', () => { closeDrawer(); $('#settings-name').value = state.me.displayName; $('#settings-bio').value = state.me.bio || ''; openModal('#modal-settings'); });
+$('#drawer-settings').addEventListener('click', () => {
+  closeDrawer();
+  $('#settings-name').value = state.me.displayName;
+  $('#settings-bio').value = state.me.bio || '';
+  $('#settings-avatar-preview').innerHTML = avatarHTML(state.me, 72);
+  openModal('#modal-settings');
+});
 
 /* ══════════ Chat header ══════════ */
 function setHeaderForView() {
@@ -281,7 +297,11 @@ function setHeaderForView() {
     icon.innerHTML = avatarHTML(d?.with, 38);
     name.textContent = d?.with?.displayName || 'Чат';
     const online = state.online.has(d?.with?.id);
-    topic.textContent = online ? 'в сети' : 'был(а) недавно';
+    if (online) topic.textContent = 'в сети';
+    else {
+      const ls = state.lastSeen[d?.with?.id];
+      topic.textContent = ls ? 'был(а) ' + new Date(ls).toLocaleString('ru-RU', { hour: '2-digit', minute: '2-digit', day: '2-digit', month: 'short' }) : 'был(а) недавно';
+    }
     $('#chat-members-btn').style.visibility = 'hidden';
   } else {
     icon.innerHTML = ''; name.textContent = 'Nexus'; topic.textContent = 'выберите чат';
@@ -354,7 +374,9 @@ async function loadMessages(before) {
   if (state.view.kind === 'channel') p.set('channel', state.view.id); else p.set('dm', state.view.id);
   if (before) p.set('before', before);
   p.set('limit', '50');
-  const { messages, hasMore } = await api('/api/messages?' + p);
+  const { messages, hasMore, readAt } = await api('/api/messages?' + p);
+  const key = (state.view.kind === 'channel' ? 'ch:' : 'dm:') + state.view.id;
+  if (readAt) state.readAt[key] = readAt;
   if (before) state.messages = [...messages, ...state.messages];
   else state.messages = messages;
   $('#empty-state').classList.toggle('hidden', state.messages.length !== 0);
@@ -362,6 +384,18 @@ async function loadMessages(before) {
   renderMessages(before ? 'prepend' : 'bottom');
 }
 $('#load-more-btn').addEventListener('click', () => { const first = state.messages[0]; if (first) loadMessages(first.createdAt); });
+
+/* кнопка «к последним» */
+(function () {
+  const wrap = $('#messages-wrap'), btn = $('#scroll-bottom');
+  wrap.addEventListener('scroll', () => {
+    const nearBottom = wrap.scrollHeight - wrap.scrollTop - wrap.clientHeight < 240;
+    btn.classList.toggle('show', !nearBottom);
+  });
+  btn.addEventListener('click', () => {
+    wrap.scrollTo({ top: wrap.scrollHeight, behavior: 'smooth' });
+  });
+})();
 
 function markRead() {
   if (!state.view) return;
@@ -443,12 +477,15 @@ function reactionsHTML(m) {
 function messageEl(m, grouped) {
   const a = m.author || state.users.find(u => u.id === m.userId) || { displayName: '?', color: '#3390ec' };
   const div = document.createElement('div');
-  const mine = m.userId === state.me.id;
+  const mine = (m.userId || m.author?.id) === state.me.id;
   div.className = 'msg ' + (mine ? 'out' : 'in') + (grouped ? ' grouped' : '');
   div.dataset.id = m.id;
   const canDelete = mine || (state.view?.kind === 'channel' && isServerOwner(state.view.serverId));
   const reply = m.replyTo ? state.messages.find(x => x.id === m.replyTo) : null;
   const showName = !mine && !grouped && state.view?.kind === 'channel';
+  const viewKey = state.view ? (state.view.kind === 'channel' ? 'ch:' : 'dm:') + state.view.id : '';
+  const isRead = (state.readAt[viewKey] || 0) >= m.createdAt;
+  const tick = `<svg class="msg-check ${isRead ? 'read' : ''}" viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M2 12.5l4.5 4.5L15 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/><path d="M9 12.5l4.5 4.5L22 8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>`;
   div.innerHTML = `
     ${!mine ? `<div class="msg-avatar-slot">${grouped ? '' : avatarHTML(a, 38)}</div>` : ''}
     <div class="bubble">
@@ -457,7 +494,7 @@ function messageEl(m, grouped) {
       ${m.text ? `<div class="msg-text">${linkify(esc(m.text))}</div>` : ''}
       ${attachmentHTML(m.attachment)}
       ${reactionsHTML(m)}
-      <div class="msg-meta">${m.editedAt ? '<span class="msg-edited">ред.</span>' : ''}<span class="msg-time">${fmtTime(m.createdAt)}</span>${mine ? '<svg class="msg-check" viewBox="0 0 24 24" width="15" height="15" fill="none"><path d="M3 12.5l5 5L21 6" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>' : ''}</div>
+      <div class="msg-meta">${m.editedAt ? '<span class="msg-edited">ред.</span>' : ''}<span class="msg-time">${fmtTime(m.createdAt)}</span>${mine ? tick : ''}</div>
     </div>
     <div class="msg-actions">
       <button data-act="react-like" title="👍">👍</button>
@@ -545,7 +582,7 @@ function appendMessageIfNew(m) {
   state.messages.push(m);
   const wrap = messagesWrap();
   const nearBottom = wrap.scrollHeight - wrap.scrollTop - wrap.clientHeight < 220;
-  const force = m.userId === state.me?.id;
+  const force = (m.userId || m.author?.id) === state.me?.id;
   $('#empty-state').classList.add('hidden');
   renderMessages((nearBottom || force) ? 'bottom' : 'keep');
   if (!nearBottom && !force) toast('Новое сообщение ниже ↓');
@@ -648,6 +685,7 @@ $('#composer').addEventListener('submit', async (e) => {
     const { message } = await api('/api/messages', { method: 'POST', body });
     if (scopeMatchesView(message)) appendMessageIfNew(message); else updatePreviewFor(message);
     renderSidebar();
+    blip(660, 0.05);
   }
   catch (err) {
     toast(err.message);
@@ -709,7 +747,10 @@ function renderAttachmentPreview() {
 const Rec = { stream: null, mr: null, chunks: [], circle: false, t0: 0, iv: null, waveIv: null, active: false };
 async function mediaForRecording(circle) {
   const constraints = { audio: true, video: circle ? { facingMode: 'user', width: { ideal: 480 }, height: { ideal: 480 } } : false };
-  if (!navigator.mediaDevices?.getUserMedia) throw new Error('Запись недоступна: нет доступа к микрофону');
+  if (!navigator.mediaDevices?.getUserMedia) {
+    await nativePerm(circle ? 'audio,video' : 'audio');
+    if (!navigator.mediaDevices?.getUserMedia) throw new Error('Запись недоступна в этом приложении. Откройте Nexus в Chrome.');
+  }
   try {
     return await navigator.mediaDevices.getUserMedia(constraints);
   } catch (e) {
@@ -964,16 +1005,16 @@ function renderTyping() {
 setInterval(renderTyping, 800);
 
 /* ══════════ Sound ══════════ */
-function blip() {
+function blip(freq = 880, vol = 0.07) {
   try {
     soundCtx = soundCtx || new (window.AudioContext || window.webkitAudioContext)();
     const o = soundCtx.createOscillator(), g = soundCtx.createGain();
-    o.type = 'sine'; o.frequency.value = 880;
+    o.type = 'sine'; o.frequency.value = freq;
     g.gain.setValueAtTime(0.0001, soundCtx.currentTime);
-    g.gain.exponentialRampToValueAtTime(0.07, soundCtx.currentTime + 0.015);
-    g.gain.exponentialRampToValueAtTime(0.0001, soundCtx.currentTime + 0.28);
+    g.gain.exponentialRampToValueAtTime(vol, soundCtx.currentTime + 0.015);
+    g.gain.exponentialRampToValueAtTime(0.0001, soundCtx.currentTime + 0.22);
     o.connect(g); g.connect(soundCtx.destination);
-    o.start(); o.stop(soundCtx.currentTime + 0.3);
+    o.start(); o.stop(soundCtx.currentTime + 0.25);
   } catch (_) {}
 }
 document.addEventListener('click', () => { try { soundCtx = soundCtx || new (window.AudioContext || window.webkitAudioContext)(); soundCtx.resume?.(); } catch (_) {} }, { once: true });
@@ -1010,16 +1051,26 @@ function handleWS(msg) {
       break;
     case 'presence':
       state.online = new Set(msg.online || []);
+      if (msg.lastSeen) state.lastSeen = msg.lastSeen;
       renderSidebar(); updateOnlineDots(); renderMembers(); setHeaderForView();
       break;
+    case 'read': {
+      if (msg.userId !== state.me.id) {
+        state.readAt[msg.target] = Math.max(state.readAt[msg.target] || 0, msg.at || Date.now());
+        const curKey = state.view ? (state.view.kind === 'channel' ? 'ch:' : 'dm:') + state.view.id : '';
+        if (curKey === msg.target) renderMessages('keep');
+      }
+      break;
+    }
     case 'message': {
       const m = msg.message;
+      const fromMe = (m.userId || m.author?.id) === state.me.id;
       const inView = scopeMatchesView(m);
       if (inView) {
         appendMessageIfNew(m);
-        if (m.userId !== state.me.id) { blip(); markRead(); }
+        if (!fromMe) { blip(); markRead(); }
       } else {
-        if (m.userId !== state.me.id) { bumpUnread(m, +1); blip(); }
+        if (!fromMe) { bumpUnread(m, +1); blip(); notifBanner(m); }
       }
       updatePreviewFor(m);
       renderSidebar();
@@ -1059,6 +1110,12 @@ function handleWS(msg) {
     }
     case 'channel_created':
       refreshBootstrap().catch(() => {});
+      break;
+    case 'story_new':
+      if (msg.story && msg.story.userId !== state.me.id) {
+        state.stories.unshift(msg.story);
+        renderStoriesRow();
+      }
       break;
     case 'call':
       Call.onSignal(msg);
@@ -1421,6 +1478,308 @@ $('#call-hangup-btn').addEventListener('click', () => Call.end('local'));
 $('#call-mute-btn').addEventListener('click', () => Call.toggleMute());
 $('#call-cam-btn').addEventListener('click', () => Call.toggleCam());
 $('#call-flip-btn').addEventListener('click', () => Call.flipCam());
+
+/* ══════════ Уведомления в приложении (баннер) ══════════ */
+function notifBanner(m) {
+  const a = m.author || state.users.find(u => u.id === m.userId) || { displayName: '?' };
+  const b = document.createElement('div');
+  b.className = 'notif-banner';
+  b.innerHTML = `${avatarHTML(a, 38)}<div class="nb-text"><b>${esc(a.displayName)}</b><span>${esc((m.text || (m.attachment ? '📎 Вложение' : '')).slice(0, 90))}</span></div>`;
+  b.addEventListener('click', () => {
+    b.remove();
+    if (m.dmId) openDm(m.dmId);
+    else if (m.channelId) {
+      let sid = null;
+      for (const s of state.servers) if (s.channels.some(c => c.id === m.channelId)) sid = s.id;
+      if (sid) openChannel(m.channelId, sid);
+    }
+  });
+  document.body.appendChild(b);
+  setTimeout(() => b.remove(), 6500);
+}
+
+/* ══════════ Версия APK: баннер обновления ══════════ */
+const APP_VERSION = 2;
+(async function checkUpdate() {
+  try {
+    const v = await (await fetch('/api/version')).json();
+    if (v.version > APP_VERSION) {
+      const bar = document.createElement('div');
+      bar.id = 'update-bar';
+      bar.innerHTML = `<span>🚀 Доступно обновление Nexus!</span><a href="${esc(v.apkUrl)}" target="_blank" rel="noopener">Скачать APK</a><button id="update-close">✕</button>`;
+      document.body.appendChild(bar);
+      bar.querySelector('#update-close').addEventListener('click', () => bar.remove());
+    }
+  } catch (_) {}
+})();
+
+/* ══════════ Меню сообщения (долгое нажатие) + реакции ══════════ */
+const REACT_EMOJIS = ['👍','❤️','😂','😮','😢','🔥','👏','🎉','💯','🥰','😍','🤣','😘','😎','🤔','🙏','💪','✨','⭐','🚀','👀','🫡','💀','🥲','😇','🤩','😴','🤝','✌️','👌','🫶','👋','🍕','☕','✅','⚠️','🙈','😭','😡','🤗','🥳','💡','❤️‍🔥','🎂','🍿'];
+function showMessageMenu(msgId, x, y) {
+  const m = state.messages.find(mm => mm.id === msgId); if (!m) return;
+  let menu = $('#msg-menu');
+  if (!menu) { menu = document.createElement('div'); menu.id = 'msg-menu'; document.body.appendChild(menu); }
+  const mine = (m.userId || m.author?.id) === state.me.id;
+  const canDelete = mine || (state.view?.kind === 'channel' && isServerOwner(state.view.serverId));
+  menu.innerHTML = `
+    <div class="mm-react-row">${['👍','❤️','😂','😮','😢','🔥'].map(e => `<button data-mr="${e}">${e}</button>`).join('')}<button data-mr="more">➕</button></div>
+    <button data-ma="reply">↩️&nbsp; Ответить</button>
+    ${m.text ? '<button data-ma="copy">📋&nbsp; Копировать</button>' : ''}
+    ${mine && m.text ? '<button data-ma="edit">✏️&nbsp; Изменить</button>' : ''}
+    ${canDelete ? '<button data-ma="delete" class="danger">🗑&nbsp; Удалить</button>' : ''}`;
+  menu.classList.remove('hidden');
+  menu.style.left = Math.max(8, Math.min(x - 40, window.innerWidth - menu.offsetWidth - 8)) + 'px';
+  menu.style.top = Math.max(8, Math.min(y, window.innerHeight - menu.offsetHeight - 8)) + 'px';
+  menu.onclick = async (e) => {
+    const rb = e.target.closest('[data-mr]');
+    const ab = e.target.closest('[data-ma]');
+    if (rb) {
+      if (rb.dataset.mr === 'more') { menu.classList.add('hidden'); showReactPicker(msgId, x, y); return; }
+      toggleReaction(m.id, rb.dataset.mr); menu.classList.add('hidden'); return;
+    }
+    if (!ab) return;
+    menu.classList.add('hidden');
+    const act = ab.dataset.ma;
+    if (act === 'reply') { state.replyTo = m; renderReplyBar(); $('#composer-input').focus(); }
+    else if (act === 'copy') { try { await navigator.clipboard.writeText(m.text); toast('Скопировано'); } catch (_) { toast('Не удалось скопировать'); } }
+    else if (act === 'edit') { const div = $(`.msg[data-id="${CSS.escape(m.id)}"]`); if (div) startInlineEdit(div, m); }
+    else if (act === 'delete') { if (confirm('Удалить сообщение?')) { try { await api('/api/messages/' + m.id, { method: 'DELETE' }); } catch (err) { toast(err.message); } } }
+  };
+}
+function showReactPicker(msgId, x, y) {
+  let p = $('#react-picker');
+  if (!p) { p = document.createElement('div'); p.id = 'react-picker'; document.body.appendChild(p); }
+  p.innerHTML = REACT_EMOJIS.map(e => `<button data-re="${e}">${e}</button>`).join('');
+  p.classList.remove('hidden');
+  p.style.left = Math.max(8, Math.min(x - 130, window.innerWidth - p.offsetWidth - 8)) + 'px';
+  p.style.top = Math.max(8, Math.min(y, window.innerHeight - p.offsetHeight - 8)) + 'px';
+  p.onclick = (e) => { const b = e.target.closest('[data-re]'); if (!b) return; toggleReaction(msgId, b.dataset.re); p.classList.add('hidden'); };
+}
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#msg-menu')) { const mm = $('#msg-menu'); if (mm) mm.classList.add('hidden'); }
+  if (!e.target.closest('#react-picker') && !e.target.closest('[data-mr="more"]')) { const rp = $('#react-picker'); if (rp) rp.classList.add('hidden'); }
+});
+(function initMsgGestures() {
+  let lpTimer = null, lastTap = 0, lastTapId = null;
+  const box = $('#messages');
+  box.addEventListener('touchstart', (e) => {
+    const msg = e.target.closest('.msg'); if (!msg) return;
+    const t = e.touches[0];
+    lpTimer = setTimeout(() => {
+      lpTimer = null;
+      try { if (navigator.vibrate) navigator.vibrate(25); } catch (_) {}
+      showMessageMenu(msg.dataset.id, t.clientX, t.clientY);
+    }, 420);
+  }, { passive: true });
+  box.addEventListener('touchmove', () => { if (lpTimer) { clearTimeout(lpTimer); lpTimer = null; } }, { passive: true });
+  box.addEventListener('touchend', (e) => {
+    if (lpTimer) {
+      clearTimeout(lpTimer); lpTimer = null;
+      const msg = e.target.closest('.msg');
+      const now = Date.now();
+      if (msg && lastTapId === msg.dataset.id && now - lastTap < 320) {
+        toggleReaction(msg.dataset.id, '👍');
+        lastTap = 0; lastTapId = null;
+      } else { lastTap = now; lastTapId = msg ? msg.dataset.id : null; }
+    }
+  });
+  box.addEventListener('contextmenu', (e) => {
+    const msg = e.target.closest('.msg'); if (!msg) return;
+    e.preventDefault();
+    showMessageMenu(msg.dataset.id, e.clientX, e.clientY);
+  });
+})();
+
+/* ══════════ GIF-панель ══════════ */
+const GIF_LIST = [
+  'https://media.giphy.com/media/l0MYt5jPR6QX5pnqM/giphy.gif',
+  'https://media.giphy.com/media/3oEjI6SIIHBdRxXI40/giphy.gif',
+  'https://media.giphy.com/media/xT9IgG50Fb7Mi0prBC/giphy.gif',
+  'https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif',
+  'https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif',
+  'https://media.giphy.com/media/111ebonMs90YLu/giphy.gif',
+  'https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif',
+  'https://media.giphy.com/media/ZdGxNRHmsAEn8pu6Lp/giphy.gif',
+  'https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif',
+  'https://media.giphy.com/media/26BRuo6sLetdllPAQ/giphy.gif',
+  'https://media.giphy.com/media/3oEjI789af0AVRn3AC/giphy.gif',
+  'https://media.giphy.com/media/xT0xeJpnrWC4XWblEk/giphy.gif',
+];
+const gifPanel = $('#gif-panel');
+gifPanel.innerHTML = GIF_LIST.map((u, i) => `<button type="button" data-gif="${esc(u)}"><img src="${esc(u)}" alt="gif ${i + 1}" loading="lazy"></button>`).join('');
+$('#gif-btn').addEventListener('click', (e) => {
+  e.stopPropagation();
+  $('#emoji-picker').classList.add('hidden');
+  $('#attach-menu').classList.add('hidden');
+  gifPanel.classList.toggle('hidden');
+});
+gifPanel.addEventListener('click', async (e) => {
+  const b = e.target.closest('[data-gif]'); if (!b) return;
+  gifPanel.classList.add('hidden');
+  if (!state.view) { toast('Выберите чат'); return; }
+  const body = { text: '', attachment: { url: b.dataset.gif, name: 'GIF', size: 0, type: 'image/gif' } };
+  if (state.view.kind === 'channel') body.channelId = state.view.id; else body.dmId = state.view.id;
+  try {
+    const { message } = await api('/api/messages', { method: 'POST', body });
+    if (scopeMatchesView(message)) appendMessageIfNew(message);
+  } catch (err) { toast(err.message); }
+});
+document.addEventListener('click', (e) => {
+  if (!e.target.closest('#gif-panel') && !e.target.closest('#gif-btn')) gifPanel.classList.add('hidden');
+});
+
+/* ══════════ Истории (Stories) ══════════ */
+state.stories = [];
+async function loadStories() {
+  try { const { stories } = await api('/api/stories'); state.stories = stories; renderStoriesRow(); } catch (_) {}
+}
+function renderStoriesRow() {
+  const row = $('#stories-row');
+  if (!row) return;
+  const groups = new Map();
+  for (const s of state.stories) {
+    if (!groups.has(s.userId)) groups.set(s.userId, []);
+    groups.get(s.userId).push(s);
+  }
+  const my = groups.get(state.me.id) || [];
+  let html = `<button class="story-item" id="story-add">
+      <div class="story-ring ${my.length ? 'live' : 'add'}">${avatarHTML(state.me, 52)}${my.length ? '' : '<span class="story-plus">+</span>'}</div>
+      <span class="story-name">${my.length ? 'Моя история' : 'Добавить'}</span>
+    </button>`;
+  for (const [uid, list] of groups) {
+    if (uid === state.me.id) continue;
+    const u = list[0].author;
+    html += `<button class="story-item" data-story-user="${esc(uid)}">
+      <div class="story-ring live">${avatarHTML(u, 52)}</div>
+      <span class="story-name">${esc(u.displayName.split(' ')[0])}</span>
+    </button>`;
+  }
+  row.innerHTML = html;
+  row.classList.remove('hidden');
+}
+$('#stories-row').addEventListener('click', (e) => {
+  const add = e.target.closest('#story-add');
+  if (add) {
+    const my = state.stories.filter(s => s.userId === state.me.id);
+    if (my.length) openStoryViewer(my.slice().reverse(), 0);
+    else $('#story-file-input').click();
+    return;
+  }
+  const item = e.target.closest('[data-story-user]');
+  if (item) {
+    const list = state.stories.filter(s => s.userId === item.dataset.storyUser).slice().reverse();
+    if (list.length) openStoryViewer(list, 0);
+  }
+});
+$('#story-file-input').addEventListener('change', async (e) => {
+  const file = e.target.files[0]; e.target.value = '';
+  if (!file) return;
+  if (file.size > 10 * 1024 * 1024) { toast('Файл больше 10 МБ'); return; }
+  const dataUrl = await new Promise((res, rej) => { const r = new FileReader(); r.onload = () => res(r.result); r.onerror = rej; r.readAsDataURL(file); });
+  toast('Публикую историю…');
+  try {
+    const { attachment } = await api('/api/upload', { method: 'POST', body: { name: file.name, type: file.type, dataUrl } });
+    const text = prompt('Подпись к истории (необязательно):') || '';
+    const { story } = await api('/api/stories', { method: 'POST', body: { attachment, text } });
+    state.stories.unshift(story);
+    renderStoriesRow();
+    toast('История опубликована ✨');
+  } catch (err) { toast(err.message); }
+});
+
+let storyTimer = null;
+function storyShow(i) {
+  const lb = $('#story-viewer');
+  if (!lb || !lb._list) return;
+  const list = lb._list;
+  clearTimeout(storyTimer);
+  if (i < 0) i = 0;
+  if (i >= list.length) { closeStoryViewer(); return; }
+  lb._idx = i;
+  const s = list[i];
+  const isVideo = (s.attachment.type || '').startsWith('video/');
+  lb.innerHTML = `
+    <div class="sv-progress">${list.map((_, j) => `<i class="${j < i ? 'done' : j === i ? 'cur' : ''}"><b></b></i>`).join('')}</div>
+    <div class="sv-head">${avatarHTML(s.author, 34)}<div><b>${esc(s.author.displayName)}</b><span>${new Date(s.createdAt).toLocaleTimeString('ru-RU', { hour: '2-digit', minute: '2-digit' })}</span></div>
+      <div class="spacer"></div>
+      ${s.mine ? '<button id="sv-delete" class="sv-btn">🗑</button>' : ''}
+      <button id="sv-close" class="sv-btn">✕</button></div>
+    ${isVideo ? `<video src="${esc(s.attachment.url)}" autoplay playsinline controls></video>` : `<img src="${esc(s.attachment.url)}" alt="">`}
+    ${s.text ? `<div class="sv-text">${esc(s.text)}</div>` : ''}`;
+  lb.classList.remove('hidden');
+  const bar = lb.querySelector('.sv-progress i.cur b');
+  const dur = isVideo ? 15000 : 5000;
+  if (bar) { bar.style.transition = `width ${dur}ms linear`; requestAnimationFrame(() => { bar.style.width = '100%'; }); }
+  storyTimer = setTimeout(() => storyShow(i + 1), dur);
+  const v = lb.querySelector('video');
+  if (v) v.addEventListener('ended', () => storyShow(i + 1), { once: true });
+}
+function openStoryViewer(list, idx) {
+  let lb = $('#story-viewer');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'story-viewer';
+    document.body.appendChild(lb);
+    lb.addEventListener('click', (e) => {
+      const rect = lb.getBoundingClientRect();
+      const x = e.clientX - rect.left;
+      if (e.target.closest('#sv-close')) { closeStoryViewer(); return; }
+      if (e.target.closest('#sv-delete')) {
+        const cur = lb._list[lb._idx];
+        if (cur?.mine && confirm('Удалить историю?')) {
+          api('/api/stories/' + cur.id, { method: 'DELETE' }).then(() => {
+            state.stories = state.stories.filter(s => s.id !== cur.id);
+            renderStoriesRow(); closeStoryViewer();
+          }).catch(err => toast(err.message));
+        }
+        return;
+      }
+      if (x < rect.width * 0.33) storyShow(lb._idx - 1);
+      else if (x > rect.width * 0.67) storyShow(lb._idx + 1);
+    });
+  }
+  lb._list = list;
+  storyShow(idx);
+}
+function closeStoryViewer() {
+  clearTimeout(storyTimer);
+  const lb = $('#story-viewer');
+  if (lb) { lb.classList.add('hidden'); lb.innerHTML = ''; lb._list = null; }
+}
+
+/* ══════════ Аватарка в настройках ══════════ */
+$('#settings-avatar-btn').addEventListener('click', () => $('#avatar-input').click());
+$('#avatar-input').addEventListener('change', async (e) => {
+  const file = e.target.files[0]; e.target.value = '';
+  if (!file) return;
+  try {
+    const dataUrl = await new Promise((res, rej) => {
+      const r = new FileReader();
+      r.onload = () => {
+        // ужимаем до 256×256 через canvas
+        const img = new Image();
+        img.onload = () => {
+          const cv = document.createElement('canvas');
+          const size = 256;
+          cv.width = size; cv.height = size;
+          const ctx = cv.getContext('2d');
+          const side = Math.min(img.width, img.height);
+          ctx.drawImage(img, (img.width - side) / 2, (img.height - side) / 2, side, side, 0, 0, size, size);
+          res(cv.toDataURL('image/jpeg', 0.85));
+        };
+        img.onerror = () => res(r.result);
+        img.src = r.result;
+      };
+      r.onerror = rej; r.readAsDataURL(file);
+    });
+    toast('Сохраняю аватарку…');
+    const { me } = await api('/api/me', { method: 'PATCH', body: { avatarDataUrl: dataUrl } });
+    state.me = me;
+    $('#settings-avatar-preview').innerHTML = avatarHTML(me, 72);
+    renderUserPanel(); renderSidebar();
+    toast('Аватарка обновлена ✨');
+  } catch (err) { toast(err.message); }
+});
 
 /* ══════════ Native back (Android) ══════════ */
 window.nexusBack = function () {

@@ -68,6 +68,9 @@
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none" class="search-icon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.8-3.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
       <input id="sidebar-search" type="text" placeholder="Поиск" autocomplete="off">
     </div>
+    <div id="stories-row" class="hidden"></div>
+    <input type="file" id="story-file-input" hidden accept="image/*,video/*">
+    <input type="file" id="avatar-input" hidden accept="image/*">
     <div id="sidebar-list"></div>
   </aside>
 
@@ -105,6 +108,9 @@
     </div>
 
     <div id="typing-indicator"></div>
+    <button id="scroll-bottom" title="К последним сообщениям">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
 
     <div id="reply-bar" class="hidden">
       <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M9 14l-5-5 5-5M4 9h9a6 6 0 0 1 6 6v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -138,6 +144,9 @@
       <button type="button" id="emoji-btn" class="composer-btn" title="Эмодзи">
         <svg viewBox="0 0 24 24" width="23" height="23" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 14.5c1 1.3 2.2 2 3.5 2s2.5-.7 3.5-2M9.5 10h.01M14.5 10h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
       </button>
+      <button type="button" id="gif-btn" class="composer-btn" title="GIF">
+        <b style="font-size:.72rem;letter-spacing:.03em">GIF</b>
+      </button>
       <textarea id="composer-input" rows="1" placeholder="Сообщение" maxlength="4000"></textarea>
       <button type="button" id="upload-btn" class="composer-btn" title="Прикрепить">
         <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M21 12.5l-8.5 8.5a5.5 5.5 0 0 1-7.8-7.8l9-9a3.7 3.7 0 0 1 5.2 5.2l-9 9a1.85 1.85 0 0 1-2.6-2.6l8.2-8.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
@@ -152,6 +161,7 @@
         <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
       </button>
       <div id="emoji-picker" class="hidden"></div>
+      <div id="gif-panel" class="hidden"></div>
       <div id="attach-menu" class="hidden">
         <button type="button" data-am="file">📄 Файл или фото</button>
         <button type="button" data-am="voice">🎤 Голосовое сообщение</button>
@@ -278,6 +288,8 @@
 <div class="modal-overlay hidden" id="modal-settings">
   <div class="modal">
     <h3>Настройки</h3>
+    <div id="settings-avatar-preview" style="display:flex;justify-content:center;margin:10px 0 14px"></div>
+    <button type="button" id="settings-avatar-btn" class="btn-ghost" style="width:100%;margin-bottom:14px">📷 Сменить аватарку</button>
     <label class="field"><span>Имя</span><input id="settings-name" type="text" maxlength="48"></label>
     <label class="field"><span>О себе</span><input id="settings-bio" type="text" maxlength="140" placeholder="Пара слов о вас"></label>
     <label class="theme-row"><span>Ночная тема</span><input type="checkbox" id="settings-theme"><i class="toggle"></i></label>

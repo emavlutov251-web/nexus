@@ -21,7 +21,7 @@ const PALETTE = ['#5865f2', '#3ba55d', '#faa61a', '#eb459e', '#9b59b6', '#2aabee
 let db = null;
 let saveTimer = null;
 
-function defaultDb() { return { users: [], sessions: [], servers: [], members: [], channels: [], dms: [], messages: [], reads: {} }; }
+function defaultDb() { return { users: [], sessions: [], servers: [], members: [], channels: [], dms: [], messages: [], reads: {}, stories: [] }; }
 
 function seed() {
   const d = defaultDb();
@@ -86,7 +86,11 @@ function seed() {
 
 function loadDb() {
   if (fs.existsSync(DB_FILE)) {
-    try { db = JSON.parse(fs.readFileSync(DB_FILE, 'utf8')); return; } catch (e) { console.error('db.json повреждён, пересоздаю:', e.message); }
+    try {
+      db = JSON.parse(fs.readFileSync(DB_FILE, 'utf8'));
+      if (!db.stories) db.stories = [];
+      return;
+    } catch (e) { console.error('db.json повреждён, пересоздаю:', e.message); }
   }
   db = seed();
   persistDb();
@@ -106,7 +110,7 @@ process.on('SIGTERM', () => { try { writeDbAtomic(); } catch (_) {} process.exit
 loadDb();
 
 /* ---------- helpers ---------- */
-const pub = (u) => u && ({ id: u.id, username: u.username, displayName: u.displayName, color: u.color, bio: u.bio || '' });
+const pub = (u) => u && ({ id: u.id, username: u.username, displayName: u.displayName, color: u.color, bio: u.bio || '', avatar: u.avatar || null });
 const userById = (id) => db.users.find(u => u.id === id);
 const auth = (req, res, next) => {
   const h = req.headers.authorization || '';
@@ -140,7 +144,7 @@ const serializeMsg = (m) => {
   const a = userById(m.userId);
   return {
     id: m.id, channelId: m.channelId || null, dmId: m.dmId || null, text: m.text,
-    attachment: m.attachment || null, replyTo: m.replyTo || null,
+    userId: m.userId, attachment: m.attachment || null, replyTo: m.replyTo || null,
     createdAt: m.createdAt, editedAt: m.editedAt || null,
     reactions: m.reactions || {}, author: pub(a),
   };
@@ -161,6 +165,7 @@ const app = express();
 const server = http.createServer(app);
 const wss = new WebSocketServer({ server, path: '/ws' });
 const sockets = new Map(); // userId -> Set<ws>
+const lastSeenMap = new Map(); // userId -> timestamp последнего визита
 const onlineCount = () => sockets.size;
 
 function wsSend(ws, obj) { try { if (ws.readyState === 1) ws.send(JSON.stringify(obj)); } catch (_) {} }
@@ -184,7 +189,7 @@ function broadcastToDm(dmId, obj, exceptUserId) {
 function broadcastScope(m, obj, exceptUserId) { m.channelId ? broadcastToChannel(m.channelId, obj, exceptUserId) : broadcastToDm(m.dmId, obj, exceptUserId); }
 function broadcastPresence() {
   const online = [...sockets.keys()];
-  broadcastAll({ type: 'presence', online });
+  broadcastAll({ type: 'presence', online, lastSeen: Object.fromEntries(lastSeenMap) });
 }
 
 wss.on('connection', (ws, req) => {
@@ -226,12 +231,16 @@ wss.on('connection', (ws, req) => {
         for (const sock of target) wsSend(sock, payload);
         const mine = sockets.get(user.id);
         if (mine) for (const sock of mine) if (sock !== ws) wsSend(sock, payload);
+        // фоновое уведомление о входящем звонке
+        if (payload.action === 'invite') {
+          pushNotif(to, { kind: 'call', callId: payload.callId, from: pub(user), video: !!payload.video });
+        }
       }
     }
   });
   const drop = () => {
     const set = sockets.get(user.id);
-    if (set) { set.delete(ws); if (!set.size) sockets.delete(user.id); }
+    if (set) { set.delete(ws); if (!set.size) { sockets.delete(user.id); lastSeenMap.set(user.id, Date.now()); } }
     broadcastPresence();
   };
   ws.on('close', drop); ws.on('error', drop);
@@ -280,9 +289,22 @@ app.post('/api/logout', auth, (req, res) => {
 app.get('/api/me', auth, (req, res) => res.json({ me: pub(req.user) }));
 
 app.patch('/api/me', auth, (req, res) => {
-  const { displayName, bio } = req.body || {};
+  const { displayName, bio, avatarDataUrl } = req.body || {};
   if (displayName !== undefined) { const d = String(displayName).trim(); if (d.length < 2 || d.length > 48) return res.status(400).json({ error: 'Имя: 2–48 символов' }); req.user.displayName = d; }
   if (bio !== undefined) req.user.bio = String(bio).slice(0, 140);
+  if (avatarDataUrl !== undefined) {
+    if (avatarDataUrl === null || avatarDataUrl === '') { req.user.avatar = null; }
+    else {
+      const m = /^data:([^;]+);base64,(.+)$/.exec(String(avatarDataUrl));
+      if (!m) return res.status(400).json({ error: 'Некорректная аватарка' });
+      let buf; try { buf = Buffer.from(m[2], 'base64'); } catch { return res.status(400).json({ error: 'Битая кодировка' }); }
+      if (buf.length > 4 * 1024 * 1024) return res.status(413).json({ error: 'Аватарка больше 4 МБ' });
+      const ext = EXT_BY_TYPE[m[1]] || '.jpg';
+      const fname = `avatar-${req.user.id}${ext}`;
+      fs.writeFileSync(path.join(UPLOAD_DIR, fname), buf);
+      req.user.avatar = `/uploads/${fname}`;
+    }
+  }
   persistDb();
   broadcastAll({ type: 'user_updated', user: pub(req.user) });
   res.json({ me: pub(req.user) });
@@ -308,7 +330,7 @@ app.get('/api/bootstrap', auth, (req, res) => {
     };
   }).sort((a, b) => (b.lastMessage?.createdAt || 0) - (a.lastMessage?.createdAt || 0));
   const users = db.users.filter(u => u.id !== me.id).map(pub);
-  res.json({ me: pub(me), servers: myServers, dms: myDms, users, online: [...sockets.keys()] });
+  res.json({ me: pub(me), servers: myServers, dms: myDms, users, online: [...sockets.keys()], lastSeen: Object.fromEntries(lastSeenMap) });
 });
 
 app.get('/api/servers/:id/members', auth, (req, res) => {
@@ -375,7 +397,17 @@ app.get('/api/messages', auth, (req, res) => {
   list = list.sort((a, b) => a.createdAt - b.createdAt);
   if (before) { const t = parseInt(before); list = list.filter(m => m.createdAt < t); }
   const sliced = list.slice(-lim);
-  res.json({ messages: sliced.map(serializeMsg), hasMore: list.length > sliced.length });
+  // когда собеседник прочитал этот чат (для галочек ✓✓)
+  const targetKey = channel ? `ch:${channel}` : `dm:${dm}`;
+  const parts = channel
+    ? (db.members.filter(x => x.serverId === (db.channels.find(c => c.id === channel) || {}).serverId).map(x => x.userId))
+    : ((db.dms.find(d => d.id === dm) || {}).userIds || []);
+  let readAt = 0;
+  for (const uid of parts) {
+    if (uid === req.user.id) continue;
+    readAt = Math.max(readAt, db.reads[readKey(uid, targetKey)] || 0);
+  }
+  res.json({ messages: sliced.map(serializeMsg), hasMore: list.length > sliced.length, readAt });
 });
 
 app.post('/api/messages', auth, (req, res) => {
@@ -393,6 +425,20 @@ app.post('/api/messages', auth, (req, res) => {
   persistDb();
   const payload = { type: 'message', message: serializeMsg(m) };
   broadcastScope(m, payload, null); // sender gets it too so all tabs sync
+  // фоновые уведомления (Android-сервис)
+  const recipients = m.channelId
+    ? (db.channels.find(c => c.id === m.channelId) ? db.members.filter(x => x.serverId === db.channels.find(c => c.id === m.channelId).serverId).map(x => x.userId) : [])
+    : (db.dms.find(d => d.id === m.dmId)?.userIds || []);
+  const scopeInfo = scopeLabel(m);
+  for (const uid of recipients) {
+    if (uid === req.user.id) continue;
+    pushNotif(uid, {
+      kind: 'message', messageId: m.id,
+      from: pub(req.user), preview: (m.text || (m.attachment ? (m.attachment.round ? 'Кружок' : 'Вложение') : '')).slice(0, 120),
+      channelId: m.channelId || null, dmId: m.dmId || null,
+      scopeName: scopeInfo.name,
+    });
+  }
   res.json({ message: serializeMsg(m) });
 });
 
@@ -421,7 +467,7 @@ app.delete('/api/messages/:id', auth, (req, res) => {
   res.json({ ok: true });
 });
 
-const REACTION_SET = new Set(['👍', '👎', '❤️', '😂', '😮', '😢', '🔥', '👏', '🎉', '👀']);
+const REACTION_SET = new Set(['👍','👎','❤️','😂','😮','😢','🔥','👏','🎉','👀','💯','🥰','😍','🤣','😘','😎','🤔','😢','😭','😡','🤯','🥳','😱','🤗','🤝','💪','✌️','👌','🫡','💀','✨','⭐','🚀','💡','✅','❌','⚠️','🙏','🥲','😇','🤩','😴','🤤','🙈','🍕','☕','❤️‍🔥','🫶','👋']);
 app.post('/api/messages/:id/reactions', auth, (req, res) => {
   const m = db.messages.find(m => m.id === req.params.id);
   if (!m) return res.status(404).json({ error: 'Не найдено' });
@@ -448,6 +494,9 @@ app.post('/api/read', auth, (req, res) => {
   else if (!dmOf(id, req.user.id)) return res.status(403).json({ error: 'Нет доступа' });
   db.reads[readKey(req.user.id, t)] = Date.now();
   persistDb();
+  // оповещаем участников, чтобы галочки ✓✓ обновились в реальном времени
+  const ev = { type: 'read', target: t, userId: req.user.id, at: db.reads[readKey(req.user.id, t)] };
+  if (t.startsWith('ch:')) broadcastToChannel(t.slice(3), ev, null); else broadcastToDm(t.slice(3), ev, null);
   res.json({ ok: true });
 });
 
@@ -476,6 +525,83 @@ app.post('/api/upload', auth, (req, res) => {
 });
 
 app.get('/api/users', auth, (req, res) => res.json({ users: db.users.filter(u => u.id !== req.user.id).map(pub) }));
+
+/* ---------- Истории (как в Telegram/Instagram, живут 24 часа) ---------- */
+app.get('/api/stories', auth, (req, res) => {
+  const now = Date.now();
+  db.stories = db.stories.filter(s => s.expiresAt > now);
+  const list = db.stories.slice().sort((a, b) => b.createdAt - a.createdAt).map(s => ({
+    id: s.id, userId: s.userId, author: pub(userById(s.userId)),
+    attachment: s.attachment, text: s.text || '', createdAt: s.createdAt, expiresAt: s.expiresAt,
+    mine: s.userId === req.user.id,
+  }));
+  res.json({ stories: list });
+});
+
+app.post('/api/stories', auth, (req, res) => {
+  const { attachment, text } = req.body || {};
+  if (!attachment || !attachment.url) return res.status(400).json({ error: 'Нужна картинка или видео' });
+  const now = Date.now();
+  const s = {
+    id: crypto.randomUUID(), userId: req.user.id,
+    attachment: { url: String(attachment.url).slice(0, 300), name: String(attachment.name || 'story').slice(0, 120), size: attachment.size || 0, type: String(attachment.type || 'image/jpeg').slice(0, 60), round: !!attachment.round },
+    text: String(text || '').slice(0, 200),
+    createdAt: now, expiresAt: now + 24 * 3600 * 1000,
+  };
+  db.stories.push(s);
+  persistDb();
+  broadcastAll({ type: 'story_new', story: { ...s, author: pub(req.user), mine: false } });
+  res.json({ story: { ...s, author: pub(req.user), mine: true } });
+});
+
+app.delete('/api/stories/:id', auth, (req, res) => {
+  const s = db.stories.find(x => x.id === req.params.id);
+  if (!s) return res.status(404).json({ error: 'Не найдено' });
+  if (s.userId !== req.user.id) return res.status(403).json({ error: 'Можно удалить только свою историю' });
+  db.stories = db.stories.filter(x => x.id !== s.id);
+  persistDb();
+  res.json({ ok: true });
+});
+
+/* ---------- Версия APK (для баннера обновления в приложении) ---------- */
+const APP_VERSION = 2;
+const APK_URL = process.env.APK_URL || 'https://drive.google.com/file/d/1Uf0GszKdu0MsTnMpXAa4yEg6NOZNbU9N/view';
+app.get('/api/version', (req, res) => res.json({ version: APP_VERSION, apkUrl: APK_URL, notes: 'Обновление Nexus' }));
+
+/* ---------- Long-poll уведомления для фонового сервиса Android ---------- */
+const notifWaiters = new Map();   // userId -> [{res, timer}]
+const notifBuffer = new Map();    // userId -> [events]
+function pushNotif(userId, event) {
+  event.ts = Date.now();
+  const buf = notifBuffer.get(userId) || [];
+  buf.push(event);
+  while (buf.length > 30) buf.shift();
+  notifBuffer.set(userId, buf);
+  const waiters = notifWaiters.get(userId) || [];
+  notifWaiters.delete(userId);
+  for (const w of waiters) {
+    clearTimeout(w.timer);
+    try { w.res.json({ events: [event], now: Date.now() }); } catch (_) {}
+  }
+}
+app.get('/api/notify/poll', auth, (req, res) => {
+  const since = parseInt(req.query.since) || 0;
+  const buf = (notifBuffer.get(req.user.id) || []).filter(e => e.ts > since);
+  if (buf.length) return res.json({ events: buf, now: Date.now() });
+  const w = { res, timer: null };
+  w.timer = setTimeout(() => {
+    const ws = notifWaiters.get(req.user.id) || [];
+    notifWaiters.set(req.user.id, ws.filter(x => x !== w));
+    try { res.json({ events: [], now: Date.now() }); } catch (_) {}
+  }, 25000);
+  if (!notifWaiters.has(req.user.id)) notifWaiters.set(req.user.id, []);
+  notifWaiters.get(req.user.id).push(w);
+  req.on('close', () => {
+    clearTimeout(w.timer);
+    const ws = notifWaiters.get(req.user.id) || [];
+    notifWaiters.set(req.user.id, ws.filter(x => x !== w));
+  });
+});
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Nexus запущен на http://0.0.0.0:${PORT}`);
