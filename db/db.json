@@ -941,11 +941,7 @@
    },
    "createdAt": 1794251452440,
    "editedAt": null,
-   "reactions": {
-    "👍": [
-     "772cd9c1-6146-42d4-9791-5345806d7bff"
-    ]
-   }
+   "reactions": {}
   },
   {
    "id": "c40d778f-f5b6-4340-a3f4-292bea293f5c",
@@ -993,7 +989,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794253707154,
+ "updatedAt": 1794253713432,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600
  },
