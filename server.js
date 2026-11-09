@@ -565,7 +565,7 @@ app.delete('/api/stories/:id', auth, (req, res) => {
 
 /* ---------- Версия APK (для баннера обновления в приложении) ---------- */
 const APP_VERSION = 2;
-const APK_URL = process.env.APK_URL || 'https://drive.google.com/file/d/1Uf0GszKdu0MsTnMpXAa4yEg6NOZNbU9N/view';
+const APK_URL = process.env.APK_URL || 'https://drive.google.com/file/d/1gfy7ei27gKwn8z09O-PtrJm5t6jm5O1Y/view';
 app.get('/api/version', (req, res) => res.json({ version: APP_VERSION, apkUrl: APK_URL, notes: 'Обновление Nexus' }));
 
 /* ---------- Long-poll уведомления для фонового сервиса Android ---------- */
