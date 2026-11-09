@@ -992,6 +992,25 @@
    "createdAt": 1794254945085,
    "editedAt": null,
    "reactions": {}
+  },
+  {
+   "id": "7422c8dd-a45c-426f-9808-5bd345d0e7db",
+   "channelId": "51d20f69-8dc1-4300-8e92-04656b0e8664",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "",
+   "attachment": {
+    "url": "/uploads/849a50aa-c836-4507-a0c7-4246383b0410-______.webm",
+    "name": "Кружок.webm",
+    "size": 4447013,
+    "type": "video/webm",
+    "round": true
+   },
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794254970457,
+   "editedAt": null,
+   "reactions": {}
   }
  ],
  "reads": {
@@ -1002,7 +1021,7 @@
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:51d46934-725b-46fa-89fa-3efb7d41aa06": 1794254901503,
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:5141ce85-4e89-441d-b95a-c842a25a36da": 1794250644236,
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794250644788,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:ch:51d20f69-8dc1-4300-8e92-04656b0e8664": 1794254945085,
+  "772cd9c1-6146-42d4-9791-5345806d7bff:ch:51d20f69-8dc1-4300-8e92-04656b0e8664": 1794254970457,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:a662b3cd-4820-44fc-be93-949ac53614a4": 1794254028806,
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:f107a547-2b4f-41d0-960b-035fe605b594": 1794252933765
  },
@@ -1022,7 +1041,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794254950921,
+ "updatedAt": 1794254970487,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600
  },
