@@ -480,3 +480,12 @@ app.get('/api/users', auth, (req, res) => res.json({ users: db.users.filter(u =>
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Nexus запущен на http://0.0.0.0:${PORT}`);
 });
+
+/* ---------- Keep-alive: самопинг каждые 8 минут, чтобы бесплатный Render не засыпал ---------- */
+const PUBLIC_URL = process.env.PUBLIC_URL || 'https://nexus-app-vyrc.onrender.com';
+if (process.env.KEEPALIVE !== 'off') {
+  setInterval(() => {
+    fetch(PUBLIC_URL + '/', { method: 'GET' }).then(r => console.log('keep-alive ping:', r.status)).catch(e => console.log('keep-alive err:', e.message));
+  }, 8 * 60 * 1000);
+  setTimeout(() => fetch(PUBLIC_URL + '/').catch(() => {}), 20000);
+}
