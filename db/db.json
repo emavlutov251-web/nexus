@@ -3,8 +3,8 @@
   {
    "id": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
    "username": "demo",
-   "displayName": "\u0414\u0435\u043c\u043e \u041f\u043e\u043b\u044c\u0437\u043e\u0432\u0430\u0442\u0435\u043b\u044c",
-   "bio": "\u042d\u0442\u043e \u0434\u0435\u043c\u043e-\u0430\u043a\u043a\u0430\u0443\u043d\u0442. \u041f\u0430\u0440\u043e\u043b\u044c: demo1234",
+   "displayName": "Демо Пользователь",
+   "bio": "Это демо-аккаунт. Пароль: demo1234",
    "color": "#5865f2",
    "salt": "9a86783783029b396d2a52032afee45a",
    "passwordHash": "0b637c996b7c00f681bc106c38c0fa8dccc457d013175a64e1342797b7384f8c",
@@ -13,8 +13,8 @@
   {
    "id": "15c6ede2-4ac4-4308-b576-c37921f29541",
    "username": "mira",
-   "displayName": "\u041c\u0438\u0440\u0430 \u041a\u043e\u0432\u0430\u043b\u0451\u0432\u0430",
-   "bio": "\u0414\u0438\u0437\u0430\u0439\u043d\u0435\u0440 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0430",
+   "displayName": "Мира Ковалёва",
+   "bio": "Дизайнер продукта",
    "color": "#3ba55d",
    "salt": "a7034b9404f6604cddb75d9beb7683eb",
    "passwordHash": "dd1a06742a59afafcf630bac763d1445b1830d0427c06d0c4ed0d6f97ccc260d",
@@ -23,7 +23,7 @@
   {
    "id": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
    "username": "timur",
-   "displayName": "\u0422\u0438\u043c\u0443\u0440 \u0410\u0445\u043c\u0435\u0434\u043e\u0432",
+   "displayName": "Тимур Ахмедов",
    "bio": "Backend, Go/Node",
    "color": "#faa61a",
    "salt": "ac0f1e7122185511f1199e3f11dce10c",
@@ -33,8 +33,8 @@
   {
    "id": "37cbadf2-d33c-429a-985b-545a4241ec0c",
    "username": "alisia",
-   "displayName": "\u0410\u043b\u0438\u0441\u0430 \u041b\u0435\u0431\u0435\u0434\u0435\u0432\u0430",
-   "bio": "\u0424\u0440\u043e\u043d\u0442\u0435\u043d\u0434, \u043b\u044e\u0431\u0438\u0442 CSS",
+   "displayName": "Алиса Лебедева",
+   "bio": "Фронтенд, любит CSS",
    "color": "#eb459e",
    "salt": "9a4587c51b6b84eeeaf4b9ad6c57fde3",
    "passwordHash": "94b553b6e0e91ca2b42909e6bd64860528a2f987e31f645a0d9a9f0ec45dc83e",
@@ -43,8 +43,8 @@
   {
    "id": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
    "username": "ksu",
-   "displayName": "\u041a\u0441\u0435\u043d\u0438\u044f \u041e\u0440\u043b\u043e\u0432\u0430",
-   "bio": "PM, \u0434\u043e\u0440\u043e\u0436\u043d\u0430\u044f \u043a\u0430\u0440\u0442\u0430",
+   "displayName": "Ксения Орлова",
+   "bio": "PM, дорожная карта",
    "color": "#9b59b6",
    "salt": "1deb42d418f032937118fde0546c8a17",
    "passwordHash": "d8c2e4ed3fbb9c790d905c06edb207e90995d7adc6ebdc803794722bbabf2e34",
@@ -53,7 +53,7 @@
   {
    "id": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "username": "chugunochek",
-   "displayName": "\u042d\u043b\u044c\u043c\u0438\u0440",
+   "displayName": "Эльмир",
    "bio": "",
    "color": "#2aabee",
    "salt": "2a0c8a2356e618e39fcacf8aa2d9eb57",
@@ -78,7 +78,7 @@
   },
   {
    "id": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "name": "\u041a\u0438\u043d\u043e\u043a\u043b\u0443\u0431",
+   "name": "Киноклуб",
    "color": "#eb459e",
    "ownerId": "15c6ede2-4ac4-4308-b576-c37921f29541",
    "createdAt": 1790791755488
@@ -150,36 +150,36 @@
   {
    "id": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "name": "\u043e\u0431\u0449\u0438\u0439",
-   "topic": "\u041e\u0431\u0449\u0435\u043d\u0438\u0435 \u0432\u0441\u0435\u0439 \u043a\u043e\u043c\u0430\u043d\u0434\u044b Nexus",
+   "name": "общий",
+   "topic": "Общение всей команды Nexus",
    "createdAt": 1791655755488
   },
   {
    "id": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
    "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "name": "\u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0430",
-   "topic": "\u041a\u043e\u0434, \u0440\u0435\u043b\u0438\u0437\u044b, \u0431\u0430\u0433\u0438",
+   "name": "разработка",
+   "topic": "Код, релизы, баги",
    "createdAt": 1791655755488
   },
   {
    "id": "e6250303-6873-4019-afc4-94ae79cb997b",
    "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "name": "\u043e\u0444\u0444\u0442\u043e\u043f",
-   "topic": "\u0412\u0441\u0451, \u0447\u0442\u043e \u043d\u0435 \u0432 \u0442\u0435\u043c\u0443",
+   "name": "оффтоп",
+   "topic": "Всё, что не в тему",
    "createdAt": 1791655755488
   },
   {
    "id": "f81b2912-fcba-4039-a9b8-a103e663b367",
    "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "name": "\u0444\u0438\u043b\u044c\u043c\u044b",
-   "topic": "\u0427\u0442\u043e \u0441\u043c\u043e\u0442\u0440\u0438\u043c \u0432 \u043f\u044f\u0442\u043d\u0438\u0446\u0443",
+   "name": "фильмы",
+   "topic": "Что смотрим в пятницу",
    "createdAt": 1791655755488
   },
   {
    "id": "76d087f6-a5e5-4fa4-9116-8df41f5ddd60",
    "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "name": "\u043e\u0431\u0441\u0443\u0436\u0434\u0435\u043d\u0438\u044f",
-   "topic": "\u0421\u043f\u043e\u0438\u043b\u0435\u0440\u044b \u0438 \u0440\u0430\u0437\u0431\u043e\u0440\u044b",
+   "name": "обсуждения",
+   "topic": "Споилеры и разборы",
    "createdAt": 1791655755488
   }
  ],
@@ -206,13 +206,13 @@
    "id": "85f8c579-71c1-41a1-90e9-5286bd102ceb",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
-   "text": "\u0412\u0441\u0435\u043c \u043f\u0440\u0438\u0432\u0435\u0442! \u0414\u043e\u0431\u0440\u043e \u043f\u043e\u0436\u0430\u043b\u043e\u0432\u0430\u0442\u044c \u0432 Nexus Hub \ud83d\udc4b",
+   "text": "Всем привет! Добро пожаловать в Nexus Hub 👋",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794233355488,
    "editedAt": null,
    "reactions": {
-    "\ud83d\udd25": [
+    "🔥": [
      "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
      "37cbadf2-d33c-429a-985b-545a4241ec0c"
     ]
@@ -222,7 +222,7 @@
    "id": "d05cc509-cc57-4447-a3bc-e9fef227239a",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-   "text": "\u041f\u0440\u0438\u0432\u0435\u0442! \u0424\u0438\u043d\u0430\u043b\u044c\u043d\u043e \u0443\u0442\u0432\u0435\u0440\u0434\u0438\u043b\u0438 \u0440\u0435\u043b\u0438\u0437 2.4 \u043d\u0430 \u043f\u044f\u0442\u043d\u0438\u0446\u0443",
+   "text": "Привет! Финально утвердили релиз 2.4 на пятницу",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794233655488,
@@ -233,7 +233,7 @@
    "id": "1b89ed59-759c-4df4-801a-899a2d792bd0",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
-   "text": "\u041d\u0430\u043f\u043e\u043c\u0438\u043d\u0430\u044e: \u043f\u043b\u0430\u043d\u0451\u0440\u043a\u0430 \u0441\u0435\u0433\u043e\u0434\u043d\u044f \u0432 16:00, \u0441\u0441\u044b\u043b\u043a\u0430 \u0432 \u043a\u0430\u043b\u0435\u043d\u0434\u0430\u0440\u0435",
+   "text": "Напоминаю: планёрка сегодня в 16:00, ссылка в календаре",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794236955488,
@@ -244,7 +244,7 @@
    "id": "c98799d5-421e-4588-b1c4-6c1b1b04550a",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
-   "text": "\u042f \u043e\u0431\u043d\u043e\u0432\u0438\u043b\u0430 \u043e\u043d\u0431\u043e\u0440\u0434\u0438\u043d\u0433-\u044d\u043a\u0440\u0430\u043d\u044b, \u0441\u0441\u044b\u043b\u043a\u0430 \u0432 Figma \u0432 \u043a\u0430\u043d\u0430\u043b\u0435 \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438",
+   "text": "Я обновила онбординг-экраны, ссылка в Figma в канале разработки",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794242055488,
@@ -255,13 +255,13 @@
    "id": "1eddb8e1-5a00-457f-82c8-57ec3dc232c2",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
-   "text": "\u0412\u0441\u0435\u043c \u043f\u0440\u0438\u0432\u0435\u0442! \u042f \u0437\u0434\u0435\u0441\u044c \u0443\u0436\u0435 \u0447\u0430\u0441, \u0432\u0441\u0451 \u043d\u0440\u0430\u0432\u0438\u0442\u0441\u044f \ud83d\ude04",
+   "text": "Всем привет! Я здесь уже час, всё нравится 😄",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794245355488,
    "editedAt": null,
    "reactions": {
-    "\ud83d\udc4d": [
+    "👍": [
      "15c6ede2-4ac4-4308-b576-c37921f29541",
      "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
      "22f4b6d3-401e-4c63-8c4e-979eaae4afc2"
@@ -272,7 +272,7 @@
    "id": "f4263c48-044a-467a-bd4c-8ac9e34d2940",
    "channelId": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
    "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-   "text": "\u0417\u0430\u043b\u0438\u043b \u0444\u0438\u0447\u0443 WebSocket-\u0440\u0435\u043a\u043e\u043d\u043d\u0435\u043a\u0442\u0430, \u043f\u0440\u043e\u0432\u0435\u0440\u044c\u0442\u0435 \u043a\u0442\u043e \u043c\u043e\u0436\u0435\u0442",
+   "text": "Залил фичу WebSocket-реконнекта, проверьте кто может",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794229755488,
@@ -283,13 +283,13 @@
    "id": "dea1d4e6-d2a4-4272-ba66-abda51cb131b",
    "channelId": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
    "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
-   "text": "\u041f\u0440\u043e\u0432\u0435\u0440\u0438\u043b\u0430 \u043d\u0430 Safari \u2014 \u0440\u0430\u0431\u043e\u0442\u0430\u0435\u0442, \u043d\u043e \u043d\u0443\u0436\u0435\u043d \u0444\u0438\u043a\u0441 \u0434\u043b\u044f \u0441\u0442\u0430\u0440\u044b\u0445 Chromium",
+   "text": "Проверила на Safari — работает, но нужен фикс для старых Chromium",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794232155488,
    "editedAt": null,
    "reactions": {
-    "\ud83d\udc40": [
+    "👀": [
      "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca"
     ]
    }
@@ -298,7 +298,7 @@
    "id": "8c5ae5c4-38ef-4524-bcc9-a1e147b973f9",
    "channelId": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
    "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-   "text": "\u041e\u043a, \u0437\u0430\u0432\u0451\u043b \u0442\u0438\u043a\u0435\u0442 NEX-418",
+   "text": "Ок, завёл тикет NEX-418",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794232455488,
@@ -309,7 +309,7 @@
    "id": "0086d0a3-6364-4dd2-a969-02cac01e13c5",
    "channelId": "e6250303-6873-4019-afc4-94ae79cb997b",
    "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
-   "text": "\u041a\u0442\u043e \u0438\u0434\u0451\u0442 \u043d\u0430 \u043d\u0430\u0441\u0442\u043e\u043b\u043a\u0438 \u0432 \u0447\u0435\u0442\u0432\u0435\u0440\u0433?",
+   "text": "Кто идёт на настолки в четверг?",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794238755488,
@@ -320,7 +320,7 @@
    "id": "8278ed53-02f4-46de-a7f8-f11786444863",
    "channelId": "e6250303-6873-4019-afc4-94ae79cb997b",
    "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
-   "text": "\u042f, \u0435\u0441\u043b\u0438 \u043f\u0440\u043e\u0434\u0443\u043a\u0442\u0438\u0432\u043d\u043e\u0441\u0442\u044c \u043d\u0435 \u0443\u043f\u0430\u0434\u0451\u0442 \ud83d\ude05",
+   "text": "Я, если продуктивность не упадёт 😅",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794239355488,
@@ -331,13 +331,13 @@
    "id": "bdb8f138-db8f-4972-8f03-d4e191be6e82",
    "channelId": "f81b2912-fcba-4039-a9b8-a103e663b367",
    "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
-   "text": "\u0412 \u043f\u044f\u0442\u043d\u0438\u0446\u0443 \u0441\u043c\u043e\u0442\u0440\u0438\u043c \u00ab\u0414\u044e\u043d\u0443 2\u00bb?",
+   "text": "В пятницу смотрим «Дюну 2»?",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794236355488,
    "editedAt": null,
    "reactions": {
-    "\u2764\ufe0f": [
+    "❤️": [
      "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
      "37cbadf2-d33c-429a-985b-545a4241ec0c"
     ]
@@ -347,7 +347,7 @@
    "id": "5f25a1cd-fd18-45c1-a21e-b09d8ebbfb64",
    "channelId": "f81b2912-fcba-4039-a9b8-a103e663b367",
    "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
-   "text": "\u0422\u043e\u043b\u044c\u043a\u043e \u0435\u0441\u043b\u0438 \u0441 \u043f\u043e\u043f\u043a\u043e\u0440\u043d\u043e\u043c \ud83c\udf7f",
+   "text": "Только если с попкорном 🍿",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794236655488,
@@ -358,7 +358,7 @@
    "id": "924ad5a8-5f60-468e-8b8b-f993ff61abe4",
    "channelId": "76d087f6-a5e5-4fa4-9116-8df41f5ddd60",
    "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-   "text": "\u0424\u0438\u043d\u0430\u043b \u0443 \u0412\u0438\u043b\u044c\u043d\u0451\u0432\u0430 \u2014 \u044d\u0442\u043e \u0441\u0442\u0435\u043d\u043e\u0433\u0440\u0430\u043c\u043c\u0430 \u0444\u0438\u043b\u044c\u043c\u0430 \u043a\u0430\u043a \u043e\u043f\u0435\u0440\u044b, \u043c\u043d\u0435 \u0437\u0430\u0448\u043b\u043e",
+   "text": "Финал у Вильнёва — это стенограмма фильма как оперы, мне зашло",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794242955488,
@@ -369,7 +369,7 @@
    "id": "84088eee-37ce-4bc9-b697-ca0b86de0eaf",
    "dmId": "0e3cf13e-c0e5-49f1-bc8d-e04903e26757",
    "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
-   "text": "\u041f\u0440\u0438\u0432\u0435\u0442! \u0417\u0430\u0433\u043b\u044f\u043d\u0438 \u0432 \u043a\u0430\u043d\u0430\u043b \u0440\u0430\u0437\u0440\u0430\u0431\u043e\u0442\u043a\u0438, \u0442\u0430\u043c \u0432\u0430\u0436\u043d\u044b\u0439 \u0444\u0438\u043a\u0441",
+   "text": "Привет! Загляни в канал разработки, там важный фикс",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794243555488,
@@ -380,13 +380,13 @@
    "id": "5c2046d0-4764-415f-94f1-3c32a7e2b4f5",
    "dmId": "0e3cf13e-c0e5-49f1-bc8d-e04903e26757",
    "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
-   "text": "\u0423\u0436\u0435 \u0441\u043c\u043e\u0442\u0440\u044e, \u0441\u043f\u0430\u0441\u0438\u0431\u043e!",
+   "text": "Уже смотрю, спасибо!",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794243855488,
    "editedAt": null,
    "reactions": {
-    "\ud83d\udc4d": [
+    "👍": [
      "15c6ede2-4ac4-4308-b576-c37921f29541"
     ]
    }
@@ -395,7 +395,7 @@
    "id": "281673bd-06a7-43a4-b24d-fa2e9530e9b9",
    "dmId": "57c9ba6d-f227-48bf-9cbe-e54a8b9a0dfe",
    "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-   "text": "\u0414\u0435\u043c\u043e, \u0441\u043a\u0438\u043d\u044c \u043b\u043e\u0433\u0438 \u0441 \u0440\u0435\u0433\u0440\u0435\u0441\u0441\u0438\u0435\u0439 \u043a\u043e\u0433\u0434\u0430 \u0431\u0443\u0434\u0435\u0442 \u0432\u0440\u0435\u043c\u044f",
+   "text": "Демо, скинь логи с регрессией когда будет время",
    "attachment": null,
    "replyTo": null,
    "createdAt": 1794245955488,
@@ -424,5 +424,5 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794248692733
+ "updatedAt": 1794248738587
 }
