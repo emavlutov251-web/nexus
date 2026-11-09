@@ -207,6 +207,27 @@ wss.on('connection', (ws, req) => {
       else if (scope.dmId) broadcastToDm(scope.dmId, { type: 'typing', dmId: scope.dmId, userId: user.id }, user.id);
     }
     if (msg.type === 'ping') wsSend(ws, { type: 'pong' });
+    /* ---------- WebRTC-звонки: чистая ретрансляция сигналинга ---------- */
+    if (msg.type === 'call' && msg.action && msg.to && msg.callId) {
+      const to = String(msg.to);
+      const payload = {
+        type: 'call', action: String(msg.action).slice(0, 24),
+        callId: String(msg.callId).slice(0, 64),
+        from: user.id, to,
+      };
+      if (msg.video !== undefined) payload.video = !!msg.video;
+      if (msg.sdp !== undefined) payload.sdp = String(msg.sdp).slice(0, 120000);
+      if (msg.candidate !== undefined) payload.candidate = msg.candidate;
+      if (msg.reason !== undefined) payload.reason = String(msg.reason).slice(0, 160);
+      const target = sockets.get(to);
+      if (!target || !target.size) {
+        wsSend(ws, { ...payload, action: 'unavailable', from: to, to: user.id });
+      } else {
+        for (const sock of target) wsSend(sock, payload);
+        const mine = sockets.get(user.id);
+        if (mine) for (const sock of mine) if (sock !== ws) wsSend(sock, payload);
+      }
+    }
   });
   const drop = () => {
     const set = sockets.get(user.id);
@@ -439,7 +460,7 @@ app.get('/api/search', auth, (req, res) => {
   res.json({ results });
 });
 
-const EXT_BY_TYPE = { 'image/png': '.png', 'image/jpeg': '.jpg', 'image/gif': '.gif', 'image/webp': '.webp', 'video/mp4': '.mp4', 'audio/mpeg': '.mp3', 'application/pdf': '.pdf', 'text/plain': '.txt' };
+const EXT_BY_TYPE = { 'image/png': '.png', 'image/jpeg': '.jpg', 'image/gif': '.gif', 'image/webp': '.webp', 'video/mp4': '.mp4', 'video/webm': '.webm', 'video/quicktime': '.mov', 'audio/mpeg': '.mp3', 'audio/webm': '.webm', 'audio/ogg': '.ogg', 'audio/mp4': '.m4a', 'audio/wav': '.wav', 'application/pdf': '.pdf', 'text/plain': '.txt' };
 app.post('/api/upload', auth, (req, res) => {
   const { name, type, dataUrl } = req.body || {};
   const m = /^data:([^;]+);base64,(.+)$/.exec(String(dataUrl || ''));
@@ -451,7 +472,7 @@ app.post('/api/upload', auth, (req, res) => {
   const safeBase = String(name || 'file').replace(/[^a-zA-Z0-9._-]/g, '_').slice(0, 60) || 'file';
   const fname = `${crypto.randomUUID()}-${safeBase}${safeBase.endsWith(ext) ? '' : ext}`;
   fs.writeFileSync(path.join(UPLOAD_DIR, fname), buf);
-  res.json({ attachment: { url: `/uploads/${fname}`, name: String(name || safeBase).slice(0, 120), size: buf.length, type: mime } });
+  res.json({ attachment: { url: `/uploads/${fname}`, name: String(name || safeBase).slice(0, 120), size: buf.length, type: mime, ...(req.body.round ? { round: true } : {}) } });
 });
 
 app.get('/api/users', auth, (req, res) => res.json({ users: db.users.filter(u => u.id !== req.user.id).map(pub) }));
