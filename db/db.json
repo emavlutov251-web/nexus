@@ -1,428 +1,397 @@
 {
  "users": [
   {
-   "id": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "id": "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
    "username": "demo",
    "displayName": "Демо Пользователь",
    "bio": "Это демо-аккаунт. Пароль: demo1234",
    "color": "#5865f2",
-   "salt": "9a86783783029b396d2a52032afee45a",
-   "passwordHash": "0b637c996b7c00f681bc106c38c0fa8dccc457d013175a64e1342797b7384f8c",
-   "createdAt": 1786471754486
+   "salt": "30282b9c74d719b524c140310379e83c",
+   "passwordHash": "67eb9f828dbc9a8f1976c3c7ebd19cda49eff3f65276137712c72d4dcf5281b2",
+   "createdAt": 1786472169267
   },
   {
-   "id": "15c6ede2-4ac4-4308-b576-c37921f29541",
+   "id": "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
    "username": "mira",
    "displayName": "Мира Ковалёва",
    "bio": "Дизайнер продукта",
    "color": "#3ba55d",
-   "salt": "a7034b9404f6604cddb75d9beb7683eb",
-   "passwordHash": "dd1a06742a59afafcf630bac763d1445b1830d0427c06d0c4ed0d6f97ccc260d",
-   "createdAt": 1786471754782
+   "salt": "be4795a616d27c03195acaf669e9978f",
+   "passwordHash": "97e0f5f35652115b1717542d76dbbe1971c65906c0a6040c241bd4d9df616dcd",
+   "createdAt": 1786472169656
   },
   {
-   "id": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "id": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "username": "timur",
    "displayName": "Тимур Ахмедов",
    "bio": "Backend, Go/Node",
    "color": "#faa61a",
-   "salt": "ac0f1e7122185511f1199e3f11dce10c",
-   "passwordHash": "149d961b31df0da55636a2d797ccfca47410d0e46814cf830dc125b5299cb5f7",
-   "createdAt": 1786471754990
+   "salt": "a5edfc346901b6b85906c872e1c5f9ac",
+   "passwordHash": "3ba9c2793ac1716be0cfbb1321b9c99e0dc28d30d69732e540c2a18ab50743e5",
+   "createdAt": 1786472169863
   },
   {
-   "id": "37cbadf2-d33c-429a-985b-545a4241ec0c",
+   "id": "153c54f7-f6cd-454e-97e9-d5800c9a706c",
    "username": "alisia",
    "displayName": "Алиса Лебедева",
    "bio": "Фронтенд, любит CSS",
    "color": "#eb459e",
-   "salt": "9a4587c51b6b84eeeaf4b9ad6c57fde3",
-   "passwordHash": "94b553b6e0e91ca2b42909e6bd64860528a2f987e31f645a0d9a9f0ec45dc83e",
-   "createdAt": 1786471755281
+   "salt": "071a63149317cef2c9d6082418141e3f",
+   "passwordHash": "f323881a901ce36e457a93d37e6de77c619fc9c887fb0d4f9b47966b30f4ad06",
+   "createdAt": 1786472170158
   },
   {
-   "id": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
+   "id": "bd86b22e-658f-414c-a6c4-384f5f5d01e1",
    "username": "ksu",
    "displayName": "Ксения Орлова",
    "bio": "PM, дорожная карта",
    "color": "#9b59b6",
-   "salt": "1deb42d418f032937118fde0546c8a17",
-   "passwordHash": "d8c2e4ed3fbb9c790d905c06edb207e90995d7adc6ebdc803794722bbabf2e34",
-   "createdAt": 1786471755488
-  },
-  {
-   "id": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "username": "chugunochek",
-   "displayName": "Эльмир",
-   "bio": "",
-   "color": "#2aabee",
-   "salt": "2a0c8a2356e618e39fcacf8aa2d9eb57",
-   "passwordHash": "7a8014ec1d4ddb2131d3a59b3e905e90459c315ba070d0b3359dd4f780136467",
-   "createdAt": 1794247784187
+   "salt": "515ab4a61c0ec4f812c804d32ba6ca7d",
+   "passwordHash": "cd09b8f71a90770bc944c4a491526a49a3116cd86a0c68f6b0edbe6f30f4de14",
+   "createdAt": 1786472170365
   }
  ],
- "sessions": [
-  {
-   "token": "4492086a4fec89027091ee28f2fdcd3b50e6b963f251ada8b6c5da8e65f98383",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "createdAt": 1794247784187
-  }
- ],
+ "sessions": [],
  "servers": [
   {
-   "id": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
+   "id": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
    "name": "Nexus Hub",
    "color": "#5865f2",
-   "ownerId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
-   "createdAt": 1787335755488
+   "ownerId": "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
+   "createdAt": 1787336170365
   },
   {
-   "id": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
+   "id": "107a7e6f-1b52-4127-9725-1c5af02e185c",
    "name": "Киноклуб",
    "color": "#eb459e",
-   "ownerId": "15c6ede2-4ac4-4308-b576-c37921f29541",
-   "createdAt": 1790791755488
+   "ownerId": "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
+   "createdAt": 1790792170365
   }
  ],
  "members": [
   {
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
+   "userId": "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
    "role": "owner",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
+   "userId": "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
+   "userId": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
+   "userId": "153c54f7-f6cd-454e-97e9-d5800c9a706c",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
-   "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
+   "userId": "bd86b22e-658f-414c-a6c4-384f5f5d01e1",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "serverId": "107a7e6f-1b52-4127-9725-1c5af02e185c",
+   "userId": "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
+   "serverId": "107a7e6f-1b52-4127-9725-1c5af02e185c",
+   "userId": "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
    "role": "owner",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "serverId": "107a7e6f-1b52-4127-9725-1c5af02e185c",
+   "userId": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
+   "serverId": "107a7e6f-1b52-4127-9725-1c5af02e185c",
+   "userId": "153c54f7-f6cd-454e-97e9-d5800c9a706c",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   },
   {
-   "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
-   "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
+   "serverId": "107a7e6f-1b52-4127-9725-1c5af02e185c",
+   "userId": "bd86b22e-658f-414c-a6c4-384f5f5d01e1",
    "role": "member",
-   "joinedAt": 1791655755488
+   "joinedAt": 1791656170365
   }
  ],
  "channels": [
   {
-   "id": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
+   "id": "2b3f059c-fa0f-4b7c-a31f-4104f62ebfa3",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
    "name": "общий",
    "topic": "Общение всей команды Nexus",
-   "createdAt": 1791655755488
+   "createdAt": 1791656170365
   },
   {
-   "id": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
+   "id": "6596b8ef-dd07-454f-8632-1742d00bd05f",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
    "name": "разработка",
    "topic": "Код, релизы, баги",
-   "createdAt": 1791655755488
+   "createdAt": 1791656170365
   },
   {
-   "id": "e6250303-6873-4019-afc4-94ae79cb997b",
-   "serverId": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
+   "id": "5349da88-9e9e-4211-81f5-cd307ced5545",
+   "serverId": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
    "name": "оффтоп",
    "topic": "Всё, что не в тему",
-   "createdAt": 1791655755488
+   "createdAt": 1791656170365
   },
   {
-   "id": "f81b2912-fcba-4039-a9b8-a103e663b367",
-   "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
+   "id": "dab8a862-dfd1-4507-80ee-f9af96f261ff",
+   "serverId": "107a7e6f-1b52-4127-9725-1c5af02e185c",
    "name": "фильмы",
    "topic": "Что смотрим в пятницу",
-   "createdAt": 1791655755488
+   "createdAt": 1791656170365
   },
   {
-   "id": "76d087f6-a5e5-4fa4-9116-8df41f5ddd60",
-   "serverId": "d6fb6a22-31c3-4d06-8075-d3f92283c603",
+   "id": "18c9c8b0-2d01-4af5-afe0-b835b77d2f4b",
+   "serverId": "107a7e6f-1b52-4127-9725-1c5af02e185c",
    "name": "обсуждения",
    "topic": "Споилеры и разборы",
-   "createdAt": 1791655755488
+   "createdAt": 1791656170365
   }
  ],
  "dms": [
   {
-   "id": "0e3cf13e-c0e5-49f1-bc8d-e04903e26757",
+   "id": "6fe938fe-09c6-4370-945a-f82b2997e7c2",
    "userIds": [
-    "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
-    "15c6ede2-4ac4-4308-b576-c37921f29541"
+    "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
+    "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a"
    ],
-   "createdAt": 1792519755488
+   "createdAt": 1792520170365
   },
   {
-   "id": "57c9ba6d-f227-48bf-9cbe-e54a8b9a0dfe",
+   "id": "49baa3de-4120-46bd-9026-7d2d47d4eeb7",
    "userIds": [
-    "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
-    "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca"
+    "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
+    "a760f4a9-9748-4789-903c-9a6241804d5a"
    ],
-   "createdAt": 1793210955488
+   "createdAt": 1793211370365
   }
  ],
  "messages": [
   {
-   "id": "85f8c579-71c1-41a1-90e9-5286bd102ceb",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
+   "id": "2fdcb7a4-6aea-413e-b244-02f13b98961a",
+   "channelId": "2b3f059c-fa0f-4b7c-a31f-4104f62ebfa3",
+   "userId": "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
    "text": "Всем привет! Добро пожаловать в Nexus Hub 👋",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794233355488,
+   "createdAt": 1794233770365,
    "editedAt": null,
    "reactions": {
     "🔥": [
-     "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-     "37cbadf2-d33c-429a-985b-545a4241ec0c"
+     "a760f4a9-9748-4789-903c-9a6241804d5a",
+     "153c54f7-f6cd-454e-97e9-d5800c9a706c"
     ]
    }
   },
   {
-   "id": "d05cc509-cc57-4447-a3bc-e9fef227239a",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "id": "cb225870-d0ef-4190-a3f5-dd5a042e8e14",
+   "channelId": "2b3f059c-fa0f-4b7c-a31f-4104f62ebfa3",
+   "userId": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "text": "Привет! Финально утвердили релиз 2.4 на пятницу",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794233655488,
+   "createdAt": 1794234070365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "1b89ed59-759c-4df4-801a-899a2d792bd0",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
+   "id": "d0aa6981-7c35-49b9-ae14-57d574de747c",
+   "channelId": "2b3f059c-fa0f-4b7c-a31f-4104f62ebfa3",
+   "userId": "bd86b22e-658f-414c-a6c4-384f5f5d01e1",
    "text": "Напоминаю: планёрка сегодня в 16:00, ссылка в календаре",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794236955488,
+   "createdAt": 1794237370365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "c98799d5-421e-4588-b1c4-6c1b1b04550a",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
+   "id": "9ef92d35-1c79-4086-be4c-cbdb63c00e51",
+   "channelId": "2b3f059c-fa0f-4b7c-a31f-4104f62ebfa3",
+   "userId": "153c54f7-f6cd-454e-97e9-d5800c9a706c",
    "text": "Я обновила онбординг-экраны, ссылка в Figma в канале разработки",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794242055488,
+   "createdAt": 1794242470365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "1eddb8e1-5a00-457f-82c8-57ec3dc232c2",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "id": "ed0315f1-a32a-4f8e-9af7-bf3e4d819b59",
+   "channelId": "2b3f059c-fa0f-4b7c-a31f-4104f62ebfa3",
+   "userId": "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
    "text": "Всем привет! Я здесь уже час, всё нравится 😄",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794245355488,
+   "createdAt": 1794245770365,
    "editedAt": null,
    "reactions": {
     "👍": [
-     "15c6ede2-4ac4-4308-b576-c37921f29541",
-     "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-     "22f4b6d3-401e-4c63-8c4e-979eaae4afc2"
+     "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
+     "a760f4a9-9748-4789-903c-9a6241804d5a",
+     "bd86b22e-658f-414c-a6c4-384f5f5d01e1"
     ]
    }
   },
   {
-   "id": "f4263c48-044a-467a-bd4c-8ac9e34d2940",
-   "channelId": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "id": "96db388e-133d-482c-b02a-ca6f69fb02ea",
+   "channelId": "6596b8ef-dd07-454f-8632-1742d00bd05f",
+   "userId": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "text": "Залил фичу WebSocket-реконнекта, проверьте кто может",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794229755488,
+   "createdAt": 1794230170365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "dea1d4e6-d2a4-4272-ba66-abda51cb131b",
-   "channelId": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
-   "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
+   "id": "81b1decc-7877-42f1-a38d-ebefe7e9505d",
+   "channelId": "6596b8ef-dd07-454f-8632-1742d00bd05f",
+   "userId": "153c54f7-f6cd-454e-97e9-d5800c9a706c",
    "text": "Проверила на Safari — работает, но нужен фикс для старых Chromium",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794232155488,
+   "createdAt": 1794232570365,
    "editedAt": null,
    "reactions": {
     "👀": [
-     "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca"
+     "a760f4a9-9748-4789-903c-9a6241804d5a"
     ]
    }
   },
   {
-   "id": "8c5ae5c4-38ef-4524-bcc9-a1e147b973f9",
-   "channelId": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "id": "7d830c85-93ba-4e44-afda-b64628278baf",
+   "channelId": "6596b8ef-dd07-454f-8632-1742d00bd05f",
+   "userId": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "text": "Ок, завёл тикет NEX-418",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794232455488,
+   "createdAt": 1794232870365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "0086d0a3-6364-4dd2-a969-02cac01e13c5",
-   "channelId": "e6250303-6873-4019-afc4-94ae79cb997b",
-   "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
+   "id": "d7662d46-64b0-4098-89ec-6ccb0ac05251",
+   "channelId": "5349da88-9e9e-4211-81f5-cd307ced5545",
+   "userId": "153c54f7-f6cd-454e-97e9-d5800c9a706c",
    "text": "Кто идёт на настолки в четверг?",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794238755488,
+   "createdAt": 1794239170365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "8278ed53-02f4-46de-a7f8-f11786444863",
-   "channelId": "e6250303-6873-4019-afc4-94ae79cb997b",
-   "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
+   "id": "9e72670e-8f13-4eb4-9c5f-0911a9b1b432",
+   "channelId": "5349da88-9e9e-4211-81f5-cd307ced5545",
+   "userId": "bd86b22e-658f-414c-a6c4-384f5f5d01e1",
    "text": "Я, если продуктивность не упадёт 😅",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794239355488,
+   "createdAt": 1794239770365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "bdb8f138-db8f-4972-8f03-d4e191be6e82",
-   "channelId": "f81b2912-fcba-4039-a9b8-a103e663b367",
-   "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
+   "id": "3256c9cd-b10d-4b29-b462-5c475f5cce41",
+   "channelId": "dab8a862-dfd1-4507-80ee-f9af96f261ff",
+   "userId": "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
    "text": "В пятницу смотрим «Дюну 2»?",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794236355488,
+   "createdAt": 1794236770365,
    "editedAt": null,
    "reactions": {
     "❤️": [
-     "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
-     "37cbadf2-d33c-429a-985b-545a4241ec0c"
+     "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
+     "153c54f7-f6cd-454e-97e9-d5800c9a706c"
     ]
    }
   },
   {
-   "id": "5f25a1cd-fd18-45c1-a21e-b09d8ebbfb64",
-   "channelId": "f81b2912-fcba-4039-a9b8-a103e663b367",
-   "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
+   "id": "fa63c161-9bb0-4302-b63f-53637df37a27",
+   "channelId": "dab8a862-dfd1-4507-80ee-f9af96f261ff",
+   "userId": "153c54f7-f6cd-454e-97e9-d5800c9a706c",
    "text": "Только если с попкорном 🍿",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794236655488,
+   "createdAt": 1794237070365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "924ad5a8-5f60-468e-8b8b-f993ff61abe4",
-   "channelId": "76d087f6-a5e5-4fa4-9116-8df41f5ddd60",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "id": "9cb4efcb-ed97-4362-a86a-04789584fbbe",
+   "channelId": "18c9c8b0-2d01-4af5-afe0-b835b77d2f4b",
+   "userId": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "text": "Финал у Вильнёва — это стенограмма фильма как оперы, мне зашло",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794242955488,
+   "createdAt": 1794243370365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "84088eee-37ce-4bc9-b697-ca0b86de0eaf",
-   "dmId": "0e3cf13e-c0e5-49f1-bc8d-e04903e26757",
-   "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
+   "id": "e1b80baa-6b55-4426-9f79-76e313a7c634",
+   "dmId": "6fe938fe-09c6-4370-945a-f82b2997e7c2",
+   "userId": "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a",
    "text": "Привет! Загляни в канал разработки, там важный фикс",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794243555488,
+   "createdAt": 1794243970365,
    "editedAt": null,
    "reactions": {}
   },
   {
-   "id": "5c2046d0-4764-415f-94f1-3c32a7e2b4f5",
-   "dmId": "0e3cf13e-c0e5-49f1-bc8d-e04903e26757",
-   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "id": "58fb9424-56c1-4690-a4f6-f05375872fc9",
+   "dmId": "6fe938fe-09c6-4370-945a-f82b2997e7c2",
+   "userId": "fd1eb0e7-8f75-4ec9-a976-94496c23d23b",
    "text": "Уже смотрю, спасибо!",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794243855488,
+   "createdAt": 1794244270365,
    "editedAt": null,
    "reactions": {
     "👍": [
-     "15c6ede2-4ac4-4308-b576-c37921f29541"
+     "9b5fb6d5-f9bf-4a8f-8212-38d9dea9462a"
     ]
    }
   },
   {
-   "id": "281673bd-06a7-43a4-b24d-fa2e9530e9b9",
-   "dmId": "57c9ba6d-f227-48bf-9cbe-e54a8b9a0dfe",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
+   "id": "c24aafde-7ee6-4cf3-8766-8a2597affb47",
+   "dmId": "49baa3de-4120-46bd-9026-7d2d47d4eeb7",
+   "userId": "a760f4a9-9748-4789-903c-9a6241804d5a",
    "text": "Демо, скинь логи с регрессией когда будет время",
    "attachment": null,
    "replyTo": null,
-   "createdAt": 1794245955488,
+   "createdAt": 1794246370365,
    "editedAt": null,
    "reactions": {}
   }
  ],
  "reads": {
-  "1ff52556-c5a5-4e9f-b854-a50b35fd5181:ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 1794247575488,
-  "1ff52556-c5a5-4e9f-b854-a50b35fd5181:ch:bc6cb9bc-4270-4988-8a31-7bec1d334af7": 1794247575488,
-  "1ff52556-c5a5-4e9f-b854-a50b35fd5181:dm:0e3cf13e-c0e5-49f1-bc8d-e04903e26757": 1794247575488
+  "fd1eb0e7-8f75-4ec9-a976-94496c23d23b:ch:2b3f059c-fa0f-4b7c-a31f-4104f62ebfa3": 1794247990365,
+  "fd1eb0e7-8f75-4ec9-a976-94496c23d23b:ch:6596b8ef-dd07-454f-8632-1742d00bd05f": 1794247990365,
+  "fd1eb0e7-8f75-4ec9-a976-94496c23d23b:dm:6fe938fe-09c6-4370-945a-f82b2997e7c2": 1794247990365
  },
- "stories": [
-  {
-   "id": "7b62529f-fd2b-44e4-88a9-2222734b737c",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "attachment": {
-    "url": "/uploads/da760880-b9e9-4585-b1ad-74ee6bc61b7a-1354.mp4",
-    "name": "1354.mp4",
-    "size": 416366,
-    "type": "video/mp4",
-    "round": false
-   },
-   "text": "",
-   "createdAt": 1794247796253,
-   "expiresAt": 1794334196253
-  }
- ],
- "updatedAt": 1794247796283
+ "stories": [],
+ "updatedAt": 1794248170855
 }
