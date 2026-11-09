@@ -49,9 +49,25 @@
    "salt": "515ab4a61c0ec4f812c804d32ba6ca7d",
    "passwordHash": "cd09b8f71a90770bc944c4a491526a49a3116cd86a0c68f6b0edbe6f30f4de14",
    "createdAt": 1786472170365
+  },
+  {
+   "id": "07844b98-661c-4244-aec1-8ced0b40380c",
+   "username": "final_test",
+   "displayName": "Финальный Тест",
+   "bio": "",
+   "color": "#2aabee",
+   "salt": "e849099afef4a0ba4d5305ddbebfd5ce",
+   "passwordHash": "81f176075fe479bb5a436925d634bed4107c13dffaecd19695c52b775a0801cf",
+   "createdAt": 1794248295963
   }
  ],
- "sessions": [],
+ "sessions": [
+  {
+   "token": "462eeabf1fec6a198e9cc2fee06c4b6f5c18ce7197baa1ebcf99d65fc6aaf60d",
+   "userId": "07844b98-661c-4244-aec1-8ced0b40380c",
+   "createdAt": 1794248295963
+  }
+ ],
  "servers": [
   {
    "id": "02deb247-4ea4-4d1c-b2d7-b2c60d4f211b",
@@ -393,5 +409,5 @@
   "fd1eb0e7-8f75-4ec9-a976-94496c23d23b:dm:6fe938fe-09c6-4370-945a-f82b2997e7c2": 1794247990365
  },
  "stories": [],
- "updatedAt": 1794248170855
+ "updatedAt": 1794248295994
 }
