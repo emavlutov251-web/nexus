@@ -624,7 +624,23 @@ async function ghApi(p, opts = {}) {
     },
   });
 }
+let dataBranchReady = false;
+async function ensureDataBranch() {
+  if (dataBranchReady) return true;
+  try {
+    const ref = await ghApi(`/repos/${DATA_REPO}/git/ref/heads/${DATA_BRANCH}`);
+    if (ref.status === 200) { dataBranchReady = true; return true; }
+    const mainRef = await ghApi(`/repos/${DATA_REPO}/git/ref/heads/main`);
+    if (mainRef.status !== 200) return false;
+    const sha = (await mainRef.json()).object.sha;
+    const res = await ghApi(`/repos/${DATA_REPO}/git/refs`, { method: 'POST', body: JSON.stringify({ ref: 'refs/heads/' + DATA_BRANCH, sha }) });
+    dataBranchReady = res.status === 201;
+    console.log(dataBranchReady ? 'Ветка data создана' : 'Не удалось создать ветку data: ' + res.status);
+    return dataBranchReady;
+  } catch (e) { console.log('ensureDataBranch err:', e.message); return false; }
+}
 async function ghPutFile(relPath, buf, message) {
+  if (!(await ensureDataBranch())) return false;
   let sha = null;
   try {
     const head = await ghApi(`/repos/${DATA_REPO}/contents/${relPath}?ref=${DATA_BRANCH}`);
@@ -634,7 +650,11 @@ async function ghPutFile(relPath, buf, message) {
     method: 'PUT',
     body: JSON.stringify({ message, content: buf.toString('base64'), branch: DATA_BRANCH, sha }),
   });
-  return res.status === 200 || res.status === 201;
+  if (res.status !== 200 && res.status !== 201) {
+    console.log('ghPutFile fail:', relPath, res.status, (await res.text().catch(() => '')).slice(0, 200));
+    return false;
+  }
+  return true;
 }
 async function ghGetFile(relPath) {
   const res = await ghApi(`/repos/${DATA_REPO}/contents/${relPath}?ref=${DATA_BRANCH}`);
