@@ -484,7 +484,11 @@
    "replyTo": null,
    "createdAt": 1794249403327,
    "editedAt": null,
-   "reactions": {}
+   "reactions": {
+    "❤️": [
+     "772cd9c1-6146-42d4-9791-5345806d7bff"
+    ]
+   }
   }
  ],
  "reads": {
@@ -509,5 +513,5 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794249438364
+ "updatedAt": 1794249453601
 }
