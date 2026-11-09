@@ -685,7 +685,10 @@
    "replyTo": null,
    "createdAt": 1794250668204,
    "editedAt": null,
-   "reactions": {}
+   "reactions": {},
+   "pinned": true,
+   "pinnedBy": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "pinnedAt": 1794251248979
   },
   {
    "id": "20e33627-e06c-4ebe-8938-df5acecb049e",
@@ -870,7 +873,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794251244136,
+ "updatedAt": 1794251249009,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600
  }
