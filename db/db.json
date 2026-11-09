@@ -961,24 +961,6 @@
    }
   },
   {
-   "id": "d04c1dd6-0a4c-46fe-bc51-af56bfc987ae",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/dc217734-a52e-42a9-a706-1a080cc205d2-_________.webm",
-    "name": "Голосовое.webm",
-    "size": 1394501,
-    "type": "audio/webm"
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794253814579,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "506855d7-031b-4692-a62d-1f9946b09200",
    "channelId": null,
    "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
@@ -1025,7 +1007,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794253853999,
+ "updatedAt": 1794253870611,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600
  },
