@@ -49,9 +49,25 @@
    "salt": "1deb42d418f032937118fde0546c8a17",
    "passwordHash": "d8c2e4ed3fbb9c790d905c06edb207e90995d7adc6ebdc803794722bbabf2e34",
    "createdAt": 1786471755488
+  },
+  {
+   "id": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "username": "chugunochek",
+   "displayName": "Эльмир",
+   "bio": "",
+   "color": "#2aabee",
+   "salt": "2a0c8a2356e618e39fcacf8aa2d9eb57",
+   "passwordHash": "7a8014ec1d4ddb2131d3a59b3e905e90459c315ba070d0b3359dd4f780136467",
+   "createdAt": 1794247784187
   }
  ],
- "sessions": [],
+ "sessions": [
+  {
+   "token": "4492086a4fec89027091ee28f2fdcd3b50e6b963f251ada8b6c5da8e65f98383",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "createdAt": 1794247784187
+  }
+ ],
  "servers": [
   {
    "id": "08d038c8-fe11-48d5-bb95-0de98deb0b32",
@@ -392,6 +408,21 @@
   "1ff52556-c5a5-4e9f-b854-a50b35fd5181:ch:bc6cb9bc-4270-4988-8a31-7bec1d334af7": 1794247575488,
   "1ff52556-c5a5-4e9f-b854-a50b35fd5181:dm:0e3cf13e-c0e5-49f1-bc8d-e04903e26757": 1794247575488
  },
- "stories": [],
- "updatedAt": 1794247755882
+ "stories": [
+  {
+   "id": "7b62529f-fd2b-44e4-88a9-2222734b737c",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "attachment": {
+    "url": "/uploads/da760880-b9e9-4585-b1ad-74ee6bc61b7a-1354.mp4",
+    "name": "1354.mp4",
+    "size": 416366,
+    "type": "video/mp4",
+    "round": false
+   },
+   "text": "",
+   "createdAt": 1794247796253,
+   "expiresAt": 1794334196253
+  }
+ ],
+ "updatedAt": 1794247796283
 }
