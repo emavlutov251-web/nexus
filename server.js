@@ -101,9 +101,11 @@ function persistDb() {
 }
 function writeDbAtomic() {
   clearTimeout(saveTimer);
+  db.updatedAt = Date.now();
   const tmp = DB_FILE + '.tmp';
   fs.writeFileSync(tmp, JSON.stringify(db, null, 1));
   fs.renameSync(tmp, DB_FILE);
+  try { if (typeof scheduleBackup === 'function') scheduleBackup(); } catch (_) {}
 }
 process.on('SIGINT', () => { try { writeDbAtomic(); } catch (_) {} process.exit(0); });
 process.on('SIGTERM', () => { try { writeDbAtomic(); } catch (_) {} process.exit(0); });
@@ -256,10 +258,12 @@ app.post('/api/register', (req, res) => {
   const uname = String(username || '').trim().toLowerCase();
   const dname = String(displayName || '').trim();
   const pw = String(password || '');
+  const RESERVED_NAMES = new Set(['admin', 'administrator', 'support', 'nexus', 'root', 'help', 'official', 'system']);
   if (!/^[a-z0-9_]{3,24}$/.test(uname)) return res.status(400).json({ error: 'Юзернейм: 3–24 символа, a–z 0–9 _' });
+  if (RESERVED_NAMES.has(uname)) return res.status(400).json({ error: 'Этот юзернейм зарезервирован системой' });
   if (dname.length < 2 || dname.length > 48) return res.status(400).json({ error: 'Имя: 2–48 символов' });
   if (pw.length < 6) return res.status(400).json({ error: 'Пароль минимум 6 символов' });
-  if (db.users.find(u => u.username === uname)) return res.status(409).json({ error: 'Юзернейм занят' });
+  if (db.users.some(u => String(u.username).toLowerCase() === uname)) return res.status(409).json({ error: 'Этот юзернейм уже занят — выберите другой' });
   const salt = crypto.randomBytes(16).toString('hex');
   const u = { id: crypto.randomUUID(), username: uname, displayName: dname, bio: '', color: PALETTE[db.users.length % PALETTE.length], salt, passwordHash: hashPw(pw, salt), createdAt: Date.now() };
   db.users.push(u);
@@ -602,6 +606,192 @@ app.get('/api/notify/poll', auth, (req, res) => {
     notifWaiters.set(req.user.id, ws.filter(x => x !== w));
   });
 });
+
+/* ═══════════ ПЕРСИСТЕНТНОСТЬ: бэкап базы в GitHub (переживает обновления/перезапуски) ═══════════ */
+const DATA_TOKEN = process.env.DATA_TOKEN || '';
+const DATA_REPO = process.env.DATA_REPO || 'emavlutov251-web/nexus';
+const DATA_BRANCH = 'data';
+async function ghApi(p, opts = {}) {
+  return fetch('https://api.github.com' + p, {
+    ...opts,
+    headers: {
+      Authorization: 'Bearer ' + DATA_TOKEN,
+      Accept: 'application/vnd.github+json',
+      'X-GitHub-Api-Version': '2022-11-28',
+      'User-Agent': 'nexus-server',
+      'Content-Type': 'application/json',
+      ...(opts.headers || {}),
+    },
+  });
+}
+async function ghPutFile(relPath, buf, message) {
+  let sha = null;
+  try {
+    const head = await ghApi(`/repos/${DATA_REPO}/contents/${relPath}?ref=${DATA_BRANCH}`);
+    if (head.status === 200) sha = (await head.json()).sha;
+  } catch (_) {}
+  const res = await ghApi(`/repos/${DATA_REPO}/contents/${relPath}`, {
+    method: 'PUT',
+    body: JSON.stringify({ message, content: buf.toString('base64'), branch: DATA_BRANCH, sha }),
+  });
+  return res.status === 200 || res.status === 201;
+}
+async function ghGetFile(relPath) {
+  const res = await ghApi(`/repos/${DATA_REPO}/contents/${relPath}?ref=${DATA_BRANCH}`);
+  if (res.status !== 200) return null;
+  const j = await res.json();
+  return Buffer.from(j.content || '', 'base64');
+}
+async function restoreFromGithub() {
+  if (!DATA_TOKEN) return false;
+  try {
+    const buf = await ghGetFile('db/db.json');
+    if (!buf) return false;
+    const parsed = JSON.parse(buf.toString('utf8'));
+    if (!parsed || !Array.isArray(parsed.users) || !parsed.users.length) return false;
+    const localTs = (db && db.updatedAt) || 0;
+    const remoteTs = parsed.updatedAt || 0;
+    // если локальная база новее облачной (были правки после последнего бэкапа) — оставляем локальную
+    if (localTs > remoteTs && db.users.length) {
+      console.log('Локальная база новее облачной — сохраняем локальную');
+      return false;
+    }
+    db = parsed;
+    if (!db.stories) db.stories = [];
+    if (!db.reads) db.reads = {};
+    writeDbAtomic();
+    console.log('✅ База восстановлена из GitHub:', db.users.length, 'пользователей,', db.messages.length, 'сообщений');
+    return true;
+  } catch (e) { console.log('restore err:', e.message); }
+  return false;
+}
+let backupTimer = null, uploadsSyncTimer = null;
+const backedUploads = new Map();
+function scheduleBackup() {
+  if (!DATA_TOKEN) return;
+  clearTimeout(backupTimer);
+  backupTimer = setTimeout(backupNow, 20000);
+  if (!uploadsSyncTimer) uploadsSyncTimer = setInterval(() => syncUploads().catch(() => {}), 10 * 60 * 1000);
+}
+async function backupNow() {
+  if (!DATA_TOKEN) return;
+  try {
+    const ok = await ghPutFile('db/db.json', Buffer.from(JSON.stringify(db, null, 1)), 'db backup ' + new Date().toISOString());
+    console.log(ok ? '💾 База сохранена в GitHub' : '⚠️ Бэкап не удался');
+  } catch (e) { console.log('backup err:', e.message); }
+  syncUploads().catch(() => {});
+}
+async function syncUploads() {
+  if (!DATA_TOKEN) return;
+  try {
+    const files = fs.readdirSync(UPLOAD_DIR);
+    for (const f of files) {
+      const st = fs.statSync(path.join(UPLOAD_DIR, f));
+      if (backedUploads.get(f) === st.size) continue;
+      const ok = await ghPutFile('db/uploads/' + f, fs.readFileSync(path.join(UPLOAD_DIR, f)), 'upload ' + f);
+      if (ok) backedUploads.set(f, st.size);
+      await new Promise(r => setTimeout(r, 250));
+    }
+  } catch (e) { console.log('uploads sync err:', e.message); }
+}
+async function restoreUploads() {
+  if (!DATA_TOKEN) return;
+  try {
+    const res = await ghApi(`/repos/${DATA_REPO}/contents/db/uploads?ref=${DATA_BRANCH}`);
+    if (res.status !== 200) return;
+    const list = await res.json();
+    if (!Array.isArray(list)) return;
+    for (const item of list) {
+      const dest = path.join(UPLOAD_DIR, item.name);
+      if (fs.existsSync(dest)) { backedUploads.set(item.name, fs.statSync(dest).size); continue; }
+      const buf = await ghGetFile('db/uploads/' + item.name);
+      if (buf) { fs.writeFileSync(dest, buf); backedUploads.set(item.name, buf.length); }
+      await new Promise(r => setTimeout(r, 150));
+    }
+    console.log('✅ Файлы восстановлены из GitHub:', list.length);
+  } catch (e) { console.log('restore uploads err:', e.message); }
+}
+// автозапуск: восстановление + регулярный бэкап
+restoreFromGithub().then(() => { scheduleBackup(); return restoreUploads(); }).catch(() => {});
+
+/* ═══════════ АДМИН-ПАНЕЛЬ ═══════════ */
+const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || 'nexus-admin-2026';
+const adminToken = () => crypto.createHash('sha256').update('nexus-admin-salt-v1' + ADMIN_PASSWORD).digest('hex');
+const adminAuth = (req, res, next) => {
+  const t = req.headers['x-admin-token'] || req.query.atoken || '';
+  if (t !== adminToken()) return res.status(401).json({ error: 'Неверный админ-токен' });
+  next();
+};
+app.get('/admin', (req, res) => res.sendFile(path.join(ROOT, 'public', 'admin.html')));
+app.post('/api/admin/login', (req, res) => {
+  const pw = String((req.body || {}).password || '');
+  if (pw !== ADMIN_PASSWORD) return res.status(401).json({ error: 'Неверный пароль' });
+  res.json({ token: adminToken() });
+});
+app.get('/api/admin/overview', adminAuth, (req, res) => {
+  res.json({
+    users: db.users.length, messages: db.messages.length, dms: db.dms.length,
+    channels: db.channels.length, stories: (db.stories || []).length,
+    online: [...sockets.keys()], now: Date.now(),
+  });
+});
+app.get('/api/admin/users', adminAuth, (req, res) => {
+  res.json({
+    users: db.users.map(u => ({
+      ...pub(u), createdAt: u.createdAt, lastSeen: lastSeenMap.get(u.id) || null,
+      online: sockets.has(u.id),
+      messageCount: db.messages.filter(m => m.userId === u.id).length,
+    })),
+  });
+});
+app.get('/api/admin/conversations', adminAuth, (req, res) => {
+  const dms = db.dms.map(d => {
+    const msgs = db.messages.filter(m => m.dmId === d.id);
+    return {
+      kind: 'dm', id: d.id,
+      title: d.userIds.map(uid => (userById(uid) || {}).displayName || '?').join(' ↔ '),
+      participants: d.userIds.map(uid => pub(userById(uid))),
+      count: msgs.length,
+      last: msgs.length ? { text: (msgs[msgs.length - 1].text || (msgs[msgs.length - 1].attachment ? '[вложение]' : '')).slice(0, 90), createdAt: msgs[msgs.length - 1].createdAt } : null,
+    };
+  }).sort((a, b) => (b.last?.createdAt || 0) - (a.last?.createdAt || 0));
+  const channels = db.channels.map(c => {
+    const msgs = db.messages.filter(m => m.channelId === c.id);
+    const s = db.servers.find(x => x.id === c.serverId);
+    return {
+      kind: 'channel', id: c.id, name: '#' + c.name, server: s ? s.name : '?',
+      count: msgs.length,
+      last: msgs.length ? { text: (msgs[msgs.length - 1].text || (msgs[msgs.length - 1].attachment ? '[вложение]' : '')).slice(0, 90), createdAt: msgs[msgs.length - 1].createdAt } : null,
+    };
+  }).sort((a, b) => (b.last?.createdAt || 0) - (a.last?.createdAt || 0));
+  res.json({ dms, channels });
+});
+app.get('/api/admin/messages', adminAuth, (req, res) => {
+  const { dm, channel, before, limit } = req.query;
+  const lim = Math.min(parseInt(limit) || 100, 200);
+  let list;
+  if (dm) list = db.messages.filter(m => m.dmId === dm);
+  else if (channel) list = db.messages.filter(m => m.channelId === channel);
+  else return res.status(400).json({ error: 'Укажите dm или channel' });
+  list = list.sort((a, b) => a.createdAt - b.createdAt);
+  if (before) list = list.filter(m => m.createdAt < parseInt(before));
+  const sliced = list.slice(-lim);
+  res.json({ messages: sliced.map(serializeMsg), hasMore: list.length > sliced.length });
+});
+app.get('/api/admin/stories', adminAuth, (req, res) => {
+  res.json({
+    stories: (db.stories || []).slice().sort((a, b) => b.createdAt - a.createdAt)
+      .map(s => ({ ...s, author: pub(userById(s.userId)) })),
+  });
+});
+app.get('/api/admin/search', adminAuth, (req, res) => {
+  const q = String(req.query.q || '').trim().toLowerCase();
+  if (q.length < 2) return res.json({ results: [] });
+  const results = db.messages.filter(m => (m.text || '').toLowerCase().includes(q))
+    .slice(-80).reverse().map(m => ({ ...serializeMsg(m), scope: scopeLabel(m) }));
+  res.json({ results });
+});
+app.post('/api/admin/backup-now', adminAuth, (req, res) => { backupNow(); res.json({ ok: true }); });
 
 server.listen(PORT, '0.0.0.0', () => {
   console.log(`Nexus запущен на http://0.0.0.0:${PORT}`);

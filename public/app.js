@@ -1798,14 +1798,29 @@ window.nexusBack = function () {
 /* ══════════ boot ══════════ */
 (async function boot() {
   if (state.token) {
-    try {
-      const { me } = await api('/api/me');
-      state.me = me;
-      await enterApp();
-      return;
-    } catch (_) {
+    // не выкидываем из аккаунта при сбоях сети — только если токен точно недействителен
+    let invalid = false;
+    for (let attempt = 0; attempt < 4; attempt++) {
+      try {
+        const { me } = await api('/api/me');
+        state.me = me;
+        await enterApp();
+        return;
+      } catch (e) {
+        const msg = String(e.message || '');
+        if (/Не авторизован|401/.test(msg)) { invalid = true; break; } // токен действительно невалиден
+        await new Promise(r => setTimeout(r, 2000 * (attempt + 1))); // сеть/холодный старт — пробуем снова
+      }
+    }
+    if (invalid) {
       localStorage.removeItem('nexus_token');
+      try { window.NexusAndroid?.clearSession?.(); } catch (_) {}
       state.token = null;
+    } else {
+      // сервер временно недоступен — вход сохраняем, покажем экран с уведомлением
+      $('#auth-screen').classList.remove('hidden');
+      toast('Нет связи с сервером. Вход сохранён — откройте приложение позже.');
+      return;
     }
   }
   $('#auth-screen').classList.remove('hidden');
