@@ -154,6 +154,13 @@
    "color": "#2aabee",
    "ownerId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "createdAt": 1794250643834
+  },
+  {
+   "id": "8f1ee368-8270-47d6-becc-c4eaa0c18b1c",
+   "name": "Мысли",
+   "color": "#e74c3c",
+   "ownerId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "createdAt": 1794251031566
   }
  ],
  "members": [
@@ -222,6 +229,12 @@
    "userId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "role": "owner",
    "joinedAt": 1794250643834
+  },
+  {
+   "serverId": "8f1ee368-8270-47d6-becc-c4eaa0c18b1c",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "role": "owner",
+   "joinedAt": 1794251031566
   }
  ],
  "channels": [
@@ -273,6 +286,13 @@
    "name": "тест",
    "topic": "",
    "createdAt": 1794250644038
+  },
+  {
+   "id": "51d20f69-8dc1-4300-8e92-04656b0e8664",
+   "serverId": "8f1ee368-8270-47d6-becc-c4eaa0c18b1c",
+   "name": "общий",
+   "topic": "Канал по умолчанию",
+   "createdAt": 1794251031566
   }
  ],
  "dms": [
@@ -698,7 +718,8 @@
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:f21e4d0b-bb44-4d58-a14a-cae8d2d47307": 1794249438334,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:51d46934-725b-46fa-89fa-3efb7d41aa06": 1794250978446,
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:5141ce85-4e89-441d-b95a-c842a25a36da": 1794250644236,
-  "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794250644788
+  "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794250644788,
+  "772cd9c1-6146-42d4-9791-5345806d7bff:ch:51d20f69-8dc1-4300-8e92-04656b0e8664": 1794251031942
  },
  "stories": [
   {
@@ -716,7 +737,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794250978476,
+ "updatedAt": 1794251031972,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600
  }
