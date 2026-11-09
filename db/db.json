@@ -96,6 +96,11 @@
    "token": "fb17dadbd51a10b5be27cf7b968483ad854093366d3dc8e53ce1912c05df8389",
    "userId": "3f75253a-93ec-488c-b77a-0dd00dfcd6eb",
    "createdAt": 1794249341559
+  },
+  {
+   "token": "fff90004c7a2f4f20477730fe34f817904024a7376626f03cb7f3b6d5715adbc",
+   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "createdAt": 1794249612909
   }
  ],
  "servers": [
@@ -551,5 +556,5 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794249512492
+ "updatedAt": 1794249612940
 }
