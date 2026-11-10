@@ -66,8 +66,7 @@
    "hideStoryViews": false,
    "quietHours": null,
    "pinnedChats": [
-    "dm:51d46934-725b-46fa-89fa-3efb7d41aa06",
-    "srv:8f1ee368-8270-47d6-becc-c4eaa0c18b1c"
+    "dm:51d46934-725b-46fa-89fa-3efb7d41aa06"
    ]
   },
   {
@@ -305,13 +304,6 @@
    "ownerId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "createdAt": 1794250643834,
    "topic": "тест описания"
-  },
-  {
-   "id": "8f1ee368-8270-47d6-becc-c4eaa0c18b1c",
-   "name": "Мысли",
-   "color": "#e74c3c",
-   "ownerId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "createdAt": 1794251031566
   }
  ],
  "members": [
@@ -380,12 +372,6 @@
    "userId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "role": "owner",
    "joinedAt": 1794250643834
-  },
-  {
-   "serverId": "8f1ee368-8270-47d6-becc-c4eaa0c18b1c",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "role": "owner",
-   "joinedAt": 1794251031566
   }
  ],
  "channels": [
@@ -437,13 +423,6 @@
    "name": "тест",
    "topic": "",
    "createdAt": 1794250644038
-  },
-  {
-   "id": "51d20f69-8dc1-4300-8e92-04656b0e8664",
-   "serverId": "8f1ee368-8270-47d6-becc-c4eaa0c18b1c",
-   "name": "общий",
-   "topic": "Канал по умолчанию",
-   "createdAt": 1794251031566
   }
  ],
  "dms": [
@@ -698,35 +677,6 @@
    "reactions": {}
   },
   {
-   "id": "77dec428-4ad8-44c7-8d10-188e3e0cbe13",
-   "channelId": "51d20f69-8dc1-4300-8e92-04656b0e8664",
-   "dmId": null,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Хуху",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794251047150,
-   "editedAt": 1794251175267,
-   "reactions": {}
-  },
-  {
-   "id": "3333f830-c73d-47a4-8bd7-1ab3cf5f974c",
-   "channelId": "51d20f69-8dc1-4300-8e92-04656b0e8664",
-   "dmId": null,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794251087809,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "4a40c1e9-a5b2-4d54-b18f-c7c2210280b5",
    "channelId": "f107a547-2b4f-41d0-960b-035fe605b594",
    "dmId": null,
@@ -774,63 +724,6 @@
    }
   },
   {
-   "id": "2e4b9c96-c7d3-430a-8376-9bffc1e44538",
-   "channelId": "51d20f69-8dc1-4300-8e92-04656b0e8664",
-   "dmId": null,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/220c1aed-a563-4a60-9f0a-5e6e9084f5c6-______.webm",
-    "name": "Кружок.webm",
-    "size": 937076,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794254945085,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "7422c8dd-a45c-426f-9808-5bd345d0e7db",
-   "channelId": "51d20f69-8dc1-4300-8e92-04656b0e8664",
-   "dmId": null,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/849a50aa-c836-4507-a0c7-4246383b0410-______.webm",
-    "name": "Кружок.webm",
-    "size": 4447013,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794254970457,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "26019534-0016-4484-ad8a-f063393ed59f",
-   "channelId": "51d20f69-8dc1-4300-8e92-04656b0e8664",
-   "dmId": null,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/81ecba06-c87d-41d1-9092-a7fe90334a9c-______.webm",
-    "name": "Кружок.webm",
-    "size": 1613738,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794254999838,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "0a9059ea-a33d-4715-a6dd-89c799860b35",
    "channelId": null,
    "dmId": "0e3cf13e-c0e5-49f1-bc8d-e04903e26757",
@@ -874,7 +767,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794300590381,
+ "updatedAt": 1794300617316,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -888,6 +781,20 @@
   }
  },
  "errors": [
+  {
+   "id": "da28fdbb-d2aa-47dc-a19a-9d22d4389b8f",
+   "at": 1794300617285,
+   "status": "new",
+   "kind": "promise",
+   "message": "Нет доступа",
+   "stack": "Error: Нет доступа\n    at api (https://nexus-app-vyrc.onrender.com/app.js:77:15)\n    at async loadMessages (https://nexus-app-vyrc.onrender.com/app.js:1287:41)\n    at async openChannel (https://nexus-app-vyrc.onrender.com/app.js:596:3)",
+   "context": "unhandledrejection",
+   "screen": "channel:51d20f69-8dc1-4300-8e92-04656b0e8664",
+   "appVersion": "web-3",
+   "ua": "Mozilla/5.0 (Linux; Android 12; M2102J20SG Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.8078.47 Mobile Safari/537.36",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "username": "chugunochek"
+  },
   {
    "id": "267362ab-f6a8-422d-9ecf-e4996c8bd9a2",
    "at": 1794293810183,
