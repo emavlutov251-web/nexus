@@ -91,6 +91,16 @@
    "salt": "bce0fe389f92f1bd32a8c48d00e9cce3",
    "passwordHash": "9986a0bab037dc4b58f8596d481d62f19971f47a516da7c51588b04a86203a09",
    "createdAt": 1794250622952
+  },
+  {
+   "id": "c16c4b82-d387-45fb-81d2-273771560cc1",
+   "username": "lisa2010",
+   "displayName": "Lisa",
+   "bio": "",
+   "color": "#faa81a",
+   "salt": "68ff10ed53c29f1a9a139bf570da3d1f",
+   "passwordHash": "6bf344e3c1c9625fe14903dd2f50994e7d31655baac640268d8730364a37104d",
+   "createdAt": 1794287725821
   }
  ],
  "sessions": [
@@ -183,6 +193,26 @@
    "token": "c5888211caf89f61cb8d6f84fb666f6971424457dabfec91200608a62c7b1058",
    "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
    "createdAt": 1794287431016
+  },
+  {
+   "token": "5db63fda518ea315443643456ff93fb80d487a503d8fb1f341e772fafde214d7",
+   "userId": "c16c4b82-d387-45fb-81d2-273771560cc1",
+   "createdAt": 1794287725821
+  },
+  {
+   "token": "9489e1b1743de5c495c000c554fe9ca2f57b234acc0833015fdbf4490c963b89",
+   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "createdAt": 1794287726122
+  },
+  {
+   "token": "eda328200322befc26b3600b009259f40e85065bcc4b8dea062543efff571bde",
+   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "createdAt": 1794287726423
+  },
+  {
+   "token": "36393ae00c31b2bb155289a793ee2aa1bf19d6405e44c0a0d276cd9779fdabd2",
+   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
+   "createdAt": 1794287726725
   }
  ],
  "servers": [
@@ -1188,7 +1218,8 @@
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794250644788,
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:51d20f69-8dc1-4300-8e92-04656b0e8664": 1794285779854,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:a662b3cd-4820-44fc-be93-949ac53614a4": 1794254028806,
-  "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:f107a547-2b4f-41d0-960b-035fe605b594": 1794252933765
+  "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:f107a547-2b4f-41d0-960b-035fe605b594": 1794252933765,
+  "1ff52556-c5a5-4e9f-b854-a50b35fd5181:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794287727854
  },
  "stories": [
   {
@@ -1206,7 +1237,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794287431046,
+ "updatedAt": 1794287727883,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1219,7 +1250,22 @@
    "createdAt": 1794251344963
   }
  },
- "errors": [],
+ "errors": [
+  {
+   "id": "37f86bba-f464-4e70-8b5c-354491e9dd80",
+   "at": 1794287725628,
+   "status": "new",
+   "kind": "network",
+   "message": "Failed to fetch",
+   "stack": "TypeError: Failed to fetch\n    at api (https://nexus-app-vyrc.onrender.com/app.js:63:17)\n    at HTMLFormElement.<anonymous> (https://nexus-app-vyrc.onrender.com/app.js:224:35)",
+   "context": "POST /api/register",
+   "screen": "app",
+   "appVersion": "web-3",
+   "ua": "Mozilla/5.0 (Linux; Android 13; 23053RN02Y Build/TP1A.220624.014; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.8078.47 Mobile Safari/537.36",
+   "userId": null,
+   "username": null
+  }
+ ],
  "drafts": {},
  "updates": [
   {
