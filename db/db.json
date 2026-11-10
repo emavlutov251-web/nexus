@@ -505,17 +505,6 @@
  ],
  "messages": [
   {
-   "id": "d05cc509-cc57-4447-a3bc-e9fef227239a",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-   "text": "Привет! Финально утвердили релиз 2.4 на пятницу",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794233655488,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "1b89ed59-759c-4df4-801a-899a2d792bd0",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
@@ -1733,7 +1722,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794319810769,
+ "updatedAt": 1794320110770,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
