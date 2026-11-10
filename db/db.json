@@ -846,6 +846,48 @@
    "editedAt": null,
    "reactions": {},
    "ai": false
+  },
+  {
+   "id": "a30c1c1a-5c3c-44bc-9e6b-4f45c3ca3733",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Уведомления приходят",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794309017126,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "052c17a3-7171-4ba6-86ae-539e27bb5994",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Шикарно",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794309021440,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "84b442f3-56f3-4e87-acd3-2b884c1915e9",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "text": "да",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794309023982,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
   }
  ],
  "reads": {
@@ -863,8 +905,8 @@
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:731c848b-e8ad-4c07-8bed-3488370c5143": 1794303590690,
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:548fe91b-dee8-48e9-8889-f8a816d638fc": 1794300782299,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:6b6782a9-1177-40d3-a6b1-de10703961ab": 1794303793604,
-  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309010578,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309010382
+  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309023982,
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309024178
  },
  "stories": [
   {
@@ -914,7 +956,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794309010664,
+ "updatedAt": 1794309024328,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1046,16 +1088,16 @@
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "target": "dm:6b6782a9-1177-40d3-a6b1-de10703961ab"
   },
-  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": {
-   "text": "ку",
-   "updatedAt": 1794308988226,
-   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": {
+   "text": "Шикарно ",
+   "updatedAt": 1794309022050,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
   },
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": {
-   "text": "О",
-   "updatedAt": 1794309010635,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": {
+   "text": "да",
+   "updatedAt": 1794309024297,
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
    "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
   }
  },
