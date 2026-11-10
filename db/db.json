@@ -133,6 +133,16 @@
    "salt": "eba307ffcba4aa7608aafe4ba60c4bad",
    "passwordHash": "21c0c694defa9ccb9a4bbe16e82c2868eea6ae72233d91fa9b55b2d12414fab7",
    "createdAt": 1794301731292
+  },
+  {
+   "id": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "username": "mixikk",
+   "displayName": "egorka",
+   "bio": "",
+   "color": "#faa61a",
+   "salt": "b5d1c5887959826a57dfad94e985a4af",
+   "passwordHash": "2605525bf875d9ddd5466249b034ab3ab7ae438125cd81faf6142998bd711cf8",
+   "createdAt": 1794308956194
   }
  ],
  "sessions": [
@@ -290,6 +300,11 @@
    "token": "65f0b92fbeccdaa29d65d9c3d608560f42b5b0a2c8152603df20e374960fde0f",
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "createdAt": 1794302141543
+  },
+  {
+   "token": "aedfaf7454c81dc29f5bbb523f5a346c878145abc36c833d20ed5e18143a5fe2",
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "createdAt": 1794308956195
   }
  ],
  "servers": [
@@ -841,7 +856,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794303793634,
+ "updatedAt": 1794308956225,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
