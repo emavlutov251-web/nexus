@@ -1442,7 +1442,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794292925240,
+ "updatedAt": 1794292937049,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1456,6 +1456,20 @@
   }
  },
  "errors": [
+  {
+   "id": "216a681e-c63e-4eb8-808e-82c7255edbe5",
+   "at": 1794292937017,
+   "status": "new",
+   "kind": "send",
+   "message": "Нет доступа",
+   "stack": "Error: Нет доступа\n    at api (https://nexus-app-vyrc.onrender.com/app.js:76:15)\n    at async HTMLFormElement.<anonymous> (https://nexus-app-vyrc.onrender.com/app.js:1661:25)",
+   "context": "composer:updates",
+   "screen": "updates:updates",
+   "appVersion": "web-3",
+   "ua": "Mozilla/5.0 (Linux; Android 12; M2102J20SG Build/SKQ1.211006.001; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/156.0.8078.47 Mobile Safari/537.36",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "username": "chugunochek"
+  },
   {
    "id": "37f86bba-f464-4e70-8b5c-354491e9dd80",
    "at": 1794287725628,
