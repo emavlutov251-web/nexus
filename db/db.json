@@ -285,11 +285,6 @@
    "token": "8620eb1e7e13fedf8e7e52d357cee0b39db09a85506339e1137928cdbfe3183f",
    "userId": "6460b2b6-24ec-48fc-8179-9c4d9296bfdc",
    "createdAt": 1794296119898
-  },
-  {
-   "token": "bc2f7fd5b45ff49ecc9e7cf085afce1d45db2bde77950b4c77dda7efcc78fdb9",
-   "userId": "f0f57d46-9540-4c6f-be0a-b5d50c21aedd",
-   "createdAt": 1794301731292
   }
  ],
  "servers": [
@@ -816,7 +811,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794302119503,
+ "updatedAt": 1794302135602,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
