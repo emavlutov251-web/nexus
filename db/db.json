@@ -63,7 +63,8 @@
    "passwordHash": "7a8014ec1d4ddb2131d3a59b3e905e90459c315ba070d0b3359dd4f780136467",
    "createdAt": 1794247784187,
    "avatar": "/uploads/avatar-772cd9c1-6146-42d4-9791-5345806d7bff.jpg",
-   "hideStoryViews": false
+   "hideStoryViews": false,
+   "quietHours": null
   },
   {
    "id": "376106a2-95de-4fd0-865a-1fecddc8e468",
@@ -1263,7 +1264,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794291556578,
+ "updatedAt": 1794291608984,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
