@@ -1218,7 +1218,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794309200880,
+ "updatedAt": 1794309240365,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1232,6 +1232,20 @@
   }
  },
  "errors": [
+  {
+   "id": "c577d5f8-d83d-4b0a-b0a1-848353b6b46d",
+   "at": 1794309240334,
+   "status": "new",
+   "kind": "send",
+   "message": "Нет соединения — проверьте интернет",
+   "stack": "Error: Нет соединения — проверьте интернет\n    at api (https://nexus-app-vyrc.onrender.com/app.js:73:15)\n    at async HTMLFormElement.<anonymous> (https://nexus-app-vyrc.onrender.com/app.js:1722:25)",
+   "context": "composer:dm",
+   "screen": "dm:64770281-1515-4f73-887e-38e646c64a3f",
+   "appVersion": "web-3",
+   "ua": "Mozilla/5.0 (Linux; Android 11; Redmi Note 8 Pro Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36",
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "username": "mixikk"
+  },
   {
    "id": "64f62b6f-e32a-4c9d-806c-f4c831f993c6",
    "at": 1794308964935,
