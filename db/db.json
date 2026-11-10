@@ -773,32 +773,6 @@
  },
  "stories": [
   {
-   "id": "7b62529f-fd2b-44e4-88a9-2222734b737c",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "attachment": {
-    "url": "/uploads/da760880-b9e9-4585-b1ad-74ee6bc61b7a-1354.mp4",
-    "name": "1354.mp4",
-    "size": 416366,
-    "type": "video/mp4",
-    "round": false
-   },
-   "text": "",
-   "createdAt": 1794247796253,
-   "expiresAt": 1794334196253,
-   "views": [
-    {
-     "userId": "f0f57d46-9540-4c6f-be0a-b5d50c21aedd",
-     "at": 1794302119473,
-     "count": 10
-    }
-   ],
-   "reactions": {
-    "😮": [
-     "f0f57d46-9540-4c6f-be0a-b5d50c21aedd"
-    ]
-   }
-  },
-  {
    "id": "a94118b5-a6bd-4251-8dd6-8601c36f7142",
    "userId": "f0f57d46-9540-4c6f-be0a-b5d50c21aedd",
    "attachment": {
@@ -816,7 +790,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794302142171,
+ "updatedAt": 1794302153672,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
