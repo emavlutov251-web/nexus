@@ -762,6 +762,25 @@
    "editedAt": null,
    "reactions": {},
    "ai": true
+  },
+  {
+   "id": "8ad7680c-c508-4b57-9eec-4b3a89eb7737",
+   "channelId": null,
+   "dmId": "6b6782a9-1177-40d3-a6b1-de10703961ab",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": ".",
+   "attachment": {
+    "url": "/uploads/b245890d-b896-4139-a019-ec3b39fb129c-kxwobu0jvVFQKEQVF2YGBZhj860opRfv1aW1z00rWWM.mp3",
+    "name": "kxwobu0jvVFQKEQVF2YGBZhj860opRfv1aW1z00rWWM.mp3",
+    "size": 89043,
+    "type": "audio/mpeg"
+   },
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794303779450,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
   }
  ],
  "reads": {
@@ -778,7 +797,7 @@
   "1ff52556-c5a5-4e9f-b854-a50b35fd5181:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794287727854,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:731c848b-e8ad-4c07-8bed-3488370c5143": 1794303590690,
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:548fe91b-dee8-48e9-8889-f8a816d638fc": 1794300782299,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:6b6782a9-1177-40d3-a6b1-de10703961ab": 1794303757711
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:6b6782a9-1177-40d3-a6b1-de10703961ab": 1794303779450
  },
  "stories": [
   {
@@ -822,7 +841,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794303757740,
+ "updatedAt": 1794303779898,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -933,6 +952,12 @@
    "updatedAt": 1794298301950,
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "target": "dm:a662b3cd-4820-44fc-be93-949ac53614a4"
+  },
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:6b6782a9-1177-40d3-a6b1-de10703961ab": {
+   "text": ".",
+   "updatedAt": 1794303779868,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "target": "dm:6b6782a9-1177-40d3-a6b1-de10703961ab"
   }
  },
  "updates": [
