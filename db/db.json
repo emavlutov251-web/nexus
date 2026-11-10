@@ -1458,12 +1458,12 @@
    "channelId": null,
    "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Да твой ) но я не хочу жить, потому нормально не выходит",
+   "text": "Да твой ) но я не хочу жить, потому что нормально не выходит",
    "attachment": null,
    "replyTo": null,
    "poll": null,
    "createdAt": 1794309469316,
-   "editedAt": null,
+   "editedAt": 1794309486420,
    "reactions": {},
    "ai": false
   }
@@ -1534,7 +1534,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794309469871,
+ "updatedAt": 1794309486450,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
