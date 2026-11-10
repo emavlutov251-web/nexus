@@ -852,11 +852,17 @@
    "createdAt": 1794302167996,
    "expiresAt": 1794388567996,
    "hours": 24,
-   "views": [],
+   "views": [
+    {
+     "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+     "at": 1794308964418,
+     "count": 1
+    }
+   ],
    "reactions": {}
   }
  ],
- "updatedAt": 1794308956225,
+ "updatedAt": 1794308964966,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -870,6 +876,20 @@
   }
  },
  "errors": [
+  {
+   "id": "64f62b6f-e32a-4c9d-806c-f4c831f993c6",
+   "at": 1794308964935,
+   "status": "new",
+   "kind": "js",
+   "message": "ResizeObserver loop limit exceeded",
+   "stack": "",
+   "context": "https://nexus-app-vyrc.onrender.com/:",
+   "screen": "app",
+   "appVersion": "web-3",
+   "ua": "Mozilla/5.0 (Linux; Android 11; Redmi Note 8 Pro Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36",
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "username": "mixikk"
+  },
   {
    "id": "da28fdbb-d2aa-47dc-a19a-9d22d4389b8f",
    "at": 1794300617285,
