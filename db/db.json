@@ -510,23 +510,6 @@
  ],
  "messages": [
   {
-   "id": "1eddb8e1-5a00-457f-82c8-57ec3dc232c2",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
-   "text": "Всем привет! Я здесь уже час, всё нравится 😄",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794245355488,
-   "editedAt": null,
-   "reactions": {
-    "👍": [
-     "15c6ede2-4ac4-4308-b576-c37921f29541",
-     "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-     "22f4b6d3-401e-4c63-8c4e-979eaae4afc2"
-    ]
-   }
-  },
-  {
    "id": "f4263c48-044a-467a-bd4c-8ac9e34d2940",
    "channelId": "bc6cb9bc-4270-4988-8a31-7bec1d334af7",
    "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
@@ -1975,7 +1958,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794328510942,
+ "updatedAt": 1794331811080,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
