@@ -64,7 +64,11 @@
    "createdAt": 1794247784187,
    "avatar": "/uploads/avatar-772cd9c1-6146-42d4-9791-5345806d7bff.jpg",
    "hideStoryViews": false,
-   "quietHours": null
+   "quietHours": null,
+   "pinnedChats": [
+    "dm:51d46934-725b-46fa-89fa-3efb7d41aa06",
+    "srv:8f1ee368-8270-47d6-becc-c4eaa0c18b1c"
+   ]
   },
   {
    "id": "376106a2-95de-4fd0-865a-1fecddc8e468",
@@ -460,36 +464,12 @@
    "createdAt": 1793210955488
   },
   {
-   "id": "f21e4d0b-bb44-4d58-a14a-cae8d2d47307",
-   "userIds": [
-    "772cd9c1-6146-42d4-9791-5345806d7bff",
-    "1ff52556-c5a5-4e9f-b854-a50b35fd5181"
-   ],
-   "createdAt": 1794249261881
-  },
-  {
-   "id": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userIds": [
-    "772cd9c1-6146-42d4-9791-5345806d7bff",
-    "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca"
-   ],
-   "createdAt": 1794249503488
-  },
-  {
    "id": "1e953279-8e5b-4945-b921-6638e676fbb3",
    "userIds": [
     "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
     "1ff52556-c5a5-4e9f-b854-a50b35fd5181"
    ],
    "createdAt": 1794250644610
-  },
-  {
-   "id": "a662b3cd-4820-44fc-be93-949ac53614a4",
-   "userIds": [
-    "772cd9c1-6146-42d4-9791-5345806d7bff",
-    "376106a2-95de-4fd0-865a-1fecddc8e468"
-   ],
-   "createdAt": 1794251069790
   }
  ],
  "messages": [
@@ -694,99 +674,6 @@
    "reactions": {}
   },
   {
-   "id": "805121ad-52b0-4a56-a7c7-ee5bfd2c5043",
-   "channelId": null,
-   "dmId": "f21e4d0b-bb44-4d58-a14a-cae8d2d47307",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Привет",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794249266210,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "fa9172d4-5046-4988-810e-42107896f3c8",
-   "channelId": null,
-   "dmId": "f21e4d0b-bb44-4d58-a14a-cae8d2d47307",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/111ebonMs90YLu/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794249286137,
-   "editedAt": null,
-   "reactions": {},
-   "pinned": true,
-   "pinnedBy": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "pinnedAt": 1794251224315
-  },
-  {
-   "id": "92e5a76e-0df5-4057-b49f-8c82ea3cb59a",
-   "channelId": null,
-   "dmId": "f21e4d0b-bb44-4d58-a14a-cae8d2d47307",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Х",
-   "attachment": {
-    "url": "/uploads/e4f7fdd0-9e01-427e-86dc-b2eb72cb6a7e-IMG_20261109_214908_523.jpg",
-    "name": "IMG_20261109_214908_523.jpg",
-    "size": 395004,
-    "type": "image/jpeg"
-   },
-   "replyTo": null,
-   "createdAt": 1794249403327,
-   "editedAt": null,
-   "reactions": {
-    "❤️": [
-     "772cd9c1-6146-42d4-9791-5345806d7bff"
-    ]
-   }
-  },
-  {
-   "id": "19c1a7b1-b150-4543-bac3-54d76bb3b58b",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Здаров",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794249509717,
-   "editedAt": null,
-   "reactions": {
-    "❤️": [
-     "772cd9c1-6146-42d4-9791-5345806d7bff"
-    ]
-   }
-  },
-  {
-   "id": "2a533cd9-ade5-4d9f-8420-159b43fba244",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/26u4cqiYI30juCOGY/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794249512462,
-   "editedAt": null,
-   "reactions": {
-    "❤️": [
-     "772cd9c1-6146-42d4-9791-5345806d7bff"
-    ]
-   },
-   "pinned": true,
-   "pinnedBy": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "pinnedAt": 1794251302830
-  },
-  {
    "id": "4b6fc55a-6e4b-4d87-b372-c24df33299a6",
    "channelId": null,
    "dmId": "1e953279-8e5b-4945-b921-6638e676fbb3",
@@ -811,55 +698,6 @@
    "reactions": {}
   },
   {
-   "id": "d316ab61-739c-4af7-abba-e3f44757a859",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "❤️",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794250668204,
-   "editedAt": null,
-   "reactions": {},
-   "pinned": true,
-   "pinnedBy": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "pinnedAt": 1794251248979
-  },
-  {
-   "id": "20e33627-e06c-4ebe-8938-df5acecb049e",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/ZdGxNRHmsAEn8pu6Lp/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794250899294,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "8fc4f705-b3c4-489e-88d9-cc048240e87b",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Хуй",
-   "attachment": {
-    "url": "/uploads/b1994730-006f-40b5-bb29-c894ead68614-Screenrecorder-2026-11-09-23-58-58-151.mp4",
-    "name": "Screenrecorder-2026-11-09-23-58-58-151.mp4",
-    "size": 8516009,
-    "type": "video/mp4"
-   },
-   "replyTo": null,
-   "createdAt": 1794250978446,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "77dec428-4ad8-44c7-8d10-188e3e0cbe13",
    "channelId": "51d20f69-8dc1-4300-8e92-04656b0e8664",
    "dmId": null,
@@ -869,18 +707,6 @@
    "replyTo": null,
    "createdAt": 1794251047150,
    "editedAt": 1794251175267,
-   "reactions": {}
-  },
-  {
-   "id": "a27949bb-8aa1-4248-9b20-993fbc9a63f5",
-   "channelId": null,
-   "dmId": "a662b3cd-4820-44fc-be93-949ac53614a4",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Хуй",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794251073428,
-   "editedAt": null,
    "reactions": {}
   },
   {
@@ -897,99 +723,6 @@
    },
    "replyTo": null,
    "createdAt": 1794251087809,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "91265bee-42bd-4af5-92bf-fd313d85af22",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": ".",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794251236398,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "d3cc6a0a-3c99-4511-b448-f2d9891855e8",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/3oEjI789af0AVRn3AC/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794251240124,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "f2e867e4-b2c6-44af-864a-93d4df13a597",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/l0HlNQ03J5JxX6lva/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794251241388,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "464ef0e6-7a75-4626-b278-075bf53c876a",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/3o7abKhOpu0NwenH3O/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794251242720,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "20e865e6-412d-4b74-aed9-89f8d3b4004a",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/111ebonMs90YLu/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "createdAt": 1794251244106,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "0b526000-d26a-4244-8e19-bd91cc8eb118",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Закреп работает не так, он должен виден быть всегда сверху",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794251297938,
    "editedAt": null,
    "reactions": {}
   },
@@ -1024,49 +757,6 @@
    "reactions": {}
   },
   {
-   "id": "1e4cbb8b-3a3e-43e3-a8ef-8fb966c1df49",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "😀",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794251433775,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "038c8234-0d79-4d9d-b864-709459003259",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": null,
-   "replyTo": null,
-   "poll": {
-    "question": "Ты гей",
-    "options": [
-     {
-      "id": "o0",
-      "text": "Да",
-      "votes": [
-       "772cd9c1-6146-42d4-9791-5345806d7bff"
-      ]
-     },
-     {
-      "id": "o1",
-      "text": "Нет",
-      "votes": []
-     }
-    ],
-    "multi": true
-   },
-   "createdAt": 1794251452440,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "c40d778f-f5b6-4340-a3f4-292bea293f5c",
    "channelId": "f107a547-2b4f-41d0-960b-035fe605b594",
    "dmId": null,
@@ -1082,24 +772,6 @@
      "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52"
     ]
    }
-  },
-  {
-   "id": "506855d7-031b-4692-a62d-1f9946b09200",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/4cbdaee8-7b0d-48fd-8047-b22a549dbac8-_________.webm",
-    "name": "Голосовое.webm",
-    "size": 71237,
-    "type": "audio/webm"
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794253853969,
-   "editedAt": null,
-   "reactions": {}
   },
   {
    "id": "2e4b9c96-c7d3-430a-8376-9bffc1e44538",
@@ -1159,190 +831,6 @@
    "reactions": {}
   },
   {
-   "id": "098e088f-dad7-46af-8b51-dd40466e7e3b",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/37d1138a-5c9a-4684-8c22-ae5530d7a0df-______.webm",
-    "name": "Кружок.webm",
-    "size": 1090015,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794255025743,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "1f855c78-e9cb-4fec-b2eb-6b93a104b78a",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/446982a8-518a-4b3e-a0dc-d1270a3ce86c-______.webm",
-    "name": "Кружок.webm",
-    "size": 1195311,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794255064305,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "8a23218c-d05d-4539-acef-20fc48688067",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/a4b31c42-eed7-4a71-9bf2-4657397d4b04-______.webm",
-    "name": "Кружок.webm",
-    "size": 1266539,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794255092259,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "95d50973-992e-4655-a288-854c9ed90b93",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/14a2d220-b3e5-446a-a475-9df0e241de62-______.webm",
-    "name": "Кружок.webm",
-    "size": 1503717,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794255164927,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "cd6d3ab3-2220-41c7-aa65-0ca57392bd69",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/b2bfcadc-48a4-4872-8377-49d29c71604a-______.webm",
-    "name": "Кружок.webm",
-    "size": 658368,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794255180690,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "a69a64cf-904a-43ff-8ed2-d4ecad37b7a2",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/4ed67621-39cf-4565-99de-075dd5758248-_________.webm",
-    "name": "Голосовое.webm",
-    "size": 41195,
-    "type": "audio/webm"
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794255191303,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "09db376e-2917-4aa7-a8d7-af65c4de5d88",
-   "channelId": null,
-   "dmId": "a662b3cd-4820-44fc-be93-949ac53614a4",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "@exam2026",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794289060227,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "2f2b27ea-9ee2-49cc-8ca5-991a42e2f74b",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Хуй",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794291618715,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "6c78be34-ee2d-4482-ae3a-6c0f5a05010d",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Хочу",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794291635224,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "0e67dae2-6324-4a1d-bc02-24a3d69c0dfc",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/a1f55662-9a1b-4893-aeef-0b5b90a81ed4-______.webm",
-    "name": "Кружок.webm",
-    "size": 821658,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292095306,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
-   "id": "05c25f61-4624-4a7a-9985-e36ac0d2a03a",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Хочу предложить вам сотрудничество",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292191573,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "0a9059ea-a33d-4715-a6dd-89c799860b35",
    "channelId": null,
    "dmId": "0e3cf13e-c0e5-49f1-bc8d-e04903e26757",
@@ -1355,239 +843,6 @@
    "editedAt": null,
    "reactions": {},
    "ai": true
-  },
-  {
-   "id": "484cc48a-45c8-4486-9b5c-b8f321ccc6b7",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Привет! 👋",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292782125,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "8c8d8c90-455c-433b-b618-c6dac3adb2b2",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Как дела?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292784043,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "953ed3c4-8d50-4600-bc50-94dbbf6d6cf3",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Чем занимаешься?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292786788,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "5c1b88b2-5734-4f90-985b-d2dcf552ad67",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Hello",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292794639,
-   "editedAt": null,
-   "reactions": {
-    "👍": [
-     "772cd9c1-6146-42d4-9791-5345806d7bff"
-    ],
-    "❤️": [
-     "772cd9c1-6146-42d4-9791-5345806d7bff"
-    ]
-   },
-   "ai": false
-  },
-  {
-   "id": "680276a7-2f82-4946-b323-a393eb6dc4ec",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Чем занимаешься?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292811088,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "72e830c6-9437-45c5-a5d2-336d4e62e132",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Please",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794292816125,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "2c93e057-a369-4729-9ec7-ebe5f591cd6f",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Как дела?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794293821036,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "f8b4aafb-114a-4ed1-80e2-062be1141b0e",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Чем занимаешься?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794293824836,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "c11f00b6-955c-4f3a-a6aa-7ad0404a124f",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Чем занимаешься?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794296913655,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "065a0d7d-5352-4ed7-b079-93a09d1dcd87",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Чем занимаешься?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794296914977,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "7157182b-22fe-4b78-bd43-73eb6e355125",
-   "channelId": null,
-   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Как дела?",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794296919135,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "61f175fb-ce9c-453d-84e2-217c185fb34a",
-   "channelId": null,
-   "dmId": "a662b3cd-4820-44fc-be93-949ac53614a4",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "Привет! 👋",
-   "attachment": null,
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794298301186,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "accb2f64-a5c6-41f5-891f-176d3158c4de",
-   "channelId": null,
-   "dmId": "a662b3cd-4820-44fc-be93-949ac53614a4",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "https://media.giphy.com/media/l3q2K5jinAlChoCLS/giphy.gif",
-    "name": "GIF",
-    "size": 0,
-    "type": "image/gif"
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794298305118,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "3a41414b-fdf2-401d-9b44-e05c15384e55",
-   "channelId": null,
-   "dmId": "a662b3cd-4820-44fc-be93-949ac53614a4",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/8ad1a611-3e13-45ba-a29a-5ef0c090a7ca-______.webm",
-    "name": "Кружок.webm",
-    "size": 598580,
-    "type": "video/webm",
-    "round": true
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794298312529,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
-  },
-  {
-   "id": "a1492892-34d6-4af0-9012-c904c6e9e70f",
-   "channelId": null,
-   "dmId": "a662b3cd-4820-44fc-be93-949ac53614a4",
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "text": "",
-   "attachment": {
-    "url": "/uploads/4611166f-e0f9-4a98-b135-00265cfc86cd-_________.webm",
-    "name": "Голосовое.webm",
-    "size": 34417,
-    "type": "audio/webm"
-   },
-   "replyTo": null,
-   "poll": null,
-   "createdAt": 1794298321977,
-   "editedAt": null,
-   "reactions": {},
-   "ai": false
   }
  ],
  "reads": {
@@ -1619,7 +874,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794300329248,
+ "updatedAt": 1794300579848,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
