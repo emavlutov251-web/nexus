@@ -1442,7 +1442,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794292816155,
+ "updatedAt": 1794292816715,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1471,7 +1471,14 @@
    "username": null
   }
  ],
- "drafts": {},
+ "drafts": {
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:51d46934-725b-46fa-89fa-3efb7d41aa06": {
+   "text": "Please ",
+   "updatedAt": 1794292816684,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "target": "dm:51d46934-725b-46fa-89fa-3efb7d41aa06"
+  }
+ },
  "updates": [
   {
    "id": "fd07e3ce-ecb6-4001-9a9f-830be701b9c6",
