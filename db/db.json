@@ -67,6 +67,9 @@
    "quietHours": null,
    "pinnedChats": [
     "dm:51d46934-725b-46fa-89fa-3efb7d41aa06"
+   ],
+   "favorites": [
+    "5132bec2-d756-4d41-ab50-2937cf985ec7"
    ]
   },
   {
@@ -1150,6 +1153,34 @@
    "editedAt": null,
    "reactions": {},
    "ai": false
+  },
+  {
+   "id": "165995a1-75d5-4fb2-8c22-a221bea6cc3a",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "text": "инет хуйня",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794309246632,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "d0db5a6f-90b3-4faf-9b7b-7150735cbb25",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "text": "инет хуйня",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794309247070,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
   }
  ],
  "reads": {
@@ -1167,8 +1198,8 @@
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:731c848b-e8ad-4c07-8bed-3488370c5143": 1794303590690,
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:548fe91b-dee8-48e9-8889-f8a816d638fc": 1794300782299,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:6b6782a9-1177-40d3-a6b1-de10703961ab": 1794303793604,
-  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309136731,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309200000
+  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309247070,
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794309247242
  },
  "stories": [
   {
@@ -1218,7 +1249,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794309240365,
+ "updatedAt": 1794309247271,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1364,16 +1395,16 @@
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "target": "dm:6b6782a9-1177-40d3-a6b1-de10703961ab"
   },
-  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": {
-   "text": "👍",
-   "updatedAt": 1794309137610,
-   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
-   "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
-  },
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": {
    "text": "Понял(а), спасибо! 👍",
    "updatedAt": 1794309200850,
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
+  },
+  "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": {
+   "text": "инет хуйня",
+   "updatedAt": 1794309247225,
+   "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
    "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
   }
  },
