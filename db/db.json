@@ -510,17 +510,6 @@
  ],
  "messages": [
   {
-   "id": "c98799d5-421e-4588-b1c4-6c1b1b04550a",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
-   "text": "Я обновила онбординг-экраны, ссылка в Figma в канале разработки",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794242055488,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "1eddb8e1-5a00-457f-82c8-57ec3dc232c2",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "1ff52556-c5a5-4e9f-b854-a50b35fd5181",
@@ -1986,7 +1975,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794323410826,
+ "updatedAt": 1794328510942,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
