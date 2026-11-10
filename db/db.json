@@ -797,9 +797,26 @@
      "f0f57d46-9540-4c6f-be0a-b5d50c21aedd"
     ]
    }
+  },
+  {
+   "id": "a94118b5-a6bd-4251-8dd6-8601c36f7142",
+   "userId": "f0f57d46-9540-4c6f-be0a-b5d50c21aedd",
+   "attachment": {
+    "url": "/uploads/28290c48-3f61-49bb-9fc4-cc4137502ba2-1515.mp4",
+    "name": "1515.mp4",
+    "size": 10053633,
+    "type": "video/mp4",
+    "round": false
+   },
+   "text": "Хуй",
+   "createdAt": 1794302098383,
+   "expiresAt": 1794388498383,
+   "hours": 24,
+   "views": [],
+   "reactions": {}
   }
  ],
- "updatedAt": 1794301764844,
+ "updatedAt": 1794302098412,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
