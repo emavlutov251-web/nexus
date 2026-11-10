@@ -784,10 +784,22 @@
    },
    "text": "",
    "createdAt": 1794247796253,
-   "expiresAt": 1794334196253
+   "expiresAt": 1794334196253,
+   "views": [
+    {
+     "userId": "f0f57d46-9540-4c6f-be0a-b5d50c21aedd",
+     "at": 1794301747838,
+     "count": 1
+    }
+   ],
+   "reactions": {
+    "😮": [
+     "f0f57d46-9540-4c6f-be0a-b5d50c21aedd"
+    ]
+   }
   }
  ],
- "updatedAt": 1794301731323,
+ "updatedAt": 1794301750744,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
