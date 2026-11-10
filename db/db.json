@@ -1873,6 +1873,48 @@
    "editedAt": null,
    "reactions": {},
    "ai": false
+  },
+  {
+   "id": "8d92da96-f0fd-46c4-b632-ada0e48a2259",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322485977,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "539eb4b8-26e6-4a1c-994d-847cdf13ab12",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322489146,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "bf6c300b-a61e-4e7c-a8f2-476e5e04a728",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хорошо, договорились",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322491122,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
   }
  ],
  "reads": {
@@ -1891,7 +1933,7 @@
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:548fe91b-dee8-48e9-8889-f8a816d638fc": 1794300782299,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:6b6782a9-1177-40d3-a6b1-de10703961ab": 1794303793604,
   "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794320323073,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794322461963
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794322491122
  },
  "stories": [
   {
@@ -1941,7 +1983,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794322461992,
+ "updatedAt": 1794322492028,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -2091,6 +2133,12 @@
    "text": "😘😘😘😘",
    "updatedAt": 1794320308792,
    "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
+   "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
+  },
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": {
+   "text": "Хорошо, договорились",
+   "updatedAt": 1794322491998,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
   }
  },
