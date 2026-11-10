@@ -1775,6 +1775,104 @@
    "editedAt": null,
    "reactions": {},
    "ai": false
+  },
+  {
+   "id": "8cbce009-0c1e-4fa6-9550-bc726a4889d2",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322444181,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "2ead3a29-7146-4063-9772-754a9ad266e3",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322446578,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "6408e8db-eb0c-4db4-acc6-558eaf7cbc10",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322448848,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "da1c2b32-30d5-47f5-950a-aa8f1d9bed0d",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322451435,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "a896ae7b-ce76-411d-b871-2f7e7071f0da",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322454214,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "0d1ca275-f1b6-454e-bb94-0f39436863bd",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322456570,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "ddd59c78-47bb-458c-9d01-55b14558584d",
+   "channelId": null,
+   "dmId": "64770281-1515-4f73-887e-38e646c64a3f",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Хуй",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794322461963,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
   }
  ],
  "reads": {
@@ -1793,7 +1891,7 @@
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:548fe91b-dee8-48e9-8889-f8a816d638fc": 1794300782299,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:6b6782a9-1177-40d3-a6b1-de10703961ab": 1794303793604,
   "5132bec2-d756-4d41-ab50-2937cf985ec7:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794320323073,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794322441916
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": 1794322461963
  },
  "stories": [
   {
@@ -1843,7 +1941,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794322442631,
+ "updatedAt": 1794322461992,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1993,12 +2091,6 @@
    "text": "😘😘😘😘",
    "updatedAt": 1794320308792,
    "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
-   "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
-  },
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:64770281-1515-4f73-887e-38e646c64a3f": {
-   "text": "Хуй",
-   "updatedAt": 1794322442600,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "target": "dm:64770281-1515-4f73-887e-38e646c64a3f"
   }
  },
