@@ -1242,7 +1242,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794289047013,
+ "updatedAt": 1794289054875,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1271,7 +1271,14 @@
    "username": null
   }
  ],
- "drafts": {},
+ "drafts": {
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:a662b3cd-4820-44fc-be93-949ac53614a4": {
+   "text": "@exam2026 ",
+   "updatedAt": 1794289054845,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "target": "dm:a662b3cd-4820-44fc-be93-949ac53614a4"
+  }
+ },
  "updates": [
   {
    "id": "4676c796-4a49-4d12-af64-c0b04825a83e",
