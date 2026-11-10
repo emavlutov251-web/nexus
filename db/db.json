@@ -510,17 +510,6 @@
  ],
  "messages": [
   {
-   "id": "1b89ed59-759c-4df4-801a-899a2d792bd0",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "22f4b6d3-401e-4c63-8c4e-979eaae4afc2",
-   "text": "Напоминаю: планёрка сегодня в 16:00, ссылка в календаре",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794236955488,
-   "editedAt": null,
-   "reactions": {}
-  },
-  {
    "id": "c98799d5-421e-4588-b1c4-6c1b1b04550a",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "37cbadf2-d33c-429a-985b-545a4241ec0c",
@@ -1997,7 +1986,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794322602125,
+ "updatedAt": 1794323410826,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
