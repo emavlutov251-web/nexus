@@ -1383,6 +1383,34 @@
     ]
    },
    "ai": false
+  },
+  {
+   "id": "680276a7-2f82-4946-b323-a393eb6dc4ec",
+   "channelId": null,
+   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Чем занимаешься?",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794292811088,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "72e830c6-9437-45c5-a5d2-336d4e62e132",
+   "channelId": null,
+   "dmId": "51d46934-725b-46fa-89fa-3efb7d41aa06",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Please",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794292816125,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
   }
  ],
  "reads": {
@@ -1390,7 +1418,7 @@
   "1ff52556-c5a5-4e9f-b854-a50b35fd5181:ch:bc6cb9bc-4270-4988-8a31-7bec1d334af7": 1794247575488,
   "1ff52556-c5a5-4e9f-b854-a50b35fd5181:dm:0e3cf13e-c0e5-49f1-bc8d-e04903e26757": 1794292668796,
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:f21e4d0b-bb44-4d58-a14a-cae8d2d47307": 1794289068833,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:51d46934-725b-46fa-89fa-3efb7d41aa06": 1794292794639,
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:51d46934-725b-46fa-89fa-3efb7d41aa06": 1794292816125,
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:5141ce85-4e89-441d-b95a-c842a25a36da": 1794250644236,
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794250644788,
   "772cd9c1-6146-42d4-9791-5345806d7bff:ch:51d20f69-8dc1-4300-8e92-04656b0e8664": 1794291640501,
@@ -1414,7 +1442,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794292798741,
+ "updatedAt": 1794292816155,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -1443,14 +1471,7 @@
    "username": null
   }
  ],
- "drafts": {
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:51d46934-725b-46fa-89fa-3efb7d41aa06": {
-   "text": "Hello ",
-   "updatedAt": 1794292794899,
-   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
-   "target": "dm:51d46934-725b-46fa-89fa-3efb7d41aa06"
-  }
- },
+ "drafts": {},
  "updates": [
   {
    "id": "fd07e3ce-ecb6-4001-9a9f-830be701b9c6",
