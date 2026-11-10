@@ -304,6 +304,13 @@
    "ownerId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "createdAt": 1794250643834,
    "topic": "тест описания"
+  },
+  {
+   "id": "818da0b3-d82f-4a2d-9f60-520f59b514f0",
+   "name": "✨ Демо Nexus",
+   "color": "#e74c3c",
+   "ownerId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "createdAt": 1794300756495
   }
  ],
  "members": [
@@ -372,6 +379,12 @@
    "userId": "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52",
    "role": "owner",
    "joinedAt": 1794250643834
+  },
+  {
+   "serverId": "818da0b3-d82f-4a2d-9f60-520f59b514f0",
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "role": "owner",
+   "joinedAt": 1794300756495
   }
  ],
  "channels": [
@@ -423,6 +436,13 @@
    "name": "тест",
    "topic": "",
    "createdAt": 1794250644038
+  },
+  {
+   "id": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "serverId": "818da0b3-d82f-4a2d-9f60-520f59b514f0",
+   "name": "общий",
+   "topic": "Канал по умолчанию",
+   "createdAt": 1794300756495
   }
  ],
  "dms": [
@@ -744,6 +764,127 @@
    "editedAt": null,
    "reactions": {},
    "ai": true
+  },
+  {
+   "id": "2c0a2a17-5df5-40c7-8ae7-f8973133cdba",
+   "channelId": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "👋 Добро пожаловать в Nexus! Это демо-сообщество — посмотрите, что умеет приложение.",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794300756675,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false,
+   "pinned": true,
+   "pinnedBy": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "pinnedAt": 1794300757920
+  },
+  {
+   "id": "8671b958-bc95-4c56-a72a-29077a294f8d",
+   "channelId": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "**Форматирование**: *курсив*, **жирный**, `код`, ~~зачёркнутый~~ и [ссылки](https://example.com)",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794300756825,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "756314ec-e6dc-4bfd-9ac2-0f91f7c54a59",
+   "channelId": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Долгое нажатие на сообщение — ответить, переслать, закрепить, перевести или спросить AI.",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794300756975,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "4abcbf4f-6ede-4068-beae-eca95fe88a10",
+   "channelId": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Кнопка ✨ в шапке — сводка чата: что договорились и какие были вопросы.",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794300757127,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "2cd5e653-e6b9-4b48-a98f-5dc284e82787",
+   "channelId": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Кнопка 🕐 — автоудаление сообщений: от часа до 30 дней.",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794300757294,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "a16c2d02-5efd-4dde-b032-bb799eacc3d7",
+   "channelId": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "Попробуйте отправить голосовое 🎤, кружок 📹, стикер 😀 или опрос 📊!",
+   "attachment": null,
+   "replyTo": null,
+   "poll": null,
+   "createdAt": 1794300757460,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
+  },
+  {
+   "id": "8d2e660c-cfde-4d60-8202-03ab92a4efa7",
+   "channelId": "548fe91b-dee8-48e9-8889-f8a816d638fc",
+   "dmId": null,
+   "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
+   "text": "",
+   "attachment": null,
+   "replyTo": null,
+   "poll": {
+    "question": "Как вам Nexus?",
+    "options": [
+     {
+      "id": "o0",
+      "text": "🔥 Отлично!",
+      "votes": []
+     },
+     {
+      "id": "o1",
+      "text": "👍 Хорошо",
+      "votes": []
+     },
+     {
+      "id": "o2",
+      "text": "🤔 Надо попробовать",
+      "votes": []
+     }
+    ],
+    "multi": false
+   },
+   "createdAt": 1794300757613,
+   "editedAt": null,
+   "reactions": {},
+   "ai": false
   }
  ],
  "reads": {
@@ -758,7 +899,8 @@
   "772cd9c1-6146-42d4-9791-5345806d7bff:dm:a662b3cd-4820-44fc-be93-949ac53614a4": 1794300329218,
   "ab0be17d-d6a0-4f6a-a94d-92a3ad260f52:ch:f107a547-2b4f-41d0-960b-035fe605b594": 1794252933765,
   "1ff52556-c5a5-4e9f-b854-a50b35fd5181:dm:1e953279-8e5b-4945-b921-6638e676fbb3": 1794287727854,
-  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:731c848b-e8ad-4c07-8bed-3488370c5143": 1794300750941
+  "772cd9c1-6146-42d4-9791-5345806d7bff:dm:731c848b-e8ad-4c07-8bed-3488370c5143": 1794300750941,
+  "772cd9c1-6146-42d4-9791-5345806d7bff:ch:548fe91b-dee8-48e9-8889-f8a816d638fc": 1794300758505
  },
  "stories": [
   {
@@ -776,7 +918,7 @@
    "expiresAt": 1794334196253
   }
  ],
- "updatedAt": 1794300750971,
+ "updatedAt": 1794300758534,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
