@@ -505,22 +505,6 @@
  ],
  "messages": [
   {
-   "id": "85f8c579-71c1-41a1-90e9-5286bd102ceb",
-   "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
-   "userId": "15c6ede2-4ac4-4308-b576-c37921f29541",
-   "text": "Всем привет! Добро пожаловать в Nexus Hub 👋",
-   "attachment": null,
-   "replyTo": null,
-   "createdAt": 1794233355488,
-   "editedAt": null,
-   "reactions": {
-    "🔥": [
-     "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
-     "37cbadf2-d33c-429a-985b-545a4241ec0c"
-    ]
-   }
-  },
-  {
    "id": "d05cc509-cc57-4447-a3bc-e9fef227239a",
    "channelId": "d14a1724-518d-46c4-9494-2b88b9d3c58a",
    "userId": "2f2e26d4-3834-4b46-85c5-f6a2c77d4aca",
@@ -1749,7 +1733,7 @@
    "reactions": {}
   }
  ],
- "updatedAt": 1794319660041,
+ "updatedAt": 1794319810769,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
