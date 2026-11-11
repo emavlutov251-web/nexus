@@ -146,6 +146,16 @@
    "salt": "b5d1c5887959826a57dfad94e985a4af",
    "passwordHash": "2605525bf875d9ddd5466249b034ab3ab7ae438125cd81faf6142998bd711cf8",
    "createdAt": 1794308956194
+  },
+  {
+   "id": "617f0d13-640b-47b6-bec6-4294716fd406",
+   "username": "mixik",
+   "displayName": "egorkamixx",
+   "bio": "",
+   "color": "#eb459e",
+   "salt": "e3da8f08cf4237707c6cc9a21dcfc3ae",
+   "passwordHash": "d2d5cb8e818e0f963be6e0b2570d2499e69097c6c2e5b406e2fbe15b0b49a032",
+   "createdAt": 1794367679699
   }
  ],
  "sessions": [
@@ -313,6 +323,11 @@
    "token": "db42a20e7696e463b8077e5fdb3e77e67179cb31d08884936674d7e2ceb982e8",
    "userId": "772cd9c1-6146-42d4-9791-5345806d7bff",
    "createdAt": 1794321943892
+  },
+  {
+   "token": "b85f62357c78b14440124fc34b498e45dc3ad82bdafabf6bce86cb4045e42063",
+   "userId": "617f0d13-640b-47b6-bec6-4294716fd406",
+   "createdAt": 1794367679699
   }
  ],
  "servers": [
@@ -2023,12 +2038,17 @@
      "userId": "5132bec2-d756-4d41-ab50-2937cf985ec7",
      "at": 1794308964418,
      "count": 1
+    },
+    {
+     "userId": "617f0d13-640b-47b6-bec6-4294716fd406",
+     "at": 1794367683506,
+     "count": 1
     }
    ],
    "reactions": {}
   }
  ],
- "updatedAt": 1794367538461,
+ "updatedAt": 1794367684302,
  "ttl": {
   "ch:5141ce85-4e89-441d-b95a-c842a25a36da": 3600,
   "ch:d14a1724-518d-46c4-9494-2b88b9d3c58a": 86400,
@@ -2042,6 +2062,20 @@
   }
  },
  "errors": [
+  {
+   "id": "066111a6-eff3-4162-9009-95cc7212a105",
+   "at": 1794367684272,
+   "status": "new",
+   "kind": "js",
+   "message": "ResizeObserver loop limit exceeded",
+   "stack": "",
+   "context": "https://nexus-app-vyrc.onrender.com/:",
+   "screen": "app",
+   "appVersion": "web-3",
+   "ua": "Mozilla/5.0 (Linux; Android 11; Redmi Note 8 Pro Build/RP1A.200720.011; wv) AppleWebKit/537.36 (KHTML, like Gecko) Version/4.0 Chrome/87.0.4280.141 Mobile Safari/537.36",
+   "userId": "617f0d13-640b-47b6-bec6-4294716fd406",
+   "username": "mixik"
+  },
   {
    "id": "c577d5f8-d83d-4b0a-b0a1-848353b6b46d",
    "at": 1794309240334,
