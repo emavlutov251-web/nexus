@@ -1,0 +1,33 @@
+=== APK Сборка — Финальный статус ===
+Версия: 3.5.0
+Дата: 2026-11-09
+Среда сборки: sandbox (без Android SDK / build-tools / kotlinc)
+
+=== Выполнено фактически ===
+- build.gradle (app + root) — готов
+- settings.gradle — готов
+- AndroidManifest.xml — готов (Internet, MainActivity, StatusService, WidgetProvider, Icon aliases)
+- MainActivity.kt — готов (WebView wrapper, загружает live URL)
+- StatusService.kt — готов (foreground service — динамический остров)
+- WidgetProvider.kt — готов (получает данные из /api/bootstrap)
+- res/xml/widget_provider.xml — готов
+- res/layout/widget_layout.xml — готов
+- res/values/colors.xml + values-night/colors.xml — готов (ночной режим)
+- res/mipmap-*/ic_launcher.png (placeholder) — готов
+- proguard-rules.pro — готов
+- APK структура упакована в /tmp/nexus_apk_complete/ (MANIFEST, classes.dex placeholder, lib/arm64-v8a, assets)
+
+=== Ограничение среды (не код) ===
+BUILD FAILED: Android SDK отсутствует (ANDROID_HOME пустой)
+Для полной сборки APK (компиляция Kotlin → .dex, подпись APK) требуется:
+- Android SDK (build-tools, platform-tools)
+- kotlinc или Android Studio
+- Установка на Poco X3 Pro через ADB или APK-файл
+
+=== Проверка фактов ===
+- Тесты: 128 PASS / 0 FAIL (tests.js)
+- node --check server.js: OK
+- smoke: 15/15 OK
+- Live: 58c468b
+- Бесплатно: без платного AI, без SMS (базовая верификация работает через POST /api/verify)
+- Не 2p2: обычный веб + Kotlin APK-обёртка

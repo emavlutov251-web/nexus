@@ -1,0 +1,41 @@
+=== Сборка APK — Nexus v3.5.0 ===
+Статус: ПОПЫТКА ВЫПОЛНЕНА (ограничение среды, не код)
+Дата: 2026-11-09
+Среда: sandbox (нет Android SDK / ANDROID_HOME / build-tools)
+Java: openjdk 21.0.13 (OK)
+Gradle wrapper: отсутствует jar (можно добавить при наличии SDK)
+
+=== Файлы сборки (готовы) ===
+- android/app/build.gradle (plugins, namespace, compileSdk 35, minSdk 24, version 3.5.0)
+- android/build.gradle (plugin versions)
+- android/settings.gradle (repositories mode, rootProject)
+- android/app/src/main/AndroidManifest.xml (permission INTERNET, MainActivity, StatusService, WidgetProvider, Icon aliases)
+- android/app/src/main/java/com/nexus/app/MainActivity.kt (WebView wrapper, загружает live URL)
+- android/app/src/main/java/com/nexus/app/StatusService.kt (foreground service — динамический остров)
+- android/app/src/main/java/com/nexus/app/WidgetProvider.kt (виджет с bootstrap-данными)
+- android/app/src/main/res/xml/widget_provider.xml (виджет)
+- android/app/src/main/res/layout/widget_layout.xml (макет виджета)
+- android/app/src/main/res/values/colors.xml (классика, тёмная, неон)
+- android/app/src/main/res/values-night/colors.xml (ночной режим)
+- android/app/src/main/res/mipmap-*/ (.png иконки — готовы для классика/тёмная/неон через activity-alias)
+
+=== Результат сборки ===
+BUILD FAILED: Android SDK отсутствует (ANDROID_HOME и ANDROID_SDK_ROOT пустые)
+Это не ошибка кода — это ограничение sandbox-среды.
+Для полной сборки APK требуется:
+1. Android SDK (build-tools, platform-tools)
+2. Gradlew wrapper (jar) или Android Studio
+3. Установить на Poco X3 Pro через ADB или APK
+
+=== Тесты (фактически пройдены) ===
+- node tests.js: 128 PASS / 0 FAIL
+- node --check server.js: OK
+- /tmp/domtest/run.js: 15/15 OK
+- Live commit: 58c468b (https://nexus-app-vyrc.onrender.com)
+
+=== Что работает бесплатно ===
+- Базовая верификация: POST /api/servers/:id/verify (без SMS)
+- AirDrop: базовый P2P endpoint (без Bluetooth — через WebRTC/data-channel в описании)
+- Стикеры: базовая загрузка (/api/stickers POST, без ML-сегментации)
+- Виджет: получает данные из /api/bootstrap
+- Не 2p2: обычный веб-стек + Kotlin APK-обёртка

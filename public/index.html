@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="ru" data-theme="day">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no">
+<meta name="theme-color" content="#ffffff">
+<title>Nexus — мессенджер</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%232aabee'/%3E%3Cstop offset='1' stop-color='%235865f2'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='16' fill='url(%23g)'/%3E%3Cpath d='M18 40c8 4 20 4 28 0M22 22l20 20M42 22L22 42' stroke='white' stroke-width='4.5' stroke-linecap='round' fill='none' opacity='0.9'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- ══════════ AUTH ══════════ -->
+<div id="auth-screen">
+  <div class="auth-card">
+    <div class="auth-logo">
+      <svg viewBox="0 0 64 64" width="64" height="64"><defs><linearGradient id="ag" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2aabee"/><stop offset="1" stop-color="#5865f2"/></linearGradient></defs><rect width="64" height="64" rx="16" fill="url(#ag)"/><path d="M18 40c8 4 20 4 28 0M22 22l20 20M42 22L22 42" stroke="#fff" stroke-width="4.5" stroke-linecap="round" fill="none" opacity="0.95"/></svg>
+      <h1>Nexus</h1>
+      <p>Чаты, сообщества и звонки —<br>красиво и надёжно</p>
+    </div>
+
+    <div class="auth-tabs">
+      <button id="tab-login" class="auth-tab active">Вход</button>
+      <button id="tab-register" class="auth-tab">Регистрация</button>
+    </div>
+
+    <form id="auth-form" autocomplete="on">
+      <label class="field" id="field-name" style="display:none">
+        <span>Отображаемое имя</span>
+        <input id="auth-displayname" type="text" placeholder="Иван Петров" maxlength="48" autocomplete="name">
+      </label>
+      <label class="field">
+        <span id="label-login">Юзернейм</span>
+        <input id="auth-login" type="text" placeholder="username" maxlength="24" autocomplete="username" required>
+      </label>
+      <label class="field">
+        <span>Пароль</span>
+        <input id="auth-password" type="password" placeholder="••••••••" maxlength="64" autocomplete="current-password" required>
+      </label>
+      <div id="auth-error" class="auth-error"></div>
+      <button type="submit" id="auth-submit" class="btn-primary">Войти</button>
+    </form>
+
+    <div class="auth-demo">
+      <button id="demo-login" class="demo-chip">Демо-вход: demo / demo1234</button>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════ APP ══════════ -->
+<div id="app" class="hidden">
+
+  <!-- Список чатов -->
+  <aside id="sidebar">
+    <div id="sidebar-header">
+      <button id="btn-menu" class="icon-btn" title="Меню">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      </button>
+      <button id="sidebar-back" class="icon-btn hidden" title="Назад">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <h2 id="sidebar-title">Nexus</h2>
+      <button id="sidebar-action" class="icon-btn" title="Написать">
+        <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="sidebar-search-wrap">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none" class="search-icon"><circle cx="11" cy="11" r="7" stroke="currentColor" stroke-width="1.8"/><path d="m20 20-3.8-3.8" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+      <input id="sidebar-search" type="text" placeholder="Поиск" autocomplete="off">
+    </div>
+    <div id="stories-row" class="hidden"></div>
+    <input type="file" id="story-file-input" hidden accept="image/*,video/*">
+    <input type="file" id="avatar-input" hidden accept="image/*">
+    <div id="sidebar-list"></div>
+  </aside>
+
+  <!-- Чат -->
+  <main id="chat">
+    <header id="chat-header">
+      <button id="chat-back" class="icon-btn" title="Назад">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M15 19l-7-7 7-7" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="chat-header-icon"></div>
+      <div id="chat-header-info">
+        <div id="chat-header-name">Nexus</div>
+        <div id="chat-header-topic">выберите чат</div>
+      </div>
+      <div class="spacer"></div>
+      <button id="call-audio-btn" class="icon-btn" title="Голосовой звонок">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.9z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </button>
+      <button id="call-video-btn" class="icon-btn" title="Видеозвонок">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><rect x="2.5" y="6" width="13" height="12" rx="2.5" stroke="currentColor" stroke-width="1.7"/><path d="M15.5 10.5 21 7.5v9l-5.5-3" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      </button>
+      <button id="chat-ai-btn" class="icon-btn" title="✨ Сводка: что я пропустил">
+        <svg viewBox="0 0 24 24"><path d="M12 2l1.9 5.7L19.6 9l-4.5 3.9L16.4 19 12 15.6 7.6 19l1.3-6.1L4.4 9l5.7-1.3z"/></svg>
+      </button>
+      <button id="chat-ttl-btn" class="icon-btn" title="Автоудаление сообщений">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="13" r="8" stroke="currentColor" stroke-width="1.7"/><path d="M12 9v4l2.5 2.5M9 2h6" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <button id="chat-members-btn" class="icon-btn" title="Информация">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M12 11v5M12 8h.01" stroke="currentColor" stroke-width="1.9" stroke-linecap="round"/></svg>
+      </button>
+    </header>
+
+    <div id="messages-wrap">
+      <div id="pinned-bar" class="hidden"></div>
+      <div id="load-more" class="hidden"><button id="load-more-btn">Раньше</button></div>
+      <div id="messages"></div>
+      <div id="empty-state" class="hidden">
+        <div class="empty-bubble">💬</div>
+        <h3>Здесь пока пусто</h3>
+        <p>Начните первым — или посмотрите, что умеет Nexus</p>
+        <div class="empty-actions">
+          <button class="btn-primary" id="empty-demo-btn">✨ Показать демо</button>
+          <button class="btn-ghost" id="empty-new-chat-btn">💬 Новый чат</button>
+          <button class="btn-ghost" id="empty-new-server-btn">👥 Новое сообщество</button>
+        </div>
+      </div>
+    </div>
+
+    <div id="typing-indicator"></div>
+    <button id="scroll-bottom" title="К последним сообщениям">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+
+    <div id="reply-bar" class="hidden">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M9 14l-5-5 5-5M4 9h9a6 6 0 0 1 6 6v2" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <div class="reply-bar-text"><b id="reply-bar-author"></b><span id="reply-bar-preview"></span></div>
+      <button class="icon-btn" id="reply-cancel" title="Отменить"><svg viewBox="0 0 24 24" width="16" height="16" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+    </div>
+
+    <div id="attachment-preview" class="hidden"></div>
+
+    <!-- Панель записи голоса/кружка -->
+    <div id="record-bar" class="hidden">
+      <div class="rec-dot"></div>
+      <div class="rec-label"><span id="rec-kind-label">Голосовое</span> <b id="rec-timer">0:00</b></div>
+      <div class="rec-wave" id="rec-wave"></div>
+      <button class="icon-btn" id="rec-cancel" title="Отменить">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg>
+      </button>
+      <button class="rec-send" id="rec-send" title="Отправить">
+        <svg viewBox="0 0 24 24" width="19" height="19" fill="none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+    </div>
+    <div id="rec-circle-preview" class="hidden">
+      <div class="rec-circle-inner">
+        <video id="rec-circle-video" autoplay muted playsinline></video>
+        <div class="rec-circle-timer" id="rec-circle-timer">0:00</div>
+      </div>
+    </div>
+
+    <div id="smart-replies" class="hidden"></div>
+    <form id="composer">
+      <input type="file" id="file-input" hidden accept="image/*,video/*,audio/*,.pdf,.txt,.zip,.doc,.docx,.xls,.xlsx">
+      <button type="button" id="emoji-btn" class="composer-btn" title="Эмодзи">
+        <svg viewBox="0 0 24 24" width="23" height="23" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M8.5 14.5c1 1.3 2.2 2 3.5 2s2.5-.7 3.5-2M9.5 10h.01M14.5 10h.01" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" id="sticker-btn" class="composer-btn" title="Стикеры">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M21 12a9 9 0 1 1-9-9c5 0 9 4 9 9z" stroke="currentColor" stroke-width="1.7"/><path d="M21 12c0-2-1-4-3-5.5M14 20.5c4-.5 7-3.5 7-7.5" stroke="currentColor" stroke-width="1.7"/><path d="M9 10h.01M15 10h.01M8.5 14c1 1.3 2.2 2 3.5 2s2.5-.7 3.5-2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <button type="button" id="gif-btn" class="composer-btn" title="GIF">
+        <b style="font-size:.72rem;letter-spacing:.03em">GIF</b>
+      </button>
+      <textarea id="composer-input" rows="1" placeholder="Сообщение" maxlength="32768"></textarea>
+      <button type="button" id="upload-btn" class="composer-btn" title="Прикрепить">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><path d="M21 12.5l-8.5 8.5a5.5 5.5 0 0 1-7.8-7.8l9-9a3.7 3.7 0 0 1 5.2 5.2l-9 9a1.85 1.85 0 0 1-2.6-2.6l8.2-8.2" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <button type="button" id="circle-btn" class="composer-btn" title="Кружок">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><circle cx="12" cy="12" r="3.4" fill="currentColor"/></svg>
+      </button>
+      <button type="button" id="mic-btn" class="composer-btn" title="Голосовое сообщение">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      </button>
+      <button type="submit" id="send-btn" class="composer-btn send-btn hidden" title="Отправить">
+        <svg viewBox="0 0 24 24" width="20" height="20" fill="none"><path d="M22 2L11 13M22 2l-7 20-4-9-9-4 20-7z" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      </button>
+      <div id="emoji-picker" class="hidden"></div>
+      <div id="gif-panel" class="hidden"></div>
+      <div id="attach-menu" class="hidden">
+        <button type="button" data-am="file">📄 Файл или фото</button>
+        <button type="button" data-am="voice">🎤 Голосовое сообщение</button>
+        <button type="button" data-am="circle">🎥 Кружок</button>
+        <button type="button" data-am="poll">📊 Опрос</button>
+      </div>
+    </form>
+  </main>
+
+  <!-- Баннер офлайна / очереди -->
+  <div id="offline-banner" class="hidden"></div>
+
+  <!-- Информация / участники -->
+  <aside id="members">
+    <div class="members-head"><h3 id="members-title">Участники</h3><button id="members-close" title="Закрыть">✕</button></div>
+    <div id="members-list"></div>
+  </aside>
+  <div id="members-backdrop" class="hidden"></div>
+</div>
+
+<!-- Боковое меню -->
+<div id="drawer-overlay" class="hidden"></div>
+<nav id="drawer" class="hidden">
+  <div class="drawer-profile">
+    <div id="drawer-avatar"></div>
+    <div class="drawer-pinfo">
+      <div id="drawer-name">—</div>
+      <div id="drawer-username">@—</div>
+    </div>
+  </div>
+  <div class="drawer-nav">
+    <button id="drawer-theme" class="drawer-item">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><path d="M21 12.8A9 9 0 1 1 11.2 3 7 7 0 0 0 21 12.8z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <span id="drawer-theme-label">Ночная тема</span>
+    </button>
+    <button id="drawer-new-chat" class="drawer-item">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><path d="M16.5 3.5a2.1 2.1 0 0 1 3 3L8 18l-4 1 1-4L16.5 3.5z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/></svg>
+      <span>Новый чат</span>
+    </button>
+    <button id="drawer-search" class="drawer-item">
+      <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <span>Поиск по сообщениям</span>
+    </button>
+    <button id="drawer-new-server" class="drawer-item">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><rect x="3" y="4" height="16" width="18" rx="3" stroke="currentColor" stroke-width="1.7"/><path d="M8 9h.01M8 14h8" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/></svg>
+      <span>Новое сообщество</span>
+    </button>
+    <button id="drawer-join" class="drawer-item">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.7 1.7M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12.2 19" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Вступить по ссылке</span>
+    </button>
+    <button id="drawer-help" class="drawer-item">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.7"/><path d="M9.6 9.2a2.5 2.5 0 1 1 3.4 2.3c-.7.3-1 .8-1 1.6v.4" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"/><circle cx="12" cy="16.6" r="1" fill="currentColor"/></svg>
+      <span>Помощь и поддержка</span>
+    </button>
+    <button id="drawer-settings" class="drawer-item">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><circle cx="12" cy="12" r="3.2" stroke="currentColor" stroke-width="1.7"/><path d="M19.4 15a1.7 1.7 0 0 0 .34 1.87l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.7 1.7 0 0 0-1.87-.34 1.7 1.7 0 0 0-1 1.55V21a2 2 0 1 1-4 0v-.09a1.7 1.7 0 0 0-1-1.55 1.7 1.7 0 0 0-1.87.34l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.7 1.7 0 0 0 .34-1.87 1.7 1.7 0 0 0-1.55-1H3a2 2 0 1 1 0-4h.09a1.7 1.7 0 0 0 1.55-1 1.7 1.7 0 0 0-.34-1.87l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.7 1.7 0 0 0 1.87.34h.01a1.7 1.7 0 0 0 1-1.55V3a2 2 0 1 1 4 0v.09a1.7 1.7 0 0 0 1 1.55h.01a1.7 1.7 0 0 0 1.87-.34l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.7 1.7 0 0 0-.34 1.87v.01a1.7 1.7 0 0 0 1.55 1H21a2 2 0 1 1 0 4h-.09a1.7 1.7 0 0 0-1.51 1z" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Настройки</span>
+    </button>
+    <button id="drawer-logout" class="drawer-item danger">
+      <svg viewBox="0 0 24 24" width="21" height="21" fill="none"><path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4M16 17l5-5-5-5M21 12H9" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/></svg>
+      <span>Выйти</span>
+    </button>
+  </div>
+</nav>
+
+<!-- Звонок -->
+<div id="call-overlay" class="hidden">
+  <div class="call-bg"></div>
+  <video id="call-remote-video" class="hidden" autoplay playsinline></video>
+  <video id="call-local-video" class="hidden" autoplay muted playsinline></video>
+  <div class="call-center">
+    <div id="call-avatar" class="call-avatar"></div>
+    <div id="call-name">—</div>
+    <div id="call-status">Вызов…</div>
+    <div id="call-timer" class="hidden">0:00</div>
+  </div>
+  <div class="call-controls">
+    <button id="call-mute-btn" class="call-btn" title="Микрофон">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><rect x="9" y="3" width="6" height="11" rx="3" stroke="currentColor" stroke-width="1.8"/><path d="M5.5 11a6.5 6.5 0 0 0 13 0M12 17.5V21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+    </button>
+    <button id="call-cam-btn" class="call-btn hidden" title="Камера">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><rect x="2.5" y="6" width="13" height="12" rx="2.5" stroke="currentColor" stroke-width="1.8"/><path d="M15.5 10.5 21 7.5v9l-5.5-3" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    </button>
+    <button id="call-flip-btn" class="call-btn hidden" title="Сменить камеру">
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none"><path d="M4 8h3l2-2h6l2 2h3v11H4z" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"/><path d="M9.5 13.5a2.5 2.5 0 0 0 5 0M12 11v5M14.5 12.5 12 11 9.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    </button>
+    <button id="call-hangup-btn" class="call-btn hangup" title="Завершить">
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" transform="rotate(135 12 12)"/></svg>
+    </button>
+  </div>
+  <div class="call-actions">
+    <button id="call-accept-btn" class="call-btn accept hidden" title="Принять">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/></svg>
+    </button>
+    <button id="call-decline-btn" class="call-btn hangup hidden" title="Отклонить">
+      <svg viewBox="0 0 24 24" width="28" height="28" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.1 9.9a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.91.34 1.85.57 2.81.7A2 2 0 0 1 22 16.9z" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" transform="rotate(135 12 12)"/></svg>
+    </button>
+  </div>
+</div>
+
+<!-- Поиск по сообщениям -->
+<div id="search-panel" class="hidden">
+  <div class="search-panel-head">
+    <span>Поиск сообщений</span>
+    <button class="icon-btn" id="search-close"><svg viewBox="0 0 24 24" width="18" height="18" fill="none"><path d="M6 6l12 12M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></button>
+  </div>
+  <div id="search-results"></div>
+</div>
+
+<!-- Модалки -->
+<div class="modal-overlay hidden" id="modal-server">
+  <div class="modal">
+    <h3>Новое сообщество</h3>
+    <p class="modal-sub">Свой сервер со своими каналами — как в Discord.</p>
+    <label class="field"><span>Название</span><input id="new-server-name" type="text" placeholder="Моё сообщество" maxlength="64"></label>
+    <div class="modal-actions"><button class="btn-ghost" data-close-modal>Отмена</button><button class="btn-primary" id="create-server-btn">Создать</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-channel">
+  <div class="modal">
+    <h3>Новый канал</h3>
+    <p class="modal-sub">Текстовый канал в сообществе.</p>
+    <label class="field"><span>Название</span><input id="new-channel-name" type="text" placeholder="general" maxlength="32"></label>
+    <label class="field"><span>Описание (необязательно)</span><input id="new-channel-topic" type="text" placeholder="О чём канал" maxlength="200"></label>
+    <div class="modal-actions"><button class="btn-ghost" data-close-modal>Отмена</button><button class="btn-primary" id="create-channel-btn">Создать</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-dm">
+  <div class="modal">
+    <h3>Новый чат</h3>
+    <p class="modal-sub">Личная переписка один на один.</p>
+    <input id="dm-user-search" type="text" class="modal-search" placeholder="Найти человека…" autocomplete="off">
+    <div id="dm-user-list" class="dm-user-list"></div>
+    <div class="modal-actions"><button class="btn-ghost" data-close-modal>Закрыть</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-settings">
+  <div class="modal">
+    <h3>Настройки</h3>
+    <div class="theme-row settings-search-row"><span>🔍</span><input id="settings-search" type="text" placeholder="Найти настройку — например, «звук»" maxlength="40"></div>
+
+    <div class="settings-divider">👤 Профиль</div>
+    <div id="settings-avatar-preview" style="display:flex;justify-content:center;margin:10px 0 14px"></div>
+    <button type="button" id="settings-avatar-btn" class="btn-ghost" style="width:100%;margin-bottom:14px">📷 Сменить аватарку</button>
+    <label class="field"><span>Имя</span><input id="settings-name" type="text" maxlength="48"></label>
+    <label class="field"><span>О себе</span><input id="settings-bio" type="text" maxlength="140" placeholder="Пара слов о вас"></label>
+
+    <div class="settings-divider">🎨 Внешний вид</div>
+    <div class="settings-preview" id="settings-preview">
+      <div class="pv-label">Живое превью</div>
+      <div class="pv-msg in"><div class="pv-bubble">Привет! Как дела? 👋</div></div>
+      <div class="pv-msg out"><div class="pv-bubble">Отлично, тестирую новый стиль!</div></div>
+    </div>
+    <label class="theme-row" data-keywords="тема ночь темная"><span>Ночная тема</span><input type="checkbox" id="settings-theme"><i class="toggle"></i></label>
+    <div class="theme-row" data-keywords="пузыри стиль форма хвостик круглые квадратные"><span>Форма пузырей</span></div>
+    <div class="seg-row" id="seg-bubble" data-keywords="пузыри стиль форма">
+      <button class="seg-btn" data-val="round">Круглые</button>
+      <button class="seg-btn" data-val="tail">С хвостиком</button>
+      <button class="seg-btn" data-val="square">Квадратные</button>
+    </div>
+    <div class="theme-row" data-keywords="текстура пузыри стекло неон"><span>Текстура пузырей</span></div>
+    <div class="seg-row" id="seg-texture" data-keywords="текстура стекло неон">
+      <button class="seg-btn" data-val="color">Цвет</button>
+      <button class="seg-btn" data-val="glass">Стекло</button>
+      <button class="seg-btn" data-val="neon">Неон</button>
+    </div>
+    <div class="theme-row" data-keywords="плотность размер отступы компактный"><span>Плотность интерфейса</span></div>
+    <div class="seg-row" id="seg-density" data-keywords="плотность компактный просторный">
+      <button class="seg-btn" data-val="compact">Компактный</button>
+      <button class="seg-btn" data-val="normal">Обычный</button>
+      <button class="seg-btn" data-val="cozy">Просторный</button>
+    </div>
+    <div class="theme-row" data-keywords="анимации скорость эффекты батарея"><span>Анимации</span></div>
+    <div class="seg-row" id="seg-anim" data-keywords="анимации эффекты">
+      <button class="seg-btn" data-val="full">Полные</button>
+      <button class="seg-btn" data-val="reduced">Умеренные</button>
+      <button class="seg-btn" data-val="off">Выключены</button>
+    </div>
+    <div class="theme-row" data-keywords="контраст слабовидящие доступность"><span>Высокий контраст</span><input type="checkbox" id="settings-contrast"><i class="toggle"></i></div>
+    <div class="field" data-keywords="акцент цвет оформление"><span>Акцентный цвет</span>
+      <div class="accent-row" id="settings-accent">
+        <button class="accent-dot" data-accent="#3390ec" style="background:#3390ec"></button>
+        <button class="accent-dot" data-accent="#8774e1" style="background:#8774e1"></button>
+        <button class="accent-dot" data-accent="#e17076" style="background:#e17076"></button>
+        <button class="accent-dot" data-accent="#e5a24d" style="background:#e5a24d"></button>
+        <button class="accent-dot" data-accent="#7bc862" style="background:#7bc862"></button>
+        <button class="accent-dot" data-accent="#ee7aae" style="background:#ee7aae"></button>
+        <button class="accent-dot" data-accent="#5fc4c6" style="background:#5fc4c6"></button>
+        <button class="accent-dot" data-accent="#4fa8d8" style="background:#4fa8d8"></button>
+      </div>
+    </div>
+    <div class="field" data-keywords="обои фон чат"><span>Обои чата</span>
+      <div class="wall-row" id="settings-wall">
+        <button class="wall-sw" data-wall="default" title="Стандартные"><i style="background:linear-gradient(160deg,#dfe7ee,#cdd8e2)"></i></button>
+        <button class="wall-sw" data-wall="night" title="Ночные"><i style="background:linear-gradient(160deg,#17212b,#0e1621)"></i></button>
+        <button class="wall-sw" data-wall="mint" title="Мятные"><i style="background:linear-gradient(160deg,#d9f2e6,#b8e6cf)"></i></button>
+        <button class="wall-sw" data-wall="peach" title="Персиковые"><i style="background:linear-gradient(160deg,#fde6d8,#f7cdb2)"></i></button>
+        <button class="wall-sw" data-wall="lilac" title="Сиреневые"><i style="background:linear-gradient(160deg,#e8e0f7,#cfc0ee)"></i></button>
+      </div>
+    </div>
+    <div class="field" data-keywords="размер текста шрифт"><span>Размер текста</span>
+      <div class="fontsize-row" id="settings-fontsize">
+        <button class="fs-btn" data-fs="small">A−</button>
+        <button class="fs-btn" data-fs="normal">A</button>
+        <button class="fs-btn" data-fs="large">A+</button>
+      </div>
+    </div>
+
+    <div class="settings-divider">🔔 Уведомления</div>
+    <label class="theme-row" data-keywords="звук уведомления звуки"><span>Звуки уведомлений</span><input type="checkbox" id="settings-sounds"><i class="toggle"></i></label>
+    <div class="theme-row" data-keywords="тихие часы уведомления не беспокоить сон ночь">
+      <span>🌙 Тихие часы (только избранные)</span>
+      <span class="quiet-selects">
+        <select id="settings-quiet-from"><option value="-1">Выкл</option><option value="0">0:00</option><option value="1">1:00</option><option value="2">2:00</option><option value="3">3:00</option><option value="4">4:00</option><option value="5">5:00</option><option value="6">6:00</option><option value="7">7:00</option><option value="8">8:00</option><option value="9">9:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option></select>
+        —
+        <select id="settings-quiet-to"><option value="-1">Выкл</option><option value="0">0:00</option><option value="1">1:00</option><option value="2">2:00</option><option value="3">3:00</option><option value="4">4:00</option><option value="5">5:00</option><option value="6">6:00</option><option value="7">7:00</option><option value="8">8:00</option><option value="9">9:00</option><option value="10">10:00</option><option value="11">11:00</option><option value="12">12:00</option><option value="13">13:00</option><option value="14">14:00</option><option value="15">15:00</option><option value="16">16:00</option><option value="17">17:00</option><option value="18">18:00</option><option value="19">19:00</option><option value="20">20:00</option><option value="21">21:00</option><option value="22">22:00</option><option value="23">23:00</option></select>
+      </span>
+    </div>
+    <div class="theme-row" data-keywords="избранные любимые уведомления">
+      <span>⭐ Избранные (будят всегда)</span>
+      <span id="settings-fav-count" style="color:var(--text-2);font-size:.85rem">0</span>
+    </div>
+    <label class="theme-row" data-keywords="истории просмотры приватность"><span>Скрывать мои просмотры историй</span><input type="checkbox" id="settings-hideviews"><i class="toggle"></i></label>
+
+    <div class="settings-divider">💬 Поведение чата</div>
+    <div class="theme-row" data-keywords="двойной тап реакция лайк ответ"><span>Двойной тап по сообщению</span>
+      <select id="settings-dbltap" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:7px 10px">
+        <option value="like">❤️ Лайк</option><option value="reply">↩ Ответить</option><option value="react">🔥 Реакция «Огонь»</option>
+      </select>
+    </div>
+    <label class="theme-row" data-keywords="enter отправка клавиатура десктоп"><span>Enter = отправить</span><input type="checkbox" id="settings-enter"><i class="toggle"></i></label>
+    <div class="theme-row" data-keywords="свайп вправо действие"><span>Свайп вправо</span>
+      <select id="settings-swipe-right" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:7px 10px">
+        <option value="reply">↩ Ответить</option><option value="pin">📌 Закрепить</option>
+      </select>
+    </div>
+    <div class="theme-row" data-keywords="свайп влево действие"><span>Свайп влево</span>
+      <select id="settings-swipe-left" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:7px 10px">
+        <option value="forward">➡ Переслать</option><option value="delete">🗑 Удалить</option><option value="pin">📌 Закрепить</option>
+      </select>
+    </div>
+
+    <div class="settings-divider">♿ Шрифт</div>
+    <div class="theme-row" data-keywords="шрифт дислексия opendyslexic свой"><span>Шрифт интерфейса</span>
+      <select id="settings-font" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:7px 10px">
+        <option value="default">Стандартный</option><option value="dyslexic">OpenDyslexic (для дислексии)</option><option value="custom">Свой (TTF/OTF)…</option>
+      </select>
+    </div>
+    <input type="file" id="settings-font-file" accept=".ttf,.otf,font/ttf,font/otf" style="display:none">
+
+    <div class="settings-divider">🤖 AI-Ассистент</div>
+    <div class="theme-row" data-keywords="искусственный интеллект ai помощник подсказки"><span>Уровень участия ИИ</span></div>
+    <div class="seg-row" id="seg-ailevel" data-keywords="ai уровень молчать подсказывать помогать">
+      <button class="seg-btn" data-val="off">🤫 Молчать</button>
+      <button class="seg-btn" data-val="suggest">💡 Подсказывать</button>
+      <button class="seg-btn" data-val="active">🚀 Помогать</button>
+    </div>
+    <label class="theme-row" data-keywords="перевод пузыри иностранный авто"><span>🌐 Авто-перевод иностранных сообщений</span><input type="checkbox" id="settings-aitranslate"><i class="toggle"></i></label>
+    <div class="theme-row" data-keywords="сводка непрочитанных утро вечер digest"><span>☕ Ежедневная сводка</span>
+      <select id="settings-digest" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:7px 10px">
+        <option value="off">Выкл</option><option value="morning">Утром (9:00)</option><option value="evening">Вечером (20:00)</option>
+      </select>
+    </div>
+    <div class="theme-row" data-keywords="сводка сейчас непрочитанные">
+      <span>Сводка непрочитанного</span>
+      <button class="btn-ghost" id="settings-digest-now" style="padding:7px 12px;min-height:0">Показать сейчас</button>
+    </div>
+
+    <div class="settings-divider">💾 Данные и память</div>
+    <div class="theme-row" data-keywords="настройки экспорт импорт резервная копия">
+      <span>Профиль настроек</span>
+      <span style="display:flex;gap:6px">
+        <button class="btn-ghost" id="settings-export" style="padding:7px 12px;min-height:0">📤 Экспорт</button>
+        <button class="btn-ghost" id="settings-import" style="padding:7px 12px;min-height:0">📥 Импорт</button>
+      </span>
+    </div>
+    <input type="file" id="settings-import-file" accept="application/json,.json" style="display:none">
+    <div class="theme-row" data-keywords="сброс заводские настройки">
+      <span>Сбросить все настройки</span>
+      <button class="btn-ghost" id="settings-reset" style="padding:7px 12px;min-height:0;border-color:#e5534b;color:#e5534b">Сброс</button>
+    </div>
+    <div class="theme-row" data-keywords="черновики синхронизация данные">
+      <span>Черновики (синхронизируются)</span>
+      <button class="btn-ghost" id="settings-clear-drafts" style="padding:7px 14px;min-height:0">Очистить</button>
+    </div>
+    <div class="theme-row" data-keywords="офлайн очередь сеть">
+      <span>Офлайн-очередь сообщений</span>
+      <span id="settings-outbox-count" style="color:var(--text-2);font-size:.85rem">0</span>
+    </div>
+
+    <div class="settings-divider">🌐 Язык</div>
+    <div class="theme-row" data-keywords="язык язык интерфейса">
+      <span>Язык интерфейса</span>
+      <select id="settings-lang" style="background:var(--bg-2);color:var(--text);border:1px solid var(--border);border-radius:10px;padding:7px 10px"><option>Русский</option></select>
+    </div>
+
+    <div class="settings-divider">🆘 Помощь</div>
+    <button type="button" class="btn-ghost" id="settings-feedback" data-keywords="жалоба проблема предложение помощь поддержка баг" style="width:100%;margin-bottom:10px">✉️ Сообщить о проблеме или предложении</button>
+    <button type="button" class="btn-ghost" id="settings-blocked" data-keywords="блокировка заблокированные черный список" style="width:100%;margin-bottom:10px">🚫 Заблокированные пользователи</button>
+
+    <div class="settings-divider">🔐 Аккаунт</div>
+    <label class="field" data-keywords="юзернейм ник username"><span>Юзернейм</span><input id="settings-username" type="text" maxlength="24" placeholder="username"></label>
+    <label class="field" data-keywords="пароль безопасность"><span>Новый пароль</span><input id="settings-newpw" type="password" maxlength="64" placeholder="Оставьте пустым, чтобы не менять"></label>
+    <label class="field" data-keywords="пароль текущий"><span>Текущий пароль <small>(для смены пароля или юзернейма)</small></span><input id="settings-curpw" type="password" maxlength="64" placeholder="••••••"></label>
+    <div class="modal-actions"><button class="btn-ghost" data-close-modal>Отмена</button><button class="btn-primary" id="settings-save">Сохранить</button></div>
+  </div>
+</div>
+
+<div class="modal-overlay hidden" id="modal-asknexus">
+  <div class="modal">
+    <h3>✨ Спроси Nexus</h3>
+    <p style="color:var(--text-2);font-size:.86rem;margin:0 0 12px">Спросите о чём угодно из ваших переписок: «что мы решили по поводу проекта?», «что писал Тимур на прошлой неделе?»</p>
+    <div class="field"><input id="asknexus-input" type="text" maxlength="300" placeholder="Например: что мы решили по поводу встречи?"></div>
+    <div id="asknexus-result"></div>
+    <div class="modal-actions"><button class="btn-ghost" data-close-modal>Закрыть</button><button class="btn-primary" id="asknexus-go" style="width:auto;padding:12px 26px">Спросить ✨</button></div>
+  </div>
+</div>
+
+<div id="toast"></div>
+<button id="fab-new" title="Новый чат (долгое нажатие — новое сообщество)">
+  <svg viewBox="0 0 24 24" width="24" height="24"><path d="M3 17.25V21h3.75L17.8 9.94l-3.75-3.75L3 17.25zM20.7 7.04a1 1 0 0 0 0-1.41l-2.34-2.34a1 1 0 0 0-1.41 0l-1.83 1.83 3.75 3.75 1.83-1.83z" fill="currentColor"/></svg>
+</button>
+<script src="app.js"></script>
+</body>
+</html>

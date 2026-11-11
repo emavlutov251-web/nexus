@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nexus Admin</title>
+<style>
+* { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: "Roboto", "Segoe UI", system-ui, sans-serif; background: #0e1621; color: #e8edf2; min-height: 100vh; }
+button { font-family: inherit; cursor: pointer; }
+.hidden { display: none !important; }
+/* login */
+#login { min-height: 100vh; display: grid; place-items: center; padding: 20px; }
+.login-card { background: #17212b; border-radius: 18px; padding: 32px 26px; width: 380px; max-width: 100%; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+.login-card h1 { font-size: 1.5rem; margin-bottom: 6px; }
+.login-card p { color: #8b98a5; font-size: .9rem; margin-bottom: 20px; }
+.login-card input { width: 100%; background: #242f3d; border: 1.5px solid transparent; color: #fff; padding: 13px 14px; border-radius: 12px; font-size: 1rem; margin-bottom: 12px; }
+.login-card input:focus { outline: none; border-color: #3390ec; }
+.btn { width: 100%; border: 0; border-radius: 12px; padding: 13px; font-size: 1rem; font-weight: 700; color: #fff; background: #3390ec; }
+.btn:hover { filter: brightness(1.1); }
+.err { color: #ff6b6b; font-size: .85rem; min-height: 1.2em; margin-bottom: 8px; }
+/* layout */
+#app { display: flex; flex-direction: column; min-height: 100vh; }
+header { background: #17212b; padding: 14px 18px; display: flex; align-items: center; gap: 14px; position: sticky; top: 0; z-index: 10; box-shadow: 0 2px 12px rgba(0,0,0,.35); }
+header h1 { font-size: 1.15rem; }
+header .spacer { flex: 1; }
+.tabbar { display: flex; gap: 4px; background: #17212b; padding: 6px 10px; overflow-x: auto; position: sticky; top: 54px; z-index: 9; }
+.tabbar button { background: transparent; border: 0; color: #8b98a5; padding: 10px 16px; border-radius: 10px; font-size: .92rem; font-weight: 600; white-space: nowrap; }
+.tabbar button.active { background: rgba(51,144,236,.2); color: #79c4f7; }
+main { padding: 16px; max-width: 980px; width: 100%; margin: 0 auto; }
+/* cards */
+.cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 12px; margin-bottom: 20px; }
+.card { background: #17212b; border-radius: 16px; padding: 18px; }
+.card b { font-size: 1.9rem; display: block; }
+.card span { color: #8b98a5; font-size: .82rem; }
+/* lists */
+.item { background: #17212b; border-radius: 14px; padding: 13px 15px; margin-bottom: 8px; display: flex; align-items: center; gap: 12px; cursor: pointer; transition: background .15s; }
+.item:hover { background: #1c2836; }
+.av { width: 46px; height: 46px; border-radius: 50%; display: grid; place-items: center; color: #fff; font-weight: 700; flex: 0 0 auto; overflow: hidden; }
+.av img { width: 100%; height: 100%; object-fit: cover; }
+.item .meta { flex: 1; min-width: 0; }
+.item .meta b { display: block; font-size: .95rem; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.item .meta span { color: #8b98a5; font-size: .8rem; display: block; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.badge { background: #3390ec; color: #fff; border-radius: 12px; padding: 3px 10px; font-size: .72rem; font-weight: 700; flex: 0 0 auto; }
+.badge.green { background: #23a55a; }
+.badge.gray { background: #4b5563; }
+.section-title { color: #79c4f7; font-size: .8rem; text-transform: uppercase; letter-spacing: .07em; margin: 18px 0 10px; font-weight: 700; }
+/* transcript */
+#transcript { background: #17212b; border-radius: 16px; padding: 16px; }
+.t-head { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.t-head .btn-back { background: #242f3d; border: 0; color: #e8edf2; border-radius: 10px; padding: 9px 14px; font-size: .88rem; }
+.t-msgs { display: flex; flex-direction: column; gap: 6px; }
+.t-day { text-align: center; color: #8b98a5; font-size: .75rem; margin: 12px 0 4px; }
+.t-msg { max-width: 78%; padding: 8px 12px; border-radius: 13px; font-size: .92rem; line-height: 1.45; position: relative; }
+.t-msg .who { font-size: .76rem; font-weight: 700; margin-bottom: 2px; }
+.t-msg .tm { font-size: .68rem; opacity: .65; float: right; margin: 6px 0 -2px 10px; }
+.t-msg img, .t-msg video { max-width: 240px; border-radius: 10px; display: block; margin-top: 4px; }
+.t-msg audio { width: 220px; margin-top: 4px; }
+.t-in { background: #242f3d; align-self: flex-start; border-bottom-left-radius: 4px; }
+.t-out { background: #2b5278; align-self: flex-end; border-bottom-right-radius: 4px; }
+/* stories */
+.story-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+.story-cell { background: #17212b; border-radius: 14px; overflow: hidden; }
+.story-cell img, .story-cell video { width: 100%; aspect-ratio: 9/14; object-fit: cover; display: block; }
+.story-cell .sc { padding: 10px 12px; font-size: .78rem; color: #8b98a5; }
+.story-cell .sc b { color: #e8edf2; display: block; font-size: .85rem; }
+/* search */
+#search-input { width: 100%; background: #242f3d; border: 0; color: #fff; padding: 13px 16px; border-radius: 13px; font-size: 1rem; margin-bottom: 14px; }
+#search-input:focus { outline: 2px solid #3390ec; }
+.hit { background: #17212b; border-radius: 13px; padding: 12px 14px; margin-bottom: 8px; }
+.hit .scope { color: #79c4f7; font-size: .72rem; text-transform: uppercase; margin-bottom: 3px; }
+.hit .txt { font-size: .9rem; line-height: 1.45; }
+.hit .when { color: #8b98a5; font-size: .72rem; margin-top: 4px; }
+.load-more { display: block; margin: 12px auto; background: #242f3d; border: 0; color: #e8edf2; border-radius: 11px; padding: 11px 22px; font-size: .9rem; }
+.empty { text-align: center; color: #8b98a5; padding: 44px 16px; }
+table { width: 100%; border-collapse: collapse; }
+th, td { text-align: left; padding: 9px 10px; font-size: .85rem; border-bottom: 1px solid rgba(255,255,255,.06); }
+th { color: #8b98a5; font-size: .72rem; text-transform: uppercase; }
+@media (max-width: 640px) { .hide-sm { display: none; } }
+</style>
+</head>
+<body>
+
+<div id="login">
+  <div class="login-card">
+    <h1>🔐 Nexus Admin</h1>
+    <p>Панель администратора: пользователи, переписки, истории</p>
+    <div class="err" id="login-err"></div>
+    <input id="admin-password" type="password" placeholder="Пароль администратора" autocomplete="current-password">
+    <button class="btn" id="login-btn">Войти</button>
+  </div>
+</div>
+
+<div id="app" class="hidden">
+  <header>
+    <h1>🔐 Nexus Admin</h1>
+    <div class="spacer"></div>
+    <button class="btn" style="width:auto;padding:9px 16px;font-size:.85rem;background:#242f3d" id="backup-btn">💾 Сохранить сейчас</button>
+    <button class="btn" style="width:auto;padding:9px 16px;font-size:.85rem;background:#242f3d" id="logout-btn">Выйти</button>
+  </header>
+  <div class="tabbar" id="tabbar">
+    <button data-tab="overview" class="active">📊 Обзор</button>
+    <button data-tab="users">👥 Пользователи</button>
+    <button data-tab="chats">💬 Чаты</button>
+    <button data-tab="stories">📸 Истории</button>
+    <button data-tab="search">🔍 Поиск</button>
+    <button data-tab="errors">🐞 Ошибки</button>
+    <button data-tab="feedback">✉️ Жалобы и предложения</button>
+  </div>
+  <main id="content"></main>
+</div>
+
+<script>
+'use strict';
+const $ = (s) => document.querySelector(s);
+const $$ = (s) => [...document.querySelectorAll(s)];
+const esc = (s) => String(s ?? '').replace(/[&<>\"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+let TOKEN = localStorage.getItem('nexus_admin_token') || '';
+const fmt = (ts) => ts ? new Date(ts).toLocaleString('ru-RU', { day: '2-digit', month: 'short', hour: '2-digit', minute: '2-digit' }) : '—';
+
+async function api(path, opts = {}) {
+  const res = await fetch(path, { ...opts, headers: { 'Content-Type': 'application/json', 'X-Admin-Token': TOKEN, ...(opts.headers || {}) }, body: opts.body !== undefined ? JSON.stringify(opts.body) : undefined });
+  const data = await res.json().catch(() => ({}));
+  if (!res.ok) throw new Error(data.error || ('Ошибка ' + res.status));
+  return data;
+}
+function avatar(u, size = 46) {
+  const inner = u?.avatar ? `<img src="${esc(u.avatar)}">` : esc((u?.displayName || '?').slice(0, 2).toUpperCase());
+  return `<div class="av" style="background:linear-gradient(155deg,${u?.color || '#3390ec'},#1c2b3a);width:${size}px;height:${size}px">${inner}</div>`;
+}
+
+/* login */
+$('#login-btn').addEventListener('click', doLogin);
+$('#admin-password').addEventListener('keydown', (e) => { if (e.key === 'Enter') doLogin(); });
+async function doLogin() {
+  $('#login-err').textContent = '';
+  try {
+    const { token } = await api('/api/admin/login', { method: 'POST', body: { password: $('#admin-password').value } });
+    TOKEN = token; localStorage.setItem('nexus_admin_token', token);
+    enter();
+  } catch (e) { $('#login-err').textContent = e.message; }
+}
+$('#logout-btn').addEventListener('click', () => {
+  TOKEN = ''; localStorage.removeItem('nexus_admin_token');
+  $('#app').classList.add('hidden'); $('#login').classList.remove('hidden');
+});
+$('#backup-btn').addEventListener('click', async () => {
+  try { await api('/api/admin/backup-now', { method: 'POST', body: {} }); alert('База сохранена!'); } catch (e) { alert(e.message); }
+});
+
+let currentTab = 'overview';
+$('#tabbar').addEventListener('click', (e) => {
+  const b = e.target.closest('[data-tab]'); if (!b) return;
+  currentTab = b.dataset.tab;
+  $$('#tabbar button').forEach(x => x.classList.toggle('active', x === b));
+  render();
+});
+
+async function enter() {
+  $('#login').classList.add('hidden');
+  $('#app').classList.remove('hidden');
+  render();
+}
+
+async function render() {
+  const c = $('#content');
+  try {
+    if (currentTab === 'overview') {
+      const o = await api('/api/admin/overview');
+      c.innerHTML = `
+        <div class="cards">
+          <div class="card"><b>${o.users}</b><span>Пользователей</span></div>
+          <div class="card"><b>${o.messages}</b><span>Сообщений</span></div>
+          <div class="card"><b>${o.dms}</b><span>Личных чатов</span></div>
+          <div class="card"><b>${o.channels}</b><span>Каналов</span></div>
+          <div class="card"><b>${o.stories}</b><span>Историй</span></div>
+          <div class="card"><b>${o.online.length}</b><span>Сейчас в сети</span></div>
+        </div>
+        <div class="section-title">Последние сообщения</div>
+        <div class="item" onclick="goTab('chats')"><div class="meta"><b>Открыть все чаты →</b><span>Читать переписки пользователей</span></div></div>
+        <div class="section-title">📣 Опубликовать обновление в канал «Обновления Nexus»</div>
+        <div class="item" style="cursor:default">
+          <input id="upd-title" placeholder="Заголовок (например: Nexus 3.1 — быстрее и красивее)" style="width:100%;margin-bottom:8px;padding:10px;border-radius:10px;border:1px solid #2a2f3a;background:#171b22;color:#e8ecf3">
+          <div style="display:flex;gap:8px;margin-bottom:8px">
+            <input id="upd-version" placeholder="Версия (3.1)" style="width:110px;padding:10px;border-radius:10px;border:1px solid #2a2f3a;background:#171b22;color:#e8ecf3">
+            <input id="upd-emoji" placeholder="Эмодзи ✨" value="✨" style="width:110px;padding:10px;border-radius:10px;border:1px solid #2a2f3a;background:#171b22;color:#e8ecf3">
+          </div>
+          <textarea id="upd-items" rows="4" placeholder="Пункты — по одному в строке" style="width:100%;padding:10px;border-radius:10px;border:1px solid #2a2f3a;background:#171b22;color:#e8ecf3"></textarea>
+          <button id="upd-publish" style="margin-top:10px;padding:11px 22px;border-radius:11px;border:none;background:#3390ec;color:#fff;font-weight:700;cursor:pointer">📣 Опубликовать</button>
+          <span id="upd-result" style="margin-left:10px;color:#7bd88f"></span>
+        </div>`;
+      $('#upd-publish').addEventListener('click', async () => {
+        const title = $('#upd-title').value.trim();
+        const items = $('#upd-items').value.split('\n').map(s => s.trim()).filter(Boolean);
+        if (!title || !items.length) { alert('Нужны заголовок и хотя бы один пункт'); return; }
+        try {
+          await api('/api/admin/updates', { method: 'POST', body: { title, items, version: $('#upd-version').value.trim(), emoji: $('#upd-emoji').value.trim() || '✨' } });
+          $('#upd-result').textContent = '✅ Опубликовано!';
+          $('#upd-title').value = ''; $('#upd-items').value = '';
+        } catch (e) { alert(e.message); }
+      });
+    }
+    if (currentTab === 'users') {
+      const { users } = await api('/api/admin/users');
+      users.sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+      c.innerHTML = `
+        <div class="section-title">Все пользователи (${users.length})</div>
+        <table>
+          <tr><th>Пользователь</th><th class="hide-sm">Юзернейм</th><th class="hide-sm">Регистрация</th><th>Был в сети</th><th>Сообщений</th></tr>
+          ${users.map(u => `
+            <tr>
+              <td><div style="display:flex;align-items:center;gap:9px">${avatar(u, 34)}<div><b>${esc(u.displayName)}</b><div style="color:#8b98a5;font-size:.74rem">${esc(u.bio || '')}</div></div></div></td>
+              <td class="hide-sm">@${esc(u.username)}</td>
+              <td class="hide-sm">${fmt(u.createdAt)}</td>
+              <td>${u.online ? '<span class="badge green">в сети</span>' : fmt(u.lastSeen)}</td>
+              <td>${u.messageCount}</td>
+            </tr>`).join('')}
+        </table>`;
+    }
+    if (currentTab === 'chats') {
+      const { dms, channels } = await api('/api/admin/conversations');
+      c.innerHTML = `
+        <div class="section-title">Личные чаты (${dms.length})</div>
+        ${dms.map(d => `
+          <div class="item" onclick="openChat('dm','${d.id}','${esc(d.title)}')">
+            ${avatar(d.participants[0], 44)}
+            <div class="meta"><b>${esc(d.title)}</b><span>${d.last ? esc(d.last.text) + ' · ' + fmt(d.last.createdAt) : 'нет сообщений'}</span></div>
+            <div class="badge">${d.count}</div>
+          </div>`).join('') || '<div class="empty">Нет чатов</div>'}
+        <div class="section-title">Каналы сообществ (${channels.length})</div>
+        ${channels.map(ch => `
+          <div class="item" onclick="openChat('channel','${ch.id}','${esc(ch.name)}')">
+            <div class="av" style="background:#3390ec;width:44px;height:44px">#</div>
+            <div class="meta"><b>${esc(ch.name)} <small style="color:#8b98a5">· ${esc(ch.server)}</small></b><span>${ch.last ? esc(ch.last.text) + ' · ' + fmt(ch.last.createdAt) : 'нет сообщений'}</span></div>
+            <div class="badge">${ch.count}</div>
+          </div>`).join('') || '<div class="empty">Нет каналов</div>'}`;
+    }
+    if (currentTab === 'stories') {
+      const { stories } = await api('/api/admin/stories');
+      c.innerHTML = `
+        <div class="section-title">Истории (${stories.length})</div>
+        <div class="story-grid">
+          ${stories.map(s => `
+            <div class="story-cell">
+              ${!s.attachment ? '' : (s.attachment.type || '').startsWith('video/')
+                ? `<video src="${esc(s.attachment.url)}" controls preload="metadata"></video>`
+                : `<img src="${esc(s.attachment.url)}" loading="lazy">`}
+              <div class="sc"><b>${esc(s.author?.displayName || '?')}</b>${esc(s.text || '')}<br>${fmt(s.createdAt)}</div>
+            </div>`).join('') || '<div class="empty">Историй пока нет</div>'}
+        </div>`;
+    }
+    if (currentTab === 'search') {
+      c.innerHTML = `
+        <input id="search-input" placeholder="Поиск по всем сообщениям…" value="${esc(window._q || '')}">
+        <div id="search-res"></div>`;
+      const inp = $('#search-input');
+      inp.focus();
+      let t = null;
+      const run = async () => {
+        window._q = inp.value;
+        const { results } = await api('/api/admin/search?q=' + encodeURIComponent(inp.value));
+        $('#search-res').innerHTML = results.map(h => `
+          <div class="hit">
+            <div class="scope">${h.scope.kind === 'channel' ? esc(h.scope.context + ' · ' + h.scope.name) : 'Личные чаты · ' + esc(h.scope.name)}</div>
+            <div class="txt"><b style="color:#79c4f7">${esc(h.author?.displayName || '?')}:</b> ${esc(h.text || '[вложение]')}</div>
+            <div class="when">${fmt(h.createdAt)}</div>
+          </div>`).join('') || (inp.value.length > 1 ? '<div class="empty">Ничего не найдено</div>' : '');
+      };
+      inp.addEventListener('input', () => { clearTimeout(t); t = setTimeout(run, 350); });
+      if (window._q) run();
+    }
+    if (currentTab === 'feedback') {
+      const { feedback, total } = await api('/api/admin/feedback');
+      window._feedback = feedback;
+      const kindLabel = (k) => ({ problem: '🛠 Проблема', suggestion: '💡 Предложение', user: '🚫 Жалоба на пользователя' }[k] || '🛠 Проблема');
+      const reportText = (f) => `[${new Date(f.at).toLocaleString('ru-RU')}] ${kindLabel(f.kind)} | от @${f.username || 'гость'}${f.aboutUsername ? ` | на @${f.aboutUsername}` : ''}\n${f.text}${f.appVersion ? `\nВерсия: ${f.appVersion}` : ''}${f.screen ? `\nЭкран: ${f.screen}` : ''}${f.ua ? `\nУстройство: ${f.ua}` : ''}`;
+      c.innerHTML = `
+        <div class="cards">
+          <div class="card"><b>${total}</b><span>Всего обращений</span></div>
+          <div class="card"><b>${feedback.filter(f => f.status === 'new').length}</b><span>Новых</span></div>
+          <div class="card"><button id="fb-copy-all">📋 Копировать отчёт</button><span>для ассистента</span></div>
+          <div class="card"><button id="fb-clear">🗑 Очистить</button><span>удалить обращения</span></div>
+        </div>
+        <div>${feedback.map(f => `
+          <div class="hit">
+            <div class="scope">${esc(kindLabel(f.kind))} · ${fmt(f.at)} · от ${esc(f.username ? '@' + f.username : 'гость')}${f.aboutUsername ? ' · на @' + esc(f.aboutUsername) : ''}${f.appVersion ? ' · ' + esc(f.appVersion) : ''}</div>
+            <div class="txt" style="white-space:pre-wrap">${esc(f.text)}</div>
+            <div class="when">${f.screen ? 'Экран: ' + esc(f.screen) + ' · ' : ''}${f.ua ? esc(f.ua) : ''}</div>
+            <div style="margin-top:6px;display:flex;gap:6px">
+              <button class="fb-copy-one" data-id="${esc(f.id)}">📋 Копировать для ассистента</button>
+              <button class="fb-del-one" data-id="${esc(f.id)}">✕ Удалить</button>
+            </div>
+          </div>`).join('') || '<div class="empty">Обращений пока нет</div>'}</div>`;
+      const copyText = async (text, success) => {
+        try { await navigator.clipboard.writeText(text); alert(success); }
+        catch (_) { prompt('Скопируйте текст:', text); }
+      };
+      $('#fb-copy-all').addEventListener('click', () => {
+        const report = 'ОБРАЩЕНИЯ NEXUS — ' + new Date().toLocaleString('ru-RU') + '\nВсего: ' + total + '\n\n' + feedback.map((f, i) => (i + 1) + ') ' + reportText(f)).join('\n\n');
+        copyText(report, 'Отчёт скопирован. Перешлите его ассистенту Nexus.');
+      });
+      $('#fb-clear').addEventListener('click', async () => {
+        if (!confirm('Удалить все обращения?')) return;
+        await api('/api/admin/feedback/clear', { method: 'POST', body: {} });
+        render();
+      });
+      $$('.fb-copy-one').forEach(b => b.addEventListener('click', () => {
+        const f = window._feedback.find(x => x.id === b.dataset.id);
+        if (f) copyText('ОБРАЩЕНИЕ NEXUS\n' + reportText(f), 'Скопировано. Перешлите обращение ассистенту Nexus.');
+      }));
+      $$('.fb-del-one').forEach(b => b.addEventListener('click', async () => {
+        await api('/api/admin/feedback/' + b.dataset.id, { method: 'DELETE' });
+        render();
+      }));
+    }
+    if (currentTab === 'errors') {
+      const { errors, total } = await api('/api/admin/errors');
+      window._errors = errors;
+      const fmtErr = (e) => `[${new Date(e.at).toLocaleString('ru-RU')}] @${e.username || 'гость'} | ${e.kind} | ${e.message}` + (e.context ? ` | ctx: ${e.context}` : '') + (e.screen ? ` | screen: ${e.screen}` : '');
+      c.innerHTML = `
+        <div class="cards">
+          <div class="card"><b>${total}</b><span>Всего ошибок</span></div>
+          <div class="card"><b>${errors.filter(e => e.status === 'new').length}</b><span>Новых</span></div>
+          <div class="card"><button id="err-copy-all">📋 Копировать отчёт</button><span>для ассистента</span></div>
+          <div class="card"><button id="err-clear">🗑 Очистить</button><span>удалить журнал</span></div>
+        </div>
+        <div>${errors.map(e => `
+          <div class="hit">
+            <div class="scope">${esc(e.kind)} · ${new Date(e.at).toLocaleString('ru-RU')} · ${esc(e.username || 'гость')}${e.appVersion ? ' · ' + esc(e.appVersion) : ''}</div>
+            <div class="txt">${esc(e.message)}</div>
+            ${e.context ? `<div class="when">ctx: ${esc(e.context)}${e.screen ? ' | ' + esc(e.screen) : ''}</div>` : ''}
+            ${e.stack ? `<div class="when" style="white-space:pre-wrap;max-height:80px;overflow:hidden">${esc(e.stack.split('\n').slice(0, 3).join('\n'))}</div>` : ''}
+            <div style="margin-top:6px;display:flex;gap:6px">
+              <button class="err-copy-one" data-id="${esc(e.id)}">📋 Копировать</button>
+              <button class="err-del-one" data-id="${esc(e.id)}">✕ Удалить</button>
+            </div>
+          </div>`).join('') || '<div class="empty">Ошибок нет — всё работает! 🎉</div>'}</div>`;
+      $('#err-copy-all').addEventListener('click', () => {
+        const report = 'ОТЧЁТ ОБ ОШИБКАХ NEXUS — ' + new Date().toLocaleString('ru-RU') + '\nВсего: ' + total + '\n\n' +
+          errors.map((e, i) => (i + 1) + ') ' + fmtErr(e) + (e.stack ? '\n   stack: ' + e.stack.split('\n').slice(0, 4).join(' | ').slice(0, 600) : '')).join('\n\n');
+        navigator.clipboard.writeText(report).then(() => alert('Отчёт скопирован! Вставьте его ассистенту Nexus.')).catch(() => prompt('Скопируйте отчёт:', report));
+      });
+      $('#err-clear').addEventListener('click', async () => {
+        if (!confirm('Очистить журнал ошибок?')) return;
+        await api('/api/admin/errors/clear', { method: 'POST', body: {} });
+        render();
+      });
+      $$('.err-copy-one').forEach(b => b.addEventListener('click', () => {
+        const e = window._errors.find(x => x.id === b.dataset.id);
+        if (!e) return;
+        const txt = 'ОШИБКА NEXUS\n' + fmtErr(e) + '\nua: ' + (e.ua || '') + '\nstack: ' + (e.stack || '—');
+        navigator.clipboard.writeText(txt).then(() => alert('Скопировано!')).catch(() => prompt('Скопируйте:', txt));
+      }));
+      $$('.err-del-one').forEach(b => b.addEventListener('click', async () => {
+        await api('/api/admin/errors/' + b.dataset.id, { method: 'DELETE' });
+        render();
+      }));
+    }
+  } catch (e) {
+    if (/Неверный админ/.test(e.message)) {
+      TOKEN = ''; localStorage.removeItem('nexus_admin_token');
+      $('#app').classList.add('hidden'); $('#login').classList.remove('hidden');
+    } else c.innerHTML = '<div class="empty">' + esc(e.message) + '</div>';
+  }
+}
+function goTab(t) { currentTab = t; $$('#tabbar button').forEach(x => x.classList.toggle('active', x.dataset.tab === t)); render(); }
+
+/* transcript */
+async function openChat(kind, id, title) {
+  const c = $('#content');
+  c.innerHTML = '<div class="empty">Загружаю…</div>';
+  try {
+    const p = kind === 'dm' ? 'dm=' + id : 'channel=' + id;
+    const { messages } = await api('/api/admin/messages?' + p + '&limit=200');
+    let lastDay = '';
+    const rows = [];
+    for (const m of messages) {
+      const d = new Date(m.createdAt).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long' });
+      if (d !== lastDay) { rows.push(`<div class="t-day">${esc(d)}</div>`); lastDay = d; }
+      const att = m.attachment;
+      let media = '';
+      if (att) {
+        if (att.round || (att.type || '').startsWith('video/')) media = `<video src="${esc(att.url)}" controls preload="metadata"></video>`;
+        else if ((att.type || '').startsWith('image/')) media = `<img src="${esc(att.url)}" loading="lazy">`;
+        else if ((att.type || '').startsWith('audio/')) media = `<audio src="${esc(att.url)}" controls preload="metadata"></audio>`;
+        else media = `<div style="opacity:.8">📎 ${esc(att.name || 'файл')}</div>`;
+      }
+      rows.push(`
+        <div class="t-msg ${kind === 'dm' ? (m.author?.username === 'demo' ? 't-out' : 't-in') : 't-in'}">
+          <div class="who" style="color:${esc(m.author?.color || '#79c4f7')}">${esc(m.author?.displayName || '?')}</div>
+          ${m.replyTo ? '<div style="opacity:.6;font-size:.78rem;border-left:2px solid #3390ec;padding-left:6px;margin-bottom:3px">↩ ответ</div>' : ''}
+          ${m.text ? `<div>${esc(m.text).replace(/\n/g, '<br>')}</div>` : ''}
+          ${media}
+          <span class="tm">${fmt(m.createdAt)}${m.editedAt ? ' (ред.)' : ''}</span>
+          <div style="clear:both"></div>
+        </div>`);
+    }
+    c.innerHTML = `
+      <div class="transcript" id="transcript">
+        <div class="t-head">
+          <button class="btn-back" onclick="goTab('chats')">← Назад</button>
+          <b>${esc(title)}</b>
+          <div class="spacer" style="flex:1"></div>
+          <span style="color:#8b98a5;font-size:.82rem">${messages.length} сообщений</span>
+        </div>
+        <div class="t-msgs">${rows.join('') || '<div class="empty">Пусто</div>'}</div>
+      </div>`;
+  } catch (e) { c.innerHTML = '<div class="empty">' + esc(e.message) + '</div>'; }
+}
+
+/* авто-вход */
+if (TOKEN) {
+  api('/api/admin/overview').then(() => enter()).catch(() => { TOKEN = ''; });
+}
+</script>
+</body>
+</html>

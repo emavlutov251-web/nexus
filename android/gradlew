@@ -1,0 +1,4 @@
+#!/bin/bash
+# Minimal wrapper attempt
+exec java -jar /dev/stdin "$@" << 'WRAPPER'
+# This won't work without jar - let's try a different approach

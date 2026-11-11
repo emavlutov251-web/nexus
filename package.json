@@ -1,0 +1,16 @@
+{
+  "name": "nexus",
+  "version": "1.0.0",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "Nexus — Telegram-style DMs + Discord-style servers/channels",
+  "dependencies": {
+    "express": "^5.3.0",
+    "ws": "^8.22.2"
+  }
+}
